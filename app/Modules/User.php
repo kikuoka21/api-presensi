@@ -3,7 +3,6 @@
 
 namespace App\Modules;
 
-use Carbon\Carbon;
 use DB;
 
 class User
@@ -30,10 +29,6 @@ class User
         return $result;
     }
 
-    public function generate_token($key)
-    {
-        $mytime = Carbon::now();
-        return $mytime->hour();
-    }
+
 
 }

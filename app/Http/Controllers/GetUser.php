@@ -38,12 +38,12 @@ class GetUser extends Controller
                         $result = ['code' => 'nis yang dimasukan salah'];
                     } else {
                         if (object_get($hasil[0], 'password') == $pass) {
-//                            $token =
-//                            $hasil = $user->input_token($username, );
-                            
+                            $token =$tool->generate_token($key, $username);
+                            $hasil = $user->input_token($username, $token);
+
                             $result = [
                                 'aaa' => 'aadwa',
-                                'token' => $user->generate_token()
+                                'token' => $hasil
                             ];
                         } else {
                             $result = ['code' => 'password yang dimasukan salah '];
