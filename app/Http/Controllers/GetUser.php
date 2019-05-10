@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Modules\Tool;
 use App\Modules\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -12,38 +13,49 @@ use Illuminate\Support\Str;
 
 class GetUser extends Controller
 {
-    public $id;
 
-    public function __invoke(Request $request)
+    public function Login(Request $request)
     {
         // TODO: Implement __invoke() method.
         $user = new User();
-        $id = $request->input('xuid');
-        if ($id == null) {
+        $tool = new Tool();
+
+        $json = $request->input('id');
+
+        if ($json == null) {
             return Redirect::to('/');
         } else {
-            $user->uid = $id;
-            $hasil = $user->getUser();
-            if (!$hasil) {
-                $result = [
-                    'code' => Str::random(32),
-                    'data' => $request->input('xuid')
-                ];
+            if ($tool->IsJsonString($json)) {
+                $json = json_decode($json);
+//
+                if (isset($json->xp455) || isset($json->x1d) || isset($json->type) || isset($json->key)) {
+                    $pass = $json->xp455;
+                    $username = $json->x1d;
+                    $key = $json->type;
+                    $type = $json->key;
+                    $hasil = $user->getUser($username);
+                    if (!$hasil) {
+                        $result = ['code' => 'nis yang dimasukan salah'];
+                    } else {
+                        if (object_get($hasil[0], 'password') == $pass) {
+//                            $token =
+//                            $hasil = $user->input_token($username, );
+                            
+                            $result = [
+                                'aaa' => 'aadwa',
+                                'token' => $user->generate_token()
+                            ];
+                        } else {
+                            $result = ['code' => 'password yang dimasukan salah '];
+                        }
+                    }
+                } else {
+                    $result = ['code' => 'data yangdikirm salah'];
+                }
             } else {
-
-                $result = [
-                    'aaa' => object_get($hasil[0], 'password'),
-                    'token' =>md5(''.md5('aldklnalkidnalk'))
-                ];
-                $result = [
-                    'data' => $result
-                ];
-
-
+                $result = ['code' => 'format data yg dikirim salah '];
             }
-
         }
-
 
         return $result;
     }
