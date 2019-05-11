@@ -66,4 +66,28 @@ class User
     }
 
 
+    public function chek_token($xuid, $token, $type)
+    {
+        $query = "SELECT akses, token_2, token FROM users where username = :xuid ";
+        $getid = DB::connection('mysql')->select(DB::raw($query), [
+            'xuid' => $xuid
+        ]);
+        if (!$getid) {
+            return false;
+        } else {
+            if (object_get($getid[0], 'akses') == '1' && $type == 'www') {
+                if (object_get($getid[0], 'token_2') == $token) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                if (object_get($getid[0], 'token') == $token) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+    }
 }

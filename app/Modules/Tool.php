@@ -11,6 +11,7 @@ namespace App\Modules;
 
 use Carbon\Carbon;
 
+use DB;
 class Tool
 {
     function IsJsonString($str)
@@ -21,8 +22,7 @@ class Tool
 
     public function generate_token($key, $id, $type)
     {
-        $mytime = Carbon::now();
-        return md5($mytime->hour() . md5($id . $key) . $type);
+        return md5( md5($id . $key). $type );
     }
 
     public function thn_ajar_skrng()
@@ -34,5 +34,19 @@ class Tool
         } else {
             return $tahun . strval($tahun + 1);
         }
+    }
+
+    public function time(){
+        $mytime = Carbon::now();
+        return $mytime->toTimeString();
+    }
+    public function Isi_Log($pesan){
+        $mytime = Carbon::now();
+        $query = "INSERT INTO log VALUES (:date,:pesan); ";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'date'=>  $mytime->toDateString(),
+            'pesan' => $mytime->toTimeString().' '.$pesan
+        ]);
+
     }
 }
