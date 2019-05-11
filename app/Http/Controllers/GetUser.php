@@ -31,19 +31,29 @@ class GetUser extends Controller
                 if (isset($json->xp455) || isset($json->x1d) || isset($json->type) || isset($json->key)) {
                     $pass = $json->xp455;
                     $username = $json->x1d;
-                    $key = $json->type;
-                    $type = $json->key;
+                    $type = $json->type;
+                    $key = $json->key;
                     $hasil = $user->getUser($username);
                     if (!$hasil) {
                         $result = ['code' => 'nis yang dimasukan salah'];
                     } else {
                         if (object_get($hasil[0], 'password') == $pass) {
-                            $token =$tool->generate_token($key, $username);
-                            $hasil = $user->input_token($username, $token);
-
+                            $token = $tool->generate_token($key, $username, $type);
+                            if (object_get($hasil[0], 'akses') == '1' && $type == 'www') {
+                                $user->input_tokenweb($username, $token);
+                            } else {
+                                $user->input_tokenmobile($username, $token);
+                            }
+                            $getnama = $user->getdata_dashboard($username, object_get($hasil[0], 'akses'));
                             $result = [
-                                'aaa' => 'aadwa',
-                                'token' => $hasil
+                                'status' => object_get($hasil[0], 'akses'),
+                                'token' => $token,
+                                'tahun_ajar'=> $tool->thn_ajar_skrng(),
+                                'data_pribadi'=> $getnama[0]
+                            ];
+                            $result = [
+                                'code' => 'OK4',
+                                'data'=> $result
                             ];
                         } else {
                             $result = ['code' => 'password yang dimasukan salah '];
