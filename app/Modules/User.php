@@ -22,7 +22,7 @@ class User
     public function input_tokenmobile($uid, $token)
     {
         $query = "UPDATE users SET token= :token where username= :xuid";
-        $result = DB::connection('mysql')->select(DB::raw($query), [
+        DB::connection('mysql')->select(DB::raw($query), [
             'xuid' => $uid,
             'token' => $token
         ]);
@@ -32,7 +32,7 @@ class User
     public function input_tokenweb($uid, $token)
     {
         $query = "UPDATE users SET token_2= :token where username= :xuid";
-        $result = DB::connection('mysql')->select(DB::raw($query), [
+        DB::connection('mysql')->select(DB::raw($query), [
             'xuid' => $uid,
             'token' => $token
         ]);

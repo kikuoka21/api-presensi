@@ -16,5 +16,13 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('auth/login', 'GetUser@Login');
-Route::post('auth/check-token', 'GetUser@check_token');
+Route::post('auth/login', 'auth@Login');
+Route::post('auth/check-token', 'auth@check_token');
+
+//admin
+Route::post('auth/check-token', 'auth@check_token');
+
+
+//siswa
+Route::post('siswa/dashboard', 'siswa@dashboard');
+

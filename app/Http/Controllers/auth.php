@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Modules\MDashboard;
 use App\Modules\Tool;
 use App\Modules\User;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 
-class GetUser extends Controller
+class auth extends Controller
 {
     public function Login(Request $request)
     {
@@ -49,7 +50,6 @@ class GetUser extends Controller
                             $result = [
                                 'status' => object_get($hasil[0], 'akses'),
                                 'token' => $token,
-                                'tahun_ajar' => $tool->thn_ajar_skrng(),
                                 'data_pribadi' => $getnama[0]
                             ];
                             $tool->Isi_Log('login OK4 ' . $username . ' ' . $key . ' ' . $inputnya);
@@ -77,6 +77,7 @@ class GetUser extends Controller
     {
         $user = new User();
         $tool = new Tool();
+        $dashboard = new MDashboard();
 
         $json = $request->input('parsing');
         if ($json == null) {
@@ -91,24 +92,25 @@ class GetUser extends Controller
                     $key = $json->key;
 //
                     if ($token == $tool->generate_token($key, $username, $type)) {
-                        if ($user->chek_token($username, $token, $type)) {
-                            $result = ['code' => 'token sama'];
-                        } else {
-                            $result = ['code' => 'token beda 1'];
-                        }
+                        if ($user->chek_token($username, $token, $type))
 
-                    } else {
-                        $result = ['code' => 'token bedaaaaaaaaaaaaaaaaaaaaa 2'];
-//
-                    }
-                } else {
-                    $result = ['code' => 'format data yg dikirim salah  disini'];
+                            $result = [
+                                'code' => 'OK4'
+                            ];
 
-                }
-//
-            } else {
+                        else
+                            $result = ['code' => 'token data base sudah berubah'];
+
+                    } else
+                        $result = ['code' => 'token beda'];
+
+                } else
+                    $result = ['code' => 'ISI nama PARAM dikirim salah'];
+
+
+            } else
                 $result = ['code' => 'format data yg dikirim salah '];
-            }
+
             return $result;
         }
     }
