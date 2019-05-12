@@ -4,7 +4,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Modules\MDashboard;
+use App\Modules\M_Dashboard;
 use App\Modules\Tool;
 use App\Modules\User;
 use Illuminate\Http\Request;
@@ -77,7 +77,7 @@ class auth extends Controller
     {
         $user = new User();
         $tool = new Tool();
-        $dashboard = new MDashboard();
+        $dashboard = new M_Dashboard();
 
         $json = $request->input('parsing');
         if ($json == null) {
@@ -85,20 +85,24 @@ class auth extends Controller
         } else {
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
-                if (isset($json->token) || isset($json->x1d) || isset($json->type) || isset($json->key)) {
+                if (isset($json->token) || isset($json->x1d) || isset($json->type) || isset($json->key) || isset($json->akses)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
                     $key = $json->key;
+                    $akses = $json->akses;
 //
                     if ($token == $tool->generate_token($key, $username, $type)) {
-                        if ($user->chek_token($username, $token, $type))
+                        if ($user->chek_token($username, $token, $type)) {
 
+
+                            $getnama = $user->getdata_dashboard($username, $akses);
                             $result = [
-                                'code' => 'OK4'
+                                'code' => 'OK4',
+                                'data'=> $getnama[0]
                             ];
 
-                        else
+                        } else
                             $result = ['code' => 'token data base sudah berubah'];
 
                     } else
@@ -108,11 +112,14 @@ class auth extends Controller
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];
 
 
-            } else
+            } else {
                 $result = ['code' => 'format data yg dikirim salah '];
 
+            }
             return $result;
-        }
-    }
 
+        }
+
+
+    }
 }
