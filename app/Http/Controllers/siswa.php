@@ -39,7 +39,7 @@ class siswa
 					if ($token == $tool->generate_token($key, $username, $type)) {
 						if ($user->chek_token($username, $token, $type)) {
 //							$tanggal = $tool->get_date();
-                            $tanggal = '2019-05-12';
+							$tanggal = '2019-05-12';
 
 							if ($tool->tgl_merah()) {
 								$hari_ini = [
@@ -92,7 +92,7 @@ class siswa
 	{
 		$user = new User();
 		$tool = new Tool();
-		$dashboard = new M_Dashboard();
+		$msiswa = new M_siswa();
 
 		$json = $request->input('parsing');
 		if ($json == null) {
@@ -100,7 +100,7 @@ class siswa
 		} else {
 			if ($tool->IsJsonString($json)) {
 				$json = json_decode($json);
-				if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key)&& isset($json->kd_kls)) {
+				if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) && isset($json->kd_kls)) {
 					$token = $json->token;
 					$username = $json->x1d;
 					$type = $json->type;
@@ -110,13 +110,20 @@ class siswa
 						if ($user->chek_token($username, $token, $type)) {
 
 //							$tanggal = $tool->get_date();
-							$tanggal = '2019-05-12';
+							$tanggal = '2019-05-21';
+							$hasil = $msiswa->get_flag_($kelas, $tanggal);
+							if (!$hasil) {
+								$token = md5('sudah d!enkrip'.md5($tanggal.$kelas).$username);
+								$msiswa->insert_token($kelas, $tanggal, $token);
 
+							} else {
 
+								$token = object_get($hasil[0], 'token');
+							}
 
 							$result = [
-								'kd_kelas' => 'kd_kels',
-								'nm_kelas' =>  'kelas'
+								'code' => 'OK4',
+								'tokennya ' => $token
 							];
 
 						} else

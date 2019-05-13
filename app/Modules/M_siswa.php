@@ -39,7 +39,7 @@ class M_siswa
 		]);
 	}
 	public function get_flag_($kode, $tgl){
-		$query = "SELECT token FROM validasi_absen where id_kelas = :kode and tanggal = ::tgl";
+		$query = "SELECT token FROM validasi_absen where id_kelas = :kode and tanggal = :tgl";
 
 		$result = DB::connection('mysql')->select(DB::raw($query), [
 			'kode' => $kode,
@@ -47,5 +47,15 @@ class M_siswa
 		]);
 
 		return $result;
+	}
+	public function insert_token($kode, $tgl, $token){
+
+		$query = "UPDATE validasi_absen SET token= :token , tanggal = :tgl where id_kelas= :kode ";
+		 DB::connection('mysql')->select(DB::raw($query), [
+			'kode' => $kode,
+			'tgl' => $tgl,
+			'token'=>$token
+		]);
+
 	}
 }

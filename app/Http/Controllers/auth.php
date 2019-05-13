@@ -129,10 +129,11 @@ class auth extends Controller
     }
     public function getip(Request $request){
 	    $tool = new Tool();
-	    $msiswa = new M_siswa();
 
-	    $hasil= $request->ip().' <br><br> '.$request->header('User-Agent');
-	    $tool->Isi_Log('XX ' .$hasil);
-	    return view('welcome')->with('result',$hasil);
+	    $hasil= $request->ip().'  ';
+	    $pesan  = $request->header('User-Agent');
+	    $tool->Isi_Log('/ ' .$hasil.' '.$pesan);
+
+	    return view('welcome')->with('result',$hasil.'<br><br>'.$pesan);
     }
 }

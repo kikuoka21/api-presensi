@@ -67,9 +67,9 @@
         <div class="flex-center position-ref full-height">
 
             <div class="content">
-                <div class="title m-b-md">
-                    Hayo ngapain, dicatat lohh..<br>
-                   {{$result}}
+                <div class="m-b-md">
+                   <h3> Hayo ngapain, dicatat lohh..<br><br>
+                       {!! $result !!}}</h3>
                 </div>
 
 

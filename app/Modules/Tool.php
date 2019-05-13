@@ -12,6 +12,7 @@ namespace App\Modules;
 use Carbon\Carbon;
 
 use DB;
+//use Illuminate\Support\Facades\DB;
 
 class Tool
 {
