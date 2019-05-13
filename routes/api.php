@@ -13,16 +13,24 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
 Route::post('auth/login', 'auth@Login');
 Route::post('auth/check-token', 'auth@check_token');
 
+
+
+
+
 //admin
-Route::post('auth/check-token', 'auth@check_token');
+//Route::post('auth/check-token', 'auth@check_token');
 
 
 //siswa
 Route::post('siswa/dashboard', 'siswa@dashboard');
+
+Route::post('siswa/buat-qr', 'siswa@create_qr');
+
 

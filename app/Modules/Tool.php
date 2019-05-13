@@ -36,6 +36,12 @@ class Tool
             return $tahun . strval($tahun + 1);
         }
     }
+    public function tgl_skrng()
+    {
+        $mytime = Carbon::now();
+        return $mytime->toDateString();
+
+    }
 
     public function get_date()
     {
@@ -46,7 +52,7 @@ class Tool
     public function Isi_Log($pesan)
     {
         $mytime = Carbon::now();
-        $query = "INSERT INTO log VALUES (:date,:pesan); ";
+        $query = "INSERT INTO log VALUES (:date ,:pesan); ";
         DB::connection('mysql')->select(DB::raw($query), [
             'date' => $mytime->toDateString(),
             'pesan' => $mytime->toTimeString() . ' ' . $pesan

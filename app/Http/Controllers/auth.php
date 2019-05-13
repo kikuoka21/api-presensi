@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Modules\M_Dashboard;
+use App\Modules\M_siswa;
 use App\Modules\Tool;
 use App\Modules\User;
 use Illuminate\Http\Request;
@@ -28,7 +29,7 @@ class auth extends Controller
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
 //
-                if (isset($json->xp455) || isset($json->x1d) || isset($json->type) || isset($json->key)) {
+                if (isset($json->xp455) && isset($json->x1d) && isset($json->type) && isset($json->key)) {
                     $pass = $json->xp455;
                     $username = $json->x1d;
                     $type = $json->type;
@@ -50,6 +51,8 @@ class auth extends Controller
                             $result = [
                                 'status' => object_get($hasil[0], 'akses'),
                                 'token' => $token,
+	                            'thn-ajar'=> $tool->thn_ajar_skrng(),
+	                            'tanggal'=> $tool->tgl_skrng(),
                                 'data_pribadi' => $getnama[0]
                             ];
                             $tool->Isi_Log('login OK4 ' . $username . ' ' . $key . ' ' . $inputnya);
@@ -85,7 +88,7 @@ class auth extends Controller
         } else {
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
-                if (isset($json->token) || isset($json->x1d) || isset($json->type) || isset($json->key) || isset($json->akses)) {
+                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&   isset($json->akses)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
@@ -99,9 +102,11 @@ class auth extends Controller
                             $getnama = $user->getdata_dashboard($username, $akses);
                             $result = [
                                 'code' => 'OK4',
+	                            'thn-ajar'=> $tool->thn_ajar_skrng(),
+	                            'tanggal'=> $tool->tgl_skrng(),
                                 'data'=> $getnama[0]
                             ];
-
+	                        $tool->Isi_Log('chek tkn OK4 ' . $username . ' ' . $key . ' ' . $akses);
                         } else
                             $result = ['code' => 'token data base sudah berubah'];
 
@@ -121,5 +126,13 @@ class auth extends Controller
         }
 
 
+    }
+    public function getip(Request $request){
+	    $tool = new Tool();
+	    $msiswa = new M_siswa();
+
+	    $hasil= $request->ip().' <br><br> '.$request->header('User-Agent');
+	    $tool->Isi_Log('XX ' .$hasil);
+	    return view('welcome')->with('result',$hasil);
     }
 }
