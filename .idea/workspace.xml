@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="15adb7b8-5915-42c2-8bd1-865507090c9b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Input_master.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/admin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Modules/M_admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/siswa.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/siswa.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-    </list>
+    <list default="true" id="15adb7b8-5915-42c2-8bd1-865507090c9b" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/siswa.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="54" column="38" lean-forward="true" selection-start-line="54" selection-start-column="38" selection-end-line="54" selection-end-column="38" />
+            <state relative-caret-position="850">
+              <caret line="61" column="29" lean-forward="true" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="29" />
               <folding>
                 <element signature="e#124#152#0#PHP" expanded="true" />
               </folding>
@@ -354,16 +346,15 @@
       <workItem from="1557729050443" duration="157000" />
       <workItem from="1557730208630" duration="6917000" />
       <workItem from="1557815818044" duration="2791000" />
-      <workItem from="1557889211154" duration="11851000" />
+      <workItem from="1557889211154" duration="12475000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82475000" />
+    <option name="totallyTimeSpent" value="83099000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1432" height="1047" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.33600584" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -532,8 +523,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/siswa.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="54" column="38" lean-forward="true" selection-start-line="54" selection-start-column="38" selection-end-line="54" selection-end-column="38" />
+        <state relative-caret-position="850">
+          <caret line="61" column="29" lean-forward="true" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="29" />
           <folding>
             <element signature="e#124#152#0#PHP" expanded="true" />
           </folding>
