@@ -5,13 +5,10 @@ namespace App\Http\Controllers;
 
 
 use App\Modules\M_Dashboard;
-use App\Modules\M_siswa;
 use App\Modules\Tool;
 use App\Modules\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Str;
 
 class auth extends Controller
 {
