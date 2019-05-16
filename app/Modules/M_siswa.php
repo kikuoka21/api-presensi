@@ -58,4 +58,17 @@ class M_siswa
 		]);
 
 	}
+
+	public function get_all_siswa($kd_kls){
+		$query = "SELECT nis FROM isikelas where id_kelas = :kode";
+		$result = DB::connection('mysql')->select(DB::raw($query), [
+			'kode' => $kd_kls
+		]);
+		return $result;
+
+	}
+
+	public function create_absen($nis, $tanggal){
+
+	}
 }

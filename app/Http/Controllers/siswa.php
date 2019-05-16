@@ -110,19 +110,31 @@ class siswa extends Controller
 						if ($user->chek_token($username, $token, $type)) {
 
 //							$tanggal = $tool->get_date();
-							$tanggal = '2019-05-21';
+							$tanggal = '2019-05-22';
 							$hasil = $msiswa->get_flag_($kelas, $tanggal);
 							if (!$hasil) {
-								$token = md5('sudah d!enkrip'.md5($tanggal.$kelas).$username);
-								$msiswa->insert_token($kelas, $tanggal, $token);
+								$getsiswa = $msiswa->get_all_siswa($kelas);
+								$token = '';
+								if ($getsiswa) {
+									$token = md5('sudah d!enkrip' . md5($tanggal . $kelas) . $username);
+									$msiswa->insert_token($kelas, $tanggal, $token);
+									$code = 'OK4';
+									for($i=0;$i<count($getsiswa);$i++){
+										$code = $code . '  '. object_get($getsiswa[$i], 'nis').'  ';
+									}
+
+								} else {
+									$code = 'tidak ada data siswa di kelas ' . $kelas;
+								}
+
 
 							} else {
-
-								$token = object_get($hasil[0], 'token');
+								$code = 'OK4';
+								$token = object_get($hasil[0], 'token') . ' disini';
 							}
 
 							$result = [
-								'code' => 'OK4',
+								'code' => $code,
 								'tokennya ' => $token
 							];
 
