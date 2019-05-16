@@ -53,6 +53,7 @@ class admin extends Controller
 										'status' => 'M',
 										'ket' => ''
 									];
+									
 									$madmin = new M_admin();
 									$hasil_kelas = $madmin->getakses($username);
 									if (object_get($hasil_kelas[0], 'level') == 1){

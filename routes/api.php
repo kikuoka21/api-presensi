@@ -28,6 +28,7 @@ Route::post('auth/check-token', 'auth@check_token');
 Route::post('admin/dashboard', 'admin@dashboard');
 
 
+
 //siswa
 Route::post('siswa/dashboard', 'siswa@dashboard');
 

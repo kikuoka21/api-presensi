@@ -28,16 +28,7 @@ class M_siswa
 		return $result;
 	}
 
-	public function buat_absen($nis, $tgl, $kd_kelas)
-	{
-//		$query = "INSERT INTO (nis, tanggal, id_kelas) kehadiran VALUES (:nis ,:tgl ,:kode_kelas)";
-		$query = "INSERT INTO kehadiran ( nis, tanggal, id_kelas, stat , ket) VALUES (:nis ,:tgl ,:kode_kelas, 'A', 'tidak absen')";
-		DB::connection('mysql')->select(DB::raw($query), [
-			'nis' => $nis,
-			'tgl' => $tgl,
-			'kode_kelas' => $kd_kelas
-		]);
-	}
+
 	public function get_flag_($kode, $tgl){
 		$query = "SELECT token FROM validasi_absen where id_kelas = :kode and tanggal = :tgl";
 
@@ -68,7 +59,14 @@ class M_siswa
 
 	}
 
-	public function create_absen($nis, $tanggal){
 
-	}
+    public function create_absen($nis, $tgl, $kd_kelas)
+    {
+        $query = "INSERT INTO kehadiran ( nis, tanggal, id_kelas, stat , ket) VALUES (:nis ,:tgl ,:kode_kelas, 'A', 'tidak absen')";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'nis' => $nis,
+            'tgl' => $tgl,
+            'kode_kelas' => $kd_kelas
+        ]);
+    }
 }
