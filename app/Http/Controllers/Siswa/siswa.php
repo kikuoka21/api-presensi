@@ -6,13 +6,14 @@
  * Time: 9:47 AM
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Siswa;
 
 
-use App\Modules\M_Dashboard;
-use App\Modules\M_siswa;
-use App\Modules\Tool;
-use App\Modules\User;
+use App\Http\Controllers\Controller;
+use App\Modules_siswa\M_Dashboard;
+use App\Modules_siswa\M_siswa;
+use App\Modules_siswa\Tool;
+use App\Modules_siswa\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 

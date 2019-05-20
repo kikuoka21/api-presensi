@@ -4,9 +4,9 @@
 namespace App\Http\Controllers;
 
 
-use App\Modules\M_Dashboard;
-use App\Modules\Tool;
-use App\Modules\User;
+use App\Modules_siswa\M_Dashboard;
+use App\Modules_siswa\Tool;
+use App\Modules_siswa\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -94,8 +94,6 @@ class auth extends Controller
 //
                     if ($token == $tool->generate_token($key, $username, $type)) {
                         if ($user->chek_token($username, $token, $type)) {
-
-
                             $getnama = $user->getdata_dashboard($username, $akses);
                             $result = [
                                 'code' => 'OK4',
@@ -105,10 +103,10 @@ class auth extends Controller
                             ];
 	                        $tool->Isi_Log('chek tkn OK4 ' . $username . ' ' . $key . ' ' . $akses);
                         } else
-                            $result = ['code' => 'token data base sudah berubah'];
+                            $result = ['code' => 'token sudah tidak valid'];
 
                     } else
-                        $result = ['code' => 'token beda'];
+                        $result = ['code' => 'token anda salah'];
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];

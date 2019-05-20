@@ -6,7 +6,7 @@
  * Time: 9:14 AM
  */
 
-namespace App\Modules;
+namespace App\Modules_siswa;
 
 use Illuminate\Support\Facades\DB;
 

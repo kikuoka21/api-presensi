@@ -6,13 +6,14 @@
  * Time: 10:22 AM
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 
-use App\Modules\M_admin;
-use App\Modules\M_Dashboard;
-use App\Modules\Tool;
-use App\Modules\User;
+use App\Http\Controllers\Controller;
+use App\Modules_admin\M_admin;
+use App\Modules_siswa\M_Dashboard;
+use App\Modules_siswa\Tool;
+use App\Modules_siswa\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -53,12 +54,12 @@ class admin extends Controller
 										'status' => 'M',
 										'ket' => ''
 									];
-									
+
 									$madmin = new M_admin();
 									$hasil_kelas = $madmin->getakses($username);
-									if (object_get($hasil_kelas[0], 'level') == 1){
+									if (object_get($hasil_kelas[0], 'level') == 1) {
 										$list = $madmin->getabsen_all($tanggal);
-									}else{
+									} else {
 										$list = $madmin->getabsen_kelas($tanggal, $username);
 									}
 								} else {
@@ -70,7 +71,7 @@ class admin extends Controller
 							}
 							$result = [
 								'code' => 'OK4',
-								'date'=> $hari_ini,
+								'date' => $hari_ini,
 //								'kd_kelas' => object_get($hasil_kelas[0], 'level'),
 //								'nm_kelas' => object_get($hasil_kelas[0], 'level'),
 								'list_absen' => $list
@@ -94,7 +95,8 @@ class admin extends Controller
 		}
 	}
 
-	public function input_siswa(Request $request){
+	public function input_siswa(Request $request)
+	{
 		$user = new User();
 		$tool = new Tool();
 		$dashboard = new M_Dashboard();
@@ -129,9 +131,9 @@ class admin extends Controller
 									];
 									$madmin = new M_admin();
 									$hasil_kelas = $madmin->getakses($username);
-									if (object_get($hasil_kelas[0], 'level') == 1){
+									if (object_get($hasil_kelas[0], 'level') == 1) {
 										$list = $madmin->getabsen_all($tanggal);
-									}else{
+									} else {
 										$list = $madmin->getabsen_kelas($tanggal, $username);
 									}
 								} else {
@@ -143,7 +145,7 @@ class admin extends Controller
 							}
 							$result = [
 								'code' => 'OK4',
-								'date'=> $hari_ini,
+								'date' => $hari_ini,
 //								'kd_kelas' => object_get($hasil_kelas[0], 'level'),
 //								'nm_kelas' => object_get($hasil_kelas[0], 'level'),
 								'list_absen' => $list

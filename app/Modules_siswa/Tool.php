@@ -6,7 +6,7 @@
  * Time: 10:49 PM
  */
 
-namespace App\Modules;
+namespace App\Modules_siswa;
 
 
 use Carbon\Carbon;

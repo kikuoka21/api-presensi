@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Modules;
+namespace App\Modules_siswa;
 
 use DB;
 

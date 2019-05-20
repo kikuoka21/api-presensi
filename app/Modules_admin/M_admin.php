@@ -6,7 +6,7 @@
  * Time: 10:51 AM
  */
 
-namespace App\Modules;
+namespace App\Modules_admin;
 
 use DB;
 

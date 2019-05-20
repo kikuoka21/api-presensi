@@ -6,7 +6,7 @@
  * Time: 9:39 AM
  */
 
-namespace App\Modules;
+namespace App\Modules_siswa;
 
 use DB;
 

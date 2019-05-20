@@ -17,21 +17,37 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
-Route::post('auth/login', 'auth@Login');
-Route::post('auth/check-token', 'auth@check_token');
+//Route::post('auth/login', 'auth@Login');
+//Route::post('auth/check-token', 'auth@check_token');
 
-
+Route::prefix('auth')->group(function () {
+	Route::post('login', 'auth@Login');
+	Route::post('check-token', 'auth@check_token');
+});
 
 
 
 //admin
-Route::post('admin/dashboard', 'admin@dashboard');
+Route::prefix('admin')->group(function () {
+	Route::post('dashboard', 'Admin\admin@dashboard');
+
+	Route::prefix('master')->group(function () {
+		Route::post('siswa', 'Admin\Input_data_master@input_siswa');
+
+
+	});
+});
 
 
 
 //siswa
-Route::post('siswa/dashboard', 'siswa@dashboard');
 
-Route::post('siswa/buat-qr', 'siswa@create_qr');
+Route::prefix('siswa')->group(function () {
+//	Route::post('dashboard', 'Admin\admin@dashboard');
+
+	Route::post('dashboard', 'Siswa\siswa@dashboard');
+
+	Route::post('buat-qr', 'Siswa\siswa@create_qr');
+});
 
 
