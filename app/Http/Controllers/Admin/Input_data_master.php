@@ -183,5 +183,59 @@ class Input_data_master extends Controller
         }
     }
 
+    public function input_kelas(Request $request)
+    {
+        $user = new User();
+        $tool = new Tool();
+
+        $json = $request->input('parsing');
+        if ($json == null) {
+            return Redirect::to('/');
+        } else {
+            if ($tool->IsJsonString($json)) {
+                $json = json_decode($json);
+                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
+                    isset($json->tanggal) && isset($json->ket) ) {
+                    $token = $json->token;
+                    $username = $json->x1d;
+                    $type = $json->type;
+                    $key = $json->key;
+
+                    if ($token == $tool->generate_token($key, $username, $type)) {
+                        if ($user->chek_token($username, $token, $type)) {
+                            $inputmaster = new Input_masterr();
+
+
+                            $hasil = $inputmaster->check_data_libur($json->tanggal);
+
+                            if (!$hasil) {
+//                                // jika tidak d temukan nis tersebut
+                                $inputmaster->input_libur($json->tanggal, $json->ket);
+
+//                                $inputmaster->input_users($json->nip, 'd1fdc1c3d4fcaf10e212d10a896ee927', '0');
+
+                                $result = [
+                                    'code' => 'OK4'
+                                ];
+                            } else {
+                                $result = ['code' => 'Tanggal yang anda masukan sudah ada'];
+                            }
+                        } else
+                            $result = ['code' => 'token tidak falid'];
+
+                    } else
+                        $result = ['code' => 'token salah'];
+
+                } else
+                    $result = ['code' => 'ISI nama PARAM dikirim salah'];
+
+
+            } else
+                $result = ['code' => 'format data yg dikirim salah '];
+
+            return $result;
+        }
+    }
+
 
 }

@@ -88,4 +88,26 @@ class Input_masterr
 		]);
 	}
 
+
+
+	public function check_data_kelas($tgl)
+	{
+		$query = "select tanggal from hari_libur where tanggal	= :tgl";
+		$result = DB::connection('mysql')->select(DB::raw($query), [
+			'tgl' => $tgl
+		]);
+		return $result;
+
+	}
+
+	public function input_kelas($tanggal, $ket)
+	{
+		$query = "INSERT INTO hari_libur ( tanggal, ket) 
+					VALUES (:tgl ,:ket )";
+		DB::connection('mysql')->select(DB::raw($query), [
+			'tgl' => $tanggal,
+			'ket' => $ket
+		]);
+	}
+
 }
