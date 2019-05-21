@@ -59,7 +59,9 @@
             "@php artisan key:generate"
         ],
         "pre-install-cmd": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-install-cmd":[
             "@php artisan key:generate"
         ]
     }
