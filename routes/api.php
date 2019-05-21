@@ -33,6 +33,8 @@ Route::prefix('admin')->group(function () {
 
 	Route::prefix('master')->group(function () {
 		Route::post('siswa', 'Admin\Input_data_master@input_siswa');
+		Route::post('staf', 'Admin\Input_data_master@input_staf');
+		Route::post('tanggal', 'Admin\Input_data_master@input_tanggal');
 
 
 	});

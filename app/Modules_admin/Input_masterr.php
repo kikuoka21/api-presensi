@@ -49,7 +49,7 @@ class Input_masterr
 
 	public function check_data_staff($nip)
 	{
-		$query = "select staf from siswa where nip= :nip";
+		$query = "select nama_staf from staf where nip= :nip";
 		$result = DB::connection('mysql')->select(DB::raw($query), [
 			'nip' => $nip
 		]);
@@ -59,8 +59,8 @@ class Input_masterr
 
 	public function input_staff($nip, $nama, $level)
 	{
-		$query = "INSERT INTO staf ( nip, nama_staf, level) 
-					VALUES (:nis ,:nama , :alamat)";
+		$query = "INSERT INTO staf (nip, nama_staf, level) 
+					VALUES (:nis ,:nama , :level)";
 		DB::connection('mysql')->select(DB::raw($query), [
 			'nis' => $nip,
 			'nama' => $nama,
