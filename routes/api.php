@@ -20,6 +20,12 @@ use Illuminate\Http\Request;
 //Route::post('auth/login', 'auth@Login');
 //Route::post('auth/check-token', 'auth@check_token');
 
+
+
+// tisco bangsattttt
+
+
+
 Route::prefix('auth')->group(function () {
 	Route::post('login', 'auth@Login');
 	Route::post('check-token', 'auth@check_token');

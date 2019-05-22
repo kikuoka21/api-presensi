@@ -158,11 +158,7 @@ class Input_data_master extends Controller
 //                                // jika tidak d temukan nis tersebut
                                 $inputmaster->input_libur($json->tanggal, $json->ket);
 
-//                                $inputmaster->input_users($json->nip, 'd1fdc1c3d4fcaf10e212d10a896ee927', '0');
-
-                                $result = [
-                                    'code' => 'OK4'
-                                ];
+                                $result = ['code' => 'OK4'];
                             } else {
                                 $result = ['code' => 'Tanggal yang anda masukan sudah ada'];
                             }
