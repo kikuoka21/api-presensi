@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Redirect;
 
 class Input_data_master extends Controller
 {
-
     public function input_siswa(Request $request)
     {
         $user = new User();
@@ -73,7 +72,6 @@ class Input_data_master extends Controller
         }
     }
 
-
     public function input_staf(Request $request)
     {
         $user = new User();
@@ -128,7 +126,6 @@ class Input_data_master extends Controller
         }
     }
 
-
     public function input_tanggal(Request $request)
     {
         $user = new User();
@@ -141,7 +138,7 @@ class Input_data_master extends Controller
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
                 if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
-                    isset($json->tanggal) && isset($json->ket) ) {
+                    isset($json->tanggal) && isset($json->ket)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
@@ -191,7 +188,7 @@ class Input_data_master extends Controller
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
                 if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
-                    isset($json->tanggal) && isset($json->ket) ) {
+                    isset($json->tanggal) && isset($json->ket)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
