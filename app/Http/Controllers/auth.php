@@ -131,4 +131,5 @@ class auth extends Controller
 
 	    return view('welcome')->with('result',$hasil.'<br><br>'.$pesan);
     }
+
 }

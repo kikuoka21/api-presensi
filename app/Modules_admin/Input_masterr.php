@@ -89,11 +89,11 @@ class Input_masterr
     }
 
 
-    public function check_data_kelas()
+    public function check_data_kelas($idkelas)
     {
-        $query = "select tanggal from hari_libur where tanggal	= :tgl";
+        $query = "select tanggal from hari_libur where tanggal	= :kelas";
         $result = DB::connection('mysql')->select(DB::raw($query), [
-            'tgl' => $tgl
+            'kelas' => $idkelas
         ]);
         return $result;
 

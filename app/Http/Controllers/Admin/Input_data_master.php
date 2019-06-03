@@ -98,10 +98,10 @@ class Input_data_master extends Controller
                             $hasil = $inputmaster->check_data_staff($json->nip);
 
                             if (!$hasil) {
-//                                // jika tidak d temukan nis tersebut
+//                                // jika tidak d temukan nip tersebut
                                 $inputmaster->input_staff($json->nip, $json->nama_staf, $json->level);
 
-                                $inputmaster->input_users($json->nip, 'd1fdc1c3d4fcaf10e212d10a896ee927', '0');
+                                $inputmaster->input_users($json->nip, 'd1fdc1c3d4fcaf10e212d10a896ee927', '1');
 
                                 $result = [
                                     'code' => 'OK4'
@@ -152,7 +152,6 @@ class Input_data_master extends Controller
                             $hasil = $inputmaster->check_data_libur($json->tanggal);
 
                             if (!$hasil) {
-//                                // jika tidak d temukan nis tersebut
                                 $inputmaster->input_libur($json->tanggal, $json->ket);
 
                                 $result = ['code' => 'OK4'];
@@ -196,23 +195,23 @@ class Input_data_master extends Controller
 
                     if ($token == $tool->generate_token($key, $username, $type)) {
                         if ($user->chek_token($username, $token, $type)) {
-                            $inputmaster = new Input_masterr();
-
-
-                            $hasil = $inputmaster->check_data_libur($json->tanggal);
-
-                            if (!$hasil) {
-//                                // jika tidak d temukan nis tersebut
-                                $inputmaster->input_libur($json->tanggal, $json->ket);
-
-//                                $inputmaster->input_users($json->nip, 'd1fdc1c3d4fcaf10e212d10a896ee927', '0');
-
-                                $result = [
-                                    'code' => 'OK4'
-                                ];
-                            } else {
-                                $result = ['code' => 'Tanggal yang anda masukan sudah ada'];
-                            }
+//                            $inputmaster = new Input_masterr();
+//
+//
+//                            $hasil = $inputmaster->check_data_libur($json->tanggal);
+//
+//                            if (!$hasil) {
+////                                // jika tidak d temukan nis tersebut
+//                                $inputmaster->input_libur($json->tanggal, $json->ket);
+//
+////                                $inputmaster->input_users($json->nip, 'd1fdc1c3d4fcaf10e212d10a896ee927', '0');
+//
+//                                $result = [
+//                                    'code' => 'OK4'
+//                                ];
+//                            } else {
+                                $result = ['code' => 'alkdnlakwnjldkansdwa'];
+//                            }
                         } else
                             $result = ['code' => 'token tidak falid'];
 
