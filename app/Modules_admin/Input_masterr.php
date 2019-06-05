@@ -136,6 +136,13 @@ class Input_masterr
             'nama' => $nama_kelas,
             'tahun' => $tahun_ajar
         ]);
+
+        $query = "INSERT INTO validasi_presensi ( id_kelas) 
+					VALUES (:id)";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'id' => $id_kelas
+        ]);
+
     }
 
 

@@ -30,7 +30,7 @@ class M_siswa
 
 
 	public function get_flag_($kode, $tgl){
-		$query = "SELECT token FROM validasi_absen where id_kelas = :kode and tanggal = :tgl";
+		$query = "SELECT token FROM validasi_presensi where id_kelas = :kode and tanggal = :tgl";
 
 		$result = DB::connection('mysql')->select(DB::raw($query), [
 			'kode' => $kode,
@@ -41,7 +41,7 @@ class M_siswa
 	}
 	public function insert_token($kode, $tgl, $token){
 
-		$query = "UPDATE validasi_absen SET token= :token , tanggal = :tgl where id_kelas= :kode ";
+		$query = "UPDATE validasi_presensi SET token= :token , tanggal = :tgl where id_kelas= :kode ";
 		 DB::connection('mysql')->select(DB::raw($query), [
 			'kode' => $kode,
 			'tgl' => $tgl,
@@ -68,5 +68,32 @@ class M_siswa
             'tgl' => $tgl,
             'kode_kelas' => $kd_kelas
         ]);
+    }
+
+
+
+    public function check_absen($nis, $tgl, $kd_kelas){
+        $query = "SELECT stat FROM kehadiran where nis = :nis and tanggal = :tgl and id_kelas = :kode ";
+
+        $result = DB::connection('mysql')->select(DB::raw($query), [
+            'nis' => $nis,
+            'tgl' => $tgl,
+            'kode' => $kd_kelas
+
+        ]);
+
+        return $result;
+    }
+    public function update_absen($nis, $tgl, $kd_kelas,$stat, $ket ){
+
+        $query = "UPDATE kehadiran SET stat= :stat , ket = :ket where tanggal= :tgl and nis =:nis and id_kelas= :idkelas ";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'stat' => $stat,
+            'ket' => $ket,
+            'tgl' => $tgl,
+            'nis' => $nis,
+            'idkelas'=>$kd_kelas
+        ]);
+
     }
 }

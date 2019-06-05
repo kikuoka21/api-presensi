@@ -90,4 +90,13 @@ class User
             }
         }
     }
+    public function update_pass($uid, $xpass)
+    {
+        $query = "UPDATE users SET password= :pass where username= :xuid";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'xuid' => $uid,
+            'pass' => $xpass
+        ]);
+
+    }
 }

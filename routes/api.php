@@ -9,7 +9,7 @@ Route::prefix('auth')->group(function () {
 	Route::post('login', 'auth@Login');
 	Route::post('check-token', 'auth@check_token');
 
-	Route::post('gantipswd', 'auth@ubah_pass');//otw
+	Route::post('ganti-pswd', 'auth@ubah_pass');
 
 });
 
@@ -38,7 +38,14 @@ Route::prefix('siswa')->group(function () {
 
 	Route::post('dashboard', 'Siswa\siswa@dashboard');
 
-	Route::post('buatabsen', 'Siswa\siswa@create_qr');
+	Route::prefix('presensi')->group(function (){
+        Route::post('buat', 'Siswa\siswa@create_qr');
+        Route::post('isi', 'Siswa\siswa@isi_absen');
+
+
+
+    });
+
 });
 
 

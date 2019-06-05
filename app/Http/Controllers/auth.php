@@ -48,8 +48,8 @@ class auth extends Controller
                             $result = [
                                 'status' => object_get($hasil[0], 'akses'),
                                 'token' => $token,
-	                            'thn-ajar'=> $tool->thn_ajar_skrng(),
-	                            'tanggal'=> $tool->tgl_skrng(),
+                                'thn-ajar' => $tool->thn_ajar_skrng(),
+                                'tanggal' => $tool->tgl_skrng(),
                                 'data_pribadi' => $getnama[0]
                             ];
                             $tool->Isi_Log('login OK4 ' . $username . ' ' . $key . ' ' . $inputnya);
@@ -84,7 +84,7 @@ class auth extends Controller
         } else {
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
-                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&   isset($json->akses)) {
+                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) && isset($json->akses)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
@@ -96,11 +96,11 @@ class auth extends Controller
                             $getnama = $user->getdata_dashboard($username, $akses);
                             $result = [
                                 'code' => 'OK4',
-	                            'thn-ajar'=> $tool->thn_ajar_skrng(),
-	                            'tanggal'=> $tool->tgl_skrng(),
-                                'data'=> $getnama[0]
+                                'thn-ajar' => $tool->thn_ajar_skrng(),
+                                'tanggal' => $tool->tgl_skrng(),
+                                'data' => $getnama[0]
                             ];
-	                        $tool->Isi_Log('chek tkn OK4 ' . $username . ' ' . $key . ' ' . $akses);
+                            $tool->Isi_Log('chek tkn OK4 ' . $username . ' ' . $key . ' ' . $akses);
                         } else
                             $result = ['code' => 'token sudah tidak valid'];
 
@@ -121,18 +121,21 @@ class auth extends Controller
 
 
     }
-    public function getip(Request $request){
-	    $tool = new Tool();
 
-	    $hasil= $request->ip().'  ';
-	    $pesan  = $request->header('User-Agent');
-	    $tool->Isi_Log('/ ' .$hasil.' '.$pesan);
+    public function getip(Request $request)
+    {
+        $tool = new Tool();
 
-	    return view('welcome')->with('result',$hasil.'<br><br>'.$pesan);
+        $hasil = $request->ip() . '  ';
+        $pesan = $request->header('User-Agent');
+        $tool->Isi_Log('/ ' . $hasil . ' ' . $pesan);
+
+        return view('welcome')->with('result', $hasil . '<br><br>' . $pesan);
     }
 
 
-    public function ubah_pass(Request $request){
+    public function ubah_pass(Request $request)
+    {
         $user = new User();
         $tool = new Tool();
 
@@ -142,23 +145,21 @@ class auth extends Controller
         } else {
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
-                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&   isset($json->akses)) {
+                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
+                    isset($json->xp4s5)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
                     $key = $json->key;
-                    $akses = $json->akses;
+                    $pass = $json->xp4s5;
 //
                     if ($token == $tool->generate_token($key, $username, $type)) {
                         if ($user->chek_token($username, $token, $type)) {
-                            $getnama = $user->getdata_dashboard($username, $akses);
+                            $user->update_pass($username, $pass);
+
                             $result = [
-                                'code' => 'OK4',
-                                'thn-ajar'=> $tool->thn_ajar_skrng(),
-                                'tanggal'=> $tool->tgl_skrng(),
-                                'data'=> $getnama[0]
+                                'code' => 'OK4'
                             ];
-                            $tool->Isi_Log('chek tkn OK4 ' . $username . ' ' . $key . ' ' . $akses);
                         } else
                             $result = ['code' => 'token sudah tidak valid'];
 
