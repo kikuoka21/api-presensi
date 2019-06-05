@@ -187,7 +187,7 @@ class Input_data_master extends Controller
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
                 if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
-                    isset($json->tanggal) && isset($json->ket)) {
+                    isset($json->nama_kls) && isset($json->thn_ajar)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
@@ -195,23 +195,19 @@ class Input_data_master extends Controller
 
                     if ($token == $tool->generate_token($key, $username, $type)) {
                         if ($user->chek_token($username, $token, $type)) {
-//                            $inputmaster = new Input_masterr();
-//
-//
-//                            $hasil = $inputmaster->check_data_libur($json->tanggal);
-//
-//                            if (!$hasil) {
-////                                // jika tidak d temukan nis tersebut
-//                                $inputmaster->input_libur($json->tanggal, $json->ket);
-//
-////                                $inputmaster->input_users($json->nip, 'd1fdc1c3d4fcaf10e212d10a896ee927', '0');
-//
-//                                $result = [
-//                                    'code' => 'OK4'
-//                                ];
-//                            } else {
-                                $result = ['code' => 'alkdnlakwnjldkansdwa'];
-//                            }
+                            $inputmaster = new Input_masterr();
+                            $hasil = $inputmaster->check_data_kelas($json->nama_kls, $json->thn_ajar);
+
+                            if (!$hasil) {
+                                $hasil = $inputmaster->generate_id_kelas();
+//                                $idkelas = substr(object_get($hasil[0], 'data'), 1);
+                                $inputmaster->input_kelas($hasil, $json->nama_kls, $json->thn_ajar);
+                                $result = [
+                                    'code' => 'OK4'
+                                ];
+                            } else {
+                                $result = ['code' => 'Data yang diinput sudah ada'];
+                            }
                         } else
                             $result = ['code' => 'token tidak falid'];
 
@@ -220,8 +216,6 @@ class Input_data_master extends Controller
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];
-
-
             } else
                 $result = ['code' => 'format data yg dikirim salah '];
 

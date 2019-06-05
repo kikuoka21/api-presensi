@@ -89,31 +89,48 @@ class Input_masterr
     }
 
 
-    public function check_data_kelas($idkelas)
+    public function check_data_kelas($nama, $thn)
     {
-        $query = "select tanggal from hari_libur where tanggal	= :kelas";
+        $query = "select nama_kelas from kelas where nama_kelas	= :nama and tahun_ajar = :thn";
         $result = DB::connection('mysql')->select(DB::raw($query), [
-            'kelas' => $idkelas
+            'nama' => $nama,
+            'thn' => $thn
         ]);
         return $result;
 
     }
-    public function get_id_kelas()
+
+    public function generate_id_kelas()
     {
-        $query = "SELECT MAX(id_kelas) FROM kelas";
-        $result = DB::connection('mysql')->select(DB::raw($query));
-        return $result;
+        $query = "SELECT MAX(id_kelas) as data FROM kelas";
+        $hasil = DB::connection('mysql')->select(DB::raw($query));
+        if (!$hasil) {
+//
+            return "K00001";
+
+        } else {
+            $idkelas = substr(object_get($hasil[0], 'data'), 1) + 1;
+            $panjang = strlen($idkelas);
+            while ($panjang < 5) {
+                $idkelas = '0' . $idkelas;
+                $panjang = strlen($idkelas);
+            }
+            $idkelas = 'K' . $idkelas;
+            return $idkelas;
+        }
 
     }
 
-    public function input_kelas($tanggal, $ket)
+    public function input_kelas($id_kelas, $nama_kelas, $tahun_ajar)
     {
-        $query = "INSERT INTO hari_libur ( tanggal, ket) 
-					VALUES (:tgl ,:ket )";
+        $query = "INSERT INTO kelas ( id_kelas, nama_kelas, tahun_ajar) 
+					VALUES (:id ,:nama, :tahun )";
         DB::connection('mysql')->select(DB::raw($query), [
-            'tgl' => $tanggal,
-            'ket' => $ket
+            'id' => $id_kelas,
+            'nama' => $nama_kelas,
+            'tahun'=> $tahun_ajar
         ]);
     }
+
 
 }

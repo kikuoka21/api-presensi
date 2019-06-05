@@ -131,7 +131,7 @@ class siswa extends Controller
 
                             } else {
                                 $code = 'OK4';
-                                $token = object_get($hasil[0], 'token') . ' disini';
+                                $token = object_get($hasil[0], 'token');
                             }
 
                             $result = [
