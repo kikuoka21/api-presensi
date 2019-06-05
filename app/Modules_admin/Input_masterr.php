@@ -21,16 +21,22 @@ class Input_masterr
         return $result;
     }
 
-    public function input_siswa($nis, $nisn, $nama, $tgl_lahir, $alamat)
+    public function input_siswa($nis, $nisn, $nama, $tgl_lahir, $alamat, $tmp_lahir, $agama, $orangtua, $ijazah, $no_ujian)
     {
-        $query = "INSERT INTO siswa ( nis,nisn,  nama_siswa, tgl_lahir, alamat) 
-					VALUES (:nis ,:nisn,:nama ,:tgl, :alamat)";
+        $query = "INSERT INTO siswa ( nis, nisn, nama_siswa, tgl_lahir, alamat, tmp_lahir, 
+                    agama, orang_tua,no_ijazah, no_ujiansmp )
+					VALUES (:nis ,:nisn,:nama ,:tgl, :alamat,:tmp_lahir, :agama, :orang_tua,:no_ijazah, :no_ujiansmp)";
         DB::connection('mysql')->select(DB::raw($query), [
             'nis' => $nis,
             'nisn' => $nisn,
             'nama' => $nama,
             'tgl' => $tgl_lahir,
-            'alamat' => $alamat
+            'alamat' => $alamat,
+            'tmp_lahir' => $tmp_lahir,
+            'agama' => $agama,
+            'orang_tua' => $orangtua,
+            'no_ijazah' => $ijazah,
+            'no_ujiansmp' => $no_ujian
         ]);
     }
 
@@ -128,7 +134,7 @@ class Input_masterr
         DB::connection('mysql')->select(DB::raw($query), [
             'id' => $id_kelas,
             'nama' => $nama_kelas,
-            'tahun'=> $tahun_ajar
+            'tahun' => $tahun_ajar
         ]);
     }
 

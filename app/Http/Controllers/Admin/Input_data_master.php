@@ -29,7 +29,9 @@ class Input_data_master extends Controller
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
                 if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
-                    isset($json->nis) && isset($json->nisn) && isset($json->nama_siswa) && isset($json->tgl_lhr) && isset($json->alamat)) {
+                    isset($json->nis) && isset($json->nisn) && isset($json->nama_siswa) && isset($json->tmpt_lhr) &&
+                    isset($json->tgl_lhr) && isset($json->agama) && isset($json->orangtua) && isset($json->alamat)
+                    && isset($json->no_ijazah) && isset($json->no_ujiansmp)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
@@ -45,9 +47,11 @@ class Input_data_master extends Controller
                             if (!$hasil) {
                                 // jika tidak d temukan nis tersebut
                                 $aaa = 'asdwa';
-                                $inputmaster->input_siswa($json->nis, $json->nisn, $json->nama_siswa, $json->tgl_lhr, $json->alamat);
+                                $inputmaster->input_siswa($json->nis, $json->nisn, $json->nama_siswa, $json->tgl_lhr,
+                                    $json->alamat, $json->tmpt_lhr,$json->agama,$json->orangtua, $json->no_ijazah,
+                                    $json->no_ujiansmp);
 
-                                $inputmaster->input_users($json->nis, 'd1fdc1c3d4fcaf10e212d10a896ee927', '0');
+//                                $inputmaster->input_users($json->nis, 'd1fdc1c3d4fcaf10e212d10a896ee927', '0');
 
                                 $result = [
                                     'code' => 'OK4'
@@ -59,7 +63,9 @@ class Input_data_master extends Controller
                             $result = ['code' => 'token tidak falid'];
 
                     } else
-                        $result = ['code' => 'token salah'];
+                        $result = [
+                            'code' => 'token salah'
+                        ];
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];

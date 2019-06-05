@@ -155,4 +155,6 @@ class siswa extends Controller
             return $result;
         }
     }
+
+
 }
