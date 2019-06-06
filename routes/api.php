@@ -18,6 +18,8 @@ Route::prefix('auth')->group(function () {
 Route::prefix('admin')->group(function () {
 	Route::post('dashboard', 'Admin\admin@dashboard');
 
+//Select * from siswa where siswa.nis not in ( select nis from isikelas)
+
 	Route::prefix('master')->group(function () {
 		Route::post('siswa', 'Admin\Input_data_master@input_siswa');
 		Route::post('staf', 'Admin\Input_data_master@input_staf');

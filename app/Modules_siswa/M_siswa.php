@@ -35,7 +35,6 @@ class M_siswa
 
 //order by siswa.nama_siswa asc, kelas.nama_kelas  asc
 
-
     public function getKels($nis, $thn)
     {
         $query = "SELECT kelas.id_kelas as kd_kels, nama_kelas as kelas FROM  isikelas, kelas where 

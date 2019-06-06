@@ -44,13 +44,12 @@ class auth extends Controller
                                 $user->input_tokenmobile($username, $token);
                                 $inputnya = 'mobile';
                             }
-                            $getnama = $user->getdata_dashboard($username, object_get($hasil[0], 'akses'));
                             $result = [
                                 'status' => object_get($hasil[0], 'akses'),
                                 'token' => $token,
                                 'thn-ajar' => $tool->thn_ajar_skrng(),
                                 'tanggal' => $tool->tgl_skrng(),
-                                'data_pribadi' => $getnama[0]
+                                'data_pribadi' =>$user->getdata_dashboard($username, object_get($hasil[0], 'akses'))
                             ];
                             $tool->Isi_Log('login OK4 ' . $username . ' ' . $key . ' ' . $inputnya);
                             $result = [
@@ -93,12 +92,14 @@ class auth extends Controller
 //
                     if ($token == $tool->generate_token($key, $username, $type)) {
                         if ($user->chek_token($username, $token, $type)) {
-                            $getnama = $user->getdata_dashboard($username, $akses);
+
+
+
                             $result = [
                                 'code' => 'OK4',
                                 'thn-ajar' => $tool->thn_ajar_skrng(),
                                 'tanggal' => $tool->tgl_skrng(),
-                                'data' => $getnama[0]
+                                'data' => $user->getdata_dashboard($username, $akses)
                             ];
                             $tool->Isi_Log('chek tkn OK4 ' . $username . ' ' . $key . ' ' . $akses);
                         } else

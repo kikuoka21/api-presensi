@@ -39,8 +39,8 @@ class siswa extends Controller
                     $key = $json->key;
                     if ($token == $tool->generate_token($key, $username, $type)) {
                         if ($user->chek_token($username, $token, $type)) {
-//							$tanggal = $tool->get_date();
-                            $tanggal = '2019-05-12';
+                            $tanggal = $tool->get_date();
+//                            $tanggal = '2019-05-11';
 
                             if ($tool->tgl_merah()) {
                                 $hari_ini = [
@@ -63,11 +63,18 @@ class siswa extends Controller
                             }
                             $msiswa = new M_siswa();
                             $hasil_kelas = $msiswa->getKels($username, $tool->thn_ajar_skrng());
+                            if ($hasil_kelas) {
+                                $id_kelas = object_get($hasil_kelas[0], 'kd_kels');
+                                $nama_kelas = object_get($hasil_kelas[0], 'kelas');
+                            } else {
+                                $id_kelas = '-';
+                                $nama_kelas = 'Belum Diinput';
+                            }
 
                             $result = [
                                 'code' => 'OK4',
-                                'kd_kelas' => object_get($hasil_kelas[0], 'kd_kels'),
-                                'nm_kelas' => object_get($hasil_kelas[0], 'kelas'),
+                                'kd_kelas' => $id_kelas,
+                                'nm_kelas' => $nama_kelas,
                                 'hari_ini' => $hari_ini
 
                             ];
@@ -110,8 +117,8 @@ class siswa extends Controller
                     if ($token == $tool->generate_token($key, $username, $type)) {
                         if ($user->chek_token($username, $token, $type)) {
 
-//							$tanggal = $tool->get_date();
-                            $tanggal = '2019-05-21';
+                            $tanggal = $tool->get_date();
+//                            $tanggal = '2019-05-21';
                             $hasil = $msiswa->get_flag_($kelas, $tanggal);
                             if (!$hasil) {
                                 $getsiswa = $msiswa->get_all_siswa($kelas);

@@ -114,8 +114,8 @@ class admin extends Controller
 					$key = $json->key;
 					if ($token == $tool->generate_token($key, $username, $type)) {
 						if ($user->chek_token($username, $token, $type)) {
-//							$tanggal = $tool->get_date();
-							$tanggal = '2019-05-12';
+							$tanggal = $tool->get_date();
+//							$tanggal = '2019-05-12';
 							$list = [];
 							if ($tool->tgl_merah()) {
 								$hari_ini = [

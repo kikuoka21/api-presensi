@@ -45,7 +45,7 @@ class User
         if ($type == '0') {
 
             $tool = new Tool();
-            $query = "SELECT nama_siswa as nama,level FROM  siswa,  isikelas, kelas where 
+            $query = "SELECT level FROM  siswa,  isikelas, kelas where 
                   isikelas.id_kelas=kelas.id_kelas and 
                   isikelas.nis = siswa.nis and 
                   kelas.tahun_ajar=:thn and 
@@ -55,14 +55,33 @@ class User
                 'thn' => $tool->thn_ajar_skrng()
             ]);
 
+            if ($result)
+                $level = object_get($result[0], 'level');
+            else
+                $level = 0;
+
+            $query = "SELECT nama_siswa as nama FROM siswa  where  nis  =:nis ";
+            $result = DB::connection('mysql')->select(DB::raw($query), [
+                'nis' => $uid
+            ]);
+            $nama = object_get($result[0], 'nama');
+
         } else {
             $query = "SELECT nama_staf as nama, level FROM staf  where  nip  =:nis ";
             $result = DB::connection('mysql')->select(DB::raw($query), [
                 'nis' => $uid
             ]);
+            $nama = object_get($result[0], 'nama');
+            $level = object_get($result[0], 'level');
+
         }
 
-        return $result;
+        $data = [
+            'nama' => $nama,
+            'level' => $level
+        ];
+
+        return $data;
     }
 
 
@@ -90,6 +109,7 @@ class User
             }
         }
     }
+
     public function update_pass($uid, $xpass)
     {
         $query = "UPDATE users SET password= :pass where username= :xuid";
