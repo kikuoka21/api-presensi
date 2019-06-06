@@ -38,10 +38,12 @@ class Input_masterr
             'no_ijazah' => $ijazah,
             'no_ujiansmp' => $no_ujian
         ]);
+        $this->input_users($nis,'d1fdc1c3d4fcaf10e212d10a896ee927', '0');
+
     }
 
 
-    public function input_users($id, $pass, $akses)
+    private function input_users($id, $pass, $akses)
     {
         $query = "INSERT INTO users ( username, password, akses) 
 					VALUES (:id ,:pass, :akses)";
@@ -72,6 +74,7 @@ class Input_masterr
             'nama' => $nama,
             'level' => $level
         ]);
+        $this->input_users($nip,'d1fdc1c3d4fcaf10e212d10a896ee927', '1');
     }
 
     public function check_data_libur($tgl)

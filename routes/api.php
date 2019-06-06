@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 Route::prefix('auth')->group(function () {
 	Route::post('login', 'auth@Login');
 	Route::post('check-token', 'auth@check_token');
-
 	Route::post('ganti-pswd', 'auth@ubah_pass');
 
 });
@@ -24,7 +23,6 @@ Route::prefix('admin')->group(function () {
 		Route::post('staf', 'Admin\Input_data_master@input_staf');
 		Route::post('tanggal', 'Admin\Input_data_master@input_tanggal');
 		Route::post('kelas', 'Admin\Input_data_master@input_kelas');
-
 
 	});
 });
@@ -45,6 +43,8 @@ Route::prefix('siswa')->group(function () {
 
 
     });
+
+    Route::post('profil', 'Siswa\siswa@profil');
 
 });
 

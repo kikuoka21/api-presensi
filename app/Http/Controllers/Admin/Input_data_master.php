@@ -46,7 +46,6 @@ class Input_data_master extends Controller
 
                             if (!$hasil) {
                                 // jika tidak d temukan nis tersebut
-                                $aaa = 'asdwa';
                                 $inputmaster->input_siswa($json->nis, $json->nisn, $json->nama_siswa, $json->tgl_lhr,
                                     $json->alamat, $json->tmpt_lhr,$json->agama,$json->orangtua, $json->no_ijazah,
                                     $json->no_ujiansmp);
@@ -107,7 +106,7 @@ class Input_data_master extends Controller
 //                                // jika tidak d temukan nip tersebut
                                 $inputmaster->input_staff($json->nip, $json->nama_staf, $json->level);
 
-                                $inputmaster->input_users($json->nip, 'd1fdc1c3d4fcaf10e212d10a896ee927', '1');
+//                                $inputmaster->input_users($json->nip, 'd1fdc1c3d4fcaf10e212d10a896ee927', '1');
 
                                 $result = [
                                     'code' => 'OK4'

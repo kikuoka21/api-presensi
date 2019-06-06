@@ -182,7 +182,7 @@ class siswa extends Controller
                             $tanggal = $json->tanggal;
 
                             $tokenkelas = $msiswa->get_flag_($kelas, $tanggal);
-                            if (object_get($tokenkelas[0], 'token')==$json->token_absen) {
+                            if (object_get($tokenkelas[0], 'token') == $json->token_absen) {
 
                                 $hasil = $msiswa->check_absen($username, $tanggal, $kelas);
                                 if ($hasil) {
@@ -233,4 +233,65 @@ class siswa extends Controller
             return $result;
         }
     }
+
+    public function profil(Request $request)
+    {
+        $user = new User();
+        $tool = new Tool();
+
+        $json = $request->input('parsing');
+        if ($json == null) {
+            return Redirect::to('/');
+        } else {
+            if ($tool->IsJsonString($json)) {
+                $json = json_decode($json);
+                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key)) {
+                    $token = $json->token;
+                    $username = $json->x1d;
+                    $type = $json->type;
+                    $key = $json->key;
+                    if ($token == $tool->generate_token($key, $username, $type)) {
+                        if ($user->chek_token($username, $token, $type)) {
+
+                            $msiswa = new M_siswa();
+                            $profil = $msiswa->getprofil($json->x1d);
+                            $kelas = $msiswa->history_kelas($json->x1d);
+
+                            if ($profil) {
+                                if (!$kelas) {
+                                    $kelas = [];
+                                }
+                                $data = [
+                                    'profil' => $profil[0],
+                                    'kelas' => $kelas
+                                ];
+
+                                $result = [
+                                    'code' => 'OK4',
+                                    'data' => $data
+                                ];
+                            } else {
+                                $result = [
+                                    'code' => 'Data Tidak Ditemukan'
+                                ];
+                            }
+
+                        } else
+                            $result = ['code' => 'token data base sudah berubah'];
+
+                    } else
+                        $result = ['code' => 'token beda'];
+
+                } else
+                    $result = ['code' => 'ISI nama PARAM dikirim salah'];
+
+
+            } else
+                $result = ['code' => 'format data yg dikirim salah '];
+
+            return $result;
+        }
+    }
+
+
 }
