@@ -24,7 +24,7 @@ class Tool
 
     public function generate_token($key, $id, $type)
     {
-        return md5(md5($id . $key) . $type);
+        return md5(md5('%!'.$id . $key) . $type.'!%');
     }
 
     public function thn_ajar_skrng()
@@ -63,7 +63,7 @@ class Tool
     public function tgl_merah()
     {
         $mytime = Carbon::now();
-        if ($mytime->isSunday()|| $mytime->isSaturday()) {
+        if ($mytime->isSunday() || $mytime->isSaturday()) {
             return true;
         } else {
             return false;

@@ -41,7 +41,7 @@ class M_admin
 
 	public function getabsen_kelas($tanggal, $username)
 	{
-		$query = "SELECT siswa.nis,siswa.nama_siswa as nama,kelas.nama_kelas as walikelas, stat, ket FROM kehadiran, kelas, siswa
+		$query = "SELECT siswa.nis,siswa.nama_siswa as nama,kelas.nama_kelas as kelas, stat, ket FROM kehadiran, kelas, siswa
 				where kehadiran.id_kelas = kelas.id_kelas 
 				and kelas.id_wali_kelas = :nip
 				and kehadiran.nis= siswa.nis					
