@@ -101,21 +101,17 @@ class auth extends Controller
                                 'tanggal' => $tool->tgl_skrng(),
                                 'data' => $user->getdata_dashboard($username, $akses)
                             ];
-                            $tool->Isi_Log('chek tkn OK4 ' . $username . ' ' . $key . ' ' . $akses);
+//                            $tool->Isi_Log('chek tkn OK4 ' . $username . ' ' . $key . ' ' . $akses);
                         } else
-                            $result = ['code' => 'token sudah tidak valid'];
-
+                            $result = ['code' => 'Token Sudah Tidak Valid, Silahkan Login Kembali'];
                     } else
-                        $result = ['code' => 'token anda salah'];
+                        $result = ['code' => 'Token Anda Salah, Silahkan Login Kembali'];
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];
-
-
-            } else {
+            } else
                 $result = ['code' => 'format data yg dikirim salah '];
 
-            }
             return $result;
 
         }
