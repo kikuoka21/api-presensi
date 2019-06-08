@@ -82,8 +82,9 @@ class siswa extends Controller
                         } else
                             $result = ['code' => 'token data base sudah berubah'];
 
-                    } else
-                        $result = ['code' => 'token beda'];
+                    } else {
+                        $result = ['code' => $json];
+                    }
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];
@@ -101,6 +102,7 @@ class siswa extends Controller
         $user = new User();
         $tool = new Tool();
         $msiswa = new M_siswa();
+        $dashboard = new M_Dashboard();
 
         $json = $request->input('parsing');
         if ($json == null) {
@@ -116,36 +118,49 @@ class siswa extends Controller
                     $kelas = $json->kd_kls;
                     if ($token == $tool->generate_token($key, $username, $type)) {
                         if ($user->chek_token($username, $token, $type)) {
-
-                            $tanggal = $tool->get_date();
+                            if ($tool->tgl_merah()) {
+                                $result = [
+                                    'code' => 'tidak ada KBM'
+                                ];
+                            } else {
+                                $tanggal = $tool->get_date();
 //                            $tanggal = '2019-05-21';
-                            $hasil = $msiswa->get_flag_($kelas, $tanggal);
-                            if (!$hasil) {
-                                $getsiswa = $msiswa->get_all_siswa($kelas);
-                                $token = '';
-                                if ($getsiswa) {
-                                    $token = md5('sudah d!enkrip' . md5($tanggal . $kelas) . $username);
-                                    $msiswa->insert_token($kelas, $tanggal, $token);
-                                    $code = 'OK4';
-                                    for ($i = 0; $i < count($getsiswa); $i++) {
-                                        $msiswa->create_absen(object_get($getsiswa[$i], 'nis'), $tanggal, $kelas);
+                                $hasil = $dashboard->harilibur($tanggal);
+                                if (!$hasil) {
+                                    $hasil = $msiswa->get_flag_($kelas, $tanggal);
+                                    if (!$hasil) {
+                                        $getsiswa = $msiswa->get_all_siswa($kelas);
+                                        $token = '';
+                                        if ($getsiswa) {
+                                            $token = md5('sudah d!enkrip' . md5($tanggal . $kelas) . $username);
+                                            $msiswa->insert_token($kelas, $tanggal, $token);
+                                            $code = 'OK4';
+                                            for ($i = 0; $i < count($getsiswa); $i++) {
+                                                $msiswa->create_absen(object_get($getsiswa[$i], 'nis'), $tanggal, $kelas);
+                                            }
+
+                                        } else {
+                                            $code = 'tidak ada data siswa di kelas ' . $kelas;
+                                        }
+
+
+                                    } else {
+                                        $code = 'OK4';
+                                        $token = object_get($hasil[0], 'token');
                                     }
 
+                                    $result = [
+                                        'code' => $code,
+                                        'tanggal' => $tanggal,
+                                        'tokennya' => $token
+                                    ];
                                 } else {
-                                    $code = 'tidak ada data siswa di kelas ' . $kelas;
+                                    $result = [
+                                        'code' => 'tidak ada KBM'
+                                    ];
                                 }
-
-
-                            } else {
-                                $code = 'OK4';
-                                $token = object_get($hasil[0], 'token');
                             }
 
-                            $result = [
-                                'code' => $code,
-                                'tanggal' => $tanggal,
-                                'tokennya' => $token
-                            ];
 
                         } else
                             $result = ['code' => 'token data base sudah berubah'];
@@ -196,7 +211,7 @@ class siswa extends Controller
                                     $flag = object_get($hasil[0], 'stat');
 
                                     if ($flag == 'A') {
-                                        $msiswa->update_absen($username, $tanggal, $kelas, "H", "asdawdasdw");
+                                        $msiswa->update_absen($username, $tanggal, $kelas, "H", "");
                                         $code = 'OK4';
                                     } else {
                                         if ($flag == 'H')
