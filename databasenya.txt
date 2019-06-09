@@ -1,5 +1,5 @@
 # Host: localhost  (Version 5.5.5-10.1.40-MariaDB)
-# Date: 2019-06-07 01:48:22
+# Date: 2019-06-09 23:39:55
 # Generator: MySQL-Front 6.1  (Build 1.26)
 
 
@@ -18,7 +18,7 @@ CREATE TABLE `hari_libur` (
 # Data for table "hari_libur"
 #
 
-INSERT INTO `hari_libur` VALUES ('2019-05-11','test libur');
+INSERT INTO `hari_libur` VALUES ('2019-01-01','Tahun Baru Masehi'),('2019-02-05','Tahun Baru Imlek'),('2019-03-07','Hari Raya Nyepi'),('2019-04-03','Isra Mi\'raj'),('2019-04-04','Jumat Agung'),('2019-05-01','Hari Buruh'),('2019-05-11','test libur'),('2019-05-12','test asdwa'),('2019-05-13','test lakwdja'),('2019-05-19','Hari Waisak'),('2019-05-30','Kenaikan Isa Almasih'),('2019-06-01','Hari Lahir Pancasila'),('2019-06-03','Cuti Bersama Lebaran'),('2019-06-04','Hari Raya Idul Fitri'),('2019-06-05','Hari Raya Idul Fitri'),('2019-06-06','Hari Raya Idul Fitri'),('2019-06-07','Cuti Bersama Lebaran'),('2019-08-11','Idul Adha'),('2019-08-17','Hari Kemerdekaan'),('2019-09-01','Tahun Baru Islam'),('2019-11-09','Maulid Nabi Muhammad SAW'),('2019-12-24','Cuti Bersama Hari Natal'),('2019-12-25','Hari Natal');
 
 #
 # Structure for table "isikelas"
@@ -36,7 +36,7 @@ CREATE TABLE `isikelas` (
 # Data for table "isikelas"
 #
 
-INSERT INTO `isikelas` VALUES ('1','K00001',1),('3','K00001',0);
+INSERT INTO `isikelas` VALUES ('1','K00001',1),('3','K00001',0),('1','K99999',0);
 
 #
 # Structure for table "kehadiran"
@@ -56,7 +56,7 @@ CREATE TABLE `kehadiran` (
 # Data for table "kehadiran"
 #
 
-INSERT INTO `kehadiran` VALUES ('1','H','2019-05-12','K00001',''),('1','A','2019-05-21','K00001','tidak absen'),('3','A','2019-05-12','K00001','Tidak Absen'),('3','H','2019-05-21','K00001','asdawdasdw');
+INSERT INTO `kehadiran` VALUES ('1','H','2019-05-12','K00001',''),('1','A','2019-05-21','K00001','tidak absen'),('1','H','2019-06-08','K00001','asdawdasdw'),('3','A','2019-05-12','K00001','Tidak Absen'),('3','H','2019-05-21','K00001','asdawdasdw'),('3','H','2019-06-08','K00001','asdawdasdw');
 
 #
 # Structure for table "kelas"
@@ -76,7 +76,7 @@ CREATE TABLE `kelas` (
 # Data for table "kelas"
 #
 
-INSERT INTO `kelas` VALUES ('K00001','X-1','20182019','1','4');
+INSERT INTO `kelas` VALUES ('K00001','X-1','20182019','1','4'),('K99999','SEBELUM','20172018',NULL,NULL);
 
 #
 # Structure for table "log"
@@ -92,7 +92,6 @@ CREATE TABLE `log` (
 # Data for table "log"
 #
 
-INSERT INTO `log` VALUES ('2019-06-06','12:32:07 login OK4 2 192.168.1.1 mobile'),('2019-06-07','00:10:11 login OK4 393 192.168.1.1 mobile'),('2019-06-07','00:11:47 login OK4 393 192.168.1.1 mobile'),('2019-06-07','00:11:57 login OK4 1 192.168.1.1 mobile'),('2019-06-07','00:12:02 login OK4 393 192.168.1.1 mobile'),('2019-06-07','00:12:17 login OK4 393 192.168.1.1 mobile'),('2019-06-07','00:12:24 login OK4 1 192.168.1.1 mobile'),('2019-06-07','00:13:16 login OK4 1 192.168.1.1 mobile'),('2019-06-07','00:13:28 login OK4 393 192.168.1.1 mobile'),('2019-06-07','00:14:48 chek tkn OK4 393 192.168.1.1 1'),('2019-06-07','00:15:00 login OK4 1 192.168.1.1 mobile'),('2019-06-07','00:15:08 chek tkn OK4 1 192.168.1.1 1'),('2019-06-07','00:16:06 chek tkn OK4 1 192.168.1.1 1'),('2019-06-07','00:16:25 chek tkn OK4 1 192.168.1.1 0'),('2019-06-07','00:16:36 login OK4 393 192.168.1.1 mobile'),('2019-06-07','00:16:42 chek tkn OK4 393 192.168.1.1 0'),('2019-06-07','00:27:06 login OK4 1 192.168.1.1 mobile'),('2019-06-07','00:28:32 login OK4 1 192.168.1.1 mobile'),('2019-06-07','00:28:39 chek tkn OK4 1 192.168.1.1 0'),('2019-06-07','00:29:33 login OK4 393 192.168.1.1 mobile'),('2019-06-07','00:38:54 chek tkn OK4 1 192.168.1.1 0'),('2019-06-07','00:39:16 chek tkn OK4 393 192.168.1.1 0'),('2019-06-07','00:39:25 chek tkn OK4 393 192.168.1.1 0'),('2019-06-07','00:40:14 login OK4 393 192.168.1.1 mobile'),('2019-06-07','00:40:21 login OK4 1 192.168.1.1 mobile'),('2019-06-07','00:40:25 login OK4 2 192.168.1.1 mobile'),('2019-06-07','00:40:30 login OK4 3 192.168.1.1 mobile'),('2019-06-07','00:40:35 login OK4 4 192.168.1.1 mobile'),('2019-06-07','00:40:41 login OK4 393 192.168.1.1 mobile'),('2019-06-07','00:44:15 login OK4 393 192.168.1.1 mobile'),('2019-06-07','00:50:19 login OK4 393 192.168.1.1 mobile'),('2019-06-07','01:38:26 login OK4 2 192.168.1.1 mobile'),('2019-06-07','01:39:16 login OK4 3933 192.168.1.1 mobile'),('2019-06-07','01:39:37 login OK4 3933 192.168.1.1 mobile'),('2019-06-07','01:39:42 login OK4 3933 192.168.1.1 mobile'),('2019-06-07','01:39:50 login OK4 3933 192.168.1.1 mobile'),('2019-06-07','01:43:35 login OK4 2 192.168.1.1 mobile');
 
 #
 # Structure for table "siswa"
@@ -117,7 +116,7 @@ CREATE TABLE `siswa` (
 # Data for table "siswa"
 #
 
-INSERT INTO `siswa` VALUES ('1','12311412','IX - ipa teja',NULL,'1998-09-12',NULL,NULL,'villa bintaro',NULL,NULL),('3','1231234','XI - ipa ardy',NULL,'1998-09-12',NULL,NULL,'villa bintaro',NULL,NULL);
+INSERT INTO `siswa` VALUES ('1','12311412','IX - ipa teja','jakarta','1998-09-12','','','villa bintaro','',''),('3','1231234','XI - ipa ardy','','1998-09-12','','','villa bintaro','','');
 
 #
 # Structure for table "staf"
@@ -155,7 +154,7 @@ CREATE TABLE `users` (
 # Data for table "users"
 #
 
-INSERT INTO `users` VALUES ('1','d1fdc1c3d4fcaf10e212d10a896ee927','5b567e0200dca80bb76c075ea92216f5',NULL,0),('2','d1fdc1c3d4fcaf10e212d10a896ee927','cd73c805b3709a4587e095db81343bf8','439c44c618c25dd84abfb249e95afacb',1),('3','d1fdc1c3d4fcaf10e212d10a896ee927','53ac0b02680b845d16a759fcfaca18e2',NULL,0),('4','d1fdc1c3d4fcaf10e212d10a896ee927','ebeaaa06ad76423930f3afd924cd4813','31505090bcff27e82f70fe62b4107894',1);
+INSERT INTO `users` VALUES ('1','d1fdc1c3d4fcaf10e212d10a896ee927','6848b1a2715c9f2889bad77416ef60f1','',0),('2','d1fdc1c3d4fcaf10e212d10a896ee927','aff6cb9611a7dbc5f256e20b7e8329f3','439c44c618c25dd84abfb249e95afacb',1),('3','d1fdc1c3d4fcaf10e212d10a896ee927','bca4397fadcb2bca431a19d05a88331f','',0),('4','d1fdc1c3d4fcaf10e212d10a896ee927','28fd43bd413a346faad79a33cf54cab7','31505090bcff27e82f70fe62b4107894',1);
 
 #
 # Structure for table "validasi_presensi"
@@ -173,4 +172,4 @@ CREATE TABLE `validasi_presensi` (
 # Data for table "validasi_presensi"
 #
 
-INSERT INTO `validasi_presensi` VALUES ('K00001','2019-05-21','d59fd9913a2708ecb531904d892c24fe');
+INSERT INTO `validasi_presensi` VALUES ('K00001','2019-06-08','da7183b7549bfdc4bd9ccf788a787768');
