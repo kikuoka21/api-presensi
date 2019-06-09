@@ -49,7 +49,7 @@ class auth extends Controller
                                 'token' => $token,
                                 'thn-ajar' => $tool->thn_ajar_skrng(),
                                 'tanggal' => $tool->tgl_skrng(),
-                                'data_pribadi' =>$user->getdata_dashboard($username, object_get($hasil[0], 'akses'))
+                                'data_pribadi' => $user->getdata_dashboard($username, object_get($hasil[0], 'akses'))
                             ];
                             $tool->Isi_Log('login OK4 ' . $username . ' ' . $key . ' ' . $inputnya);
                             $result = [
@@ -92,7 +92,6 @@ class auth extends Controller
 //
                     if ($token == $tool->generate_token($key, $username, $type)) {
                         if ($user->chek_token($username, $token, $type)) {
-
 
 
                             $result = [
@@ -143,7 +142,7 @@ class auth extends Controller
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
                 if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
-                    isset($json->xp4s5)) {
+                    isset($json->xp4s5)&& isset($json->xp4s5_lama)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
@@ -152,11 +151,27 @@ class auth extends Controller
 //
                     if ($token == $tool->generate_token($key, $username, $type)) {
                         if ($user->chek_token($username, $token, $type)) {
-                            $user->update_pass($username, $pass);
+//
+                            if (isset($json->username_target) && $user->getakses_admin($username)) {
+                                $user->update_pass($json->username_target, $pass);
+                                $result = [
+                                    'code' => 'OK4'
+                                ];
+                            } else {
+                                $compare = $user->comparepass($username, $json->xp4s5_lama);
+                                if ($compare){
+                                    $user->update_pass($username, $pass);
+                                    $result = [
+                                        'code' => 'OK4'
+                                    ];
+                                }else{
+                                    $result = [
+                                        'code' => 'Password Lama Anda Salah'
+                                    ];
+                                }
 
-                            $result = [
-                                'code' => 'OK4'
-                            ];
+
+                            }
                         } else
                             $result = ['code' => 'token sudah tidak valid'];
 

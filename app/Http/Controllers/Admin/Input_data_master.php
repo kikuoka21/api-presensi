@@ -39,36 +39,37 @@ class Input_data_master extends Controller
 
                     if ($token == $tool->generate_token($key, $username, $type)) {
                         if ($user->chek_token($username, $token, $type)) {
-                            $inputmaster = new Input_masterr();
+                            if ($user->getakses_admin($username)) {
+                                $inputmaster = new Input_masterr();
 
 
-                            $hasil = $inputmaster->check_data_siswa($json->nis);
+                                $hasil = $inputmaster->check_data_siswa($json->nis);
 
-                            if (!$hasil) {
-                                // jika tidak d temukan nis tersebut
-                                $inputmaster->input_siswa($json->nis, $json->nisn, $json->nama_siswa, $json->tgl_lhr,
-                                    $json->alamat, $json->tmpt_lhr,$json->agama,$json->orangtua, $json->no_ijazah,
-                                    $json->no_ujiansmp);
+                                if (!$hasil) {
+                                    // jika tidak d temukan nis tersebut
+                                    $inputmaster->input_siswa($json->nis, $json->nisn, $json->nama_siswa, $json->tgl_lhr,
+                                        $json->alamat, $json->tmpt_lhr, $json->agama, $json->orangtua, $json->no_ijazah,
+                                        $json->no_ujiansmp);
 
 //                                $inputmaster->input_users($json->nis, 'd1fdc1c3d4fcaf10e212d10a896ee927', '0');
 
-                                $result = [
-                                    'code' => 'OK4'
-                                ];
-                            } else {
-                                $result = ['code' => 'nis yang dimasukan sudah ada'];
-                            }
+                                    $result = [
+                                        'code' => 'OK4'
+                                    ];
+                                } else
+                                    $result = ['code' => 'nis yang dimasukan sudah ada'];
+
+                            } else
+                                $result = ['code' => 'Akses Ditolak'];
+
                         } else
                             $result = ['code' => 'token tidak falid'];
 
                     } else
-                        $result = [
-                            'code' => 'token salah'
-                        ];
+                        $result = ['code' => 'token salah'];
 
                 } else
-                    $result = ['code' => 'ISI nama PARAM dikirim salah'];
-
+                    $result = ['code' => 'Isi nama PARAM dikirim salah'];
 
             } else
                 $result = ['code' => 'format data yg dikirim salah '];
@@ -97,23 +98,24 @@ class Input_data_master extends Controller
 
                     if ($token == $tool->generate_token($key, $username, $type)) {
                         if ($user->chek_token($username, $token, $type)) {
-                            $inputmaster = new Input_masterr();
+                            if ($user->getakses_admin($username)) {
+                                $inputmaster = new Input_masterr();
 
 
-                            $hasil = $inputmaster->check_data_staff($json->nip);
+                                $hasil = $inputmaster->check_data_staff($json->nip);
 
-                            if (!$hasil) {
+                                if (!$hasil) {
 //                                // jika tidak d temukan nip tersebut
-                                $inputmaster->input_staff($json->nip, $json->nama_staf, $json->level);
+                                    $inputmaster->input_staff($json->nip, $json->nama_staf, $json->level);
 
-//                                $inputmaster->input_users($json->nip, 'd1fdc1c3d4fcaf10e212d10a896ee927', '1');
+                                    $result = [
+                                        'code' => 'OK4'
+                                    ];
+                                } else
+                                    $result = ['code' => 'nip yang dimasukan sudah ada'];
 
-                                $result = [
-                                    'code' => 'OK4'
-                                ];
-                            } else {
-                                $result = ['code' => 'nip yang dimasukan sudah ada'];
-                            }
+                            } else
+                                $result = ['code' => 'Akses Ditolak'];
                         } else
                             $result = ['code' => 'token tidak falid'];
 
@@ -151,18 +153,22 @@ class Input_data_master extends Controller
 
                     if ($token == $tool->generate_token($key, $username, $type)) {
                         if ($user->chek_token($username, $token, $type)) {
-                            $inputmaster = new Input_masterr();
+                            if ($user->getakses_admin($username)) {
+
+                                $inputmaster = new Input_masterr();
 
 
-                            $hasil = $inputmaster->check_data_libur($json->tanggal);
+                                $hasil = $inputmaster->check_data_libur($json->tanggal);
 
-                            if (!$hasil) {
-                                $inputmaster->input_libur($json->tanggal, $json->ket);
+                                if (!$hasil) {
+                                    $inputmaster->input_libur($json->tanggal, $json->ket);
 
-                                $result = ['code' => 'OK4'];
-                            } else {
-                                $result = ['code' => 'Tanggal yang anda masukan sudah ada'];
-                            }
+                                    $result = ['code' => 'OK4'];
+                                } else
+                                    $result = ['code' => 'Tanggal yang anda masukan sudah ada'];
+
+                            } else
+                                $result = ['code' => 'Akses Ditolak'];
                         } else
                             $result = ['code' => 'token tidak falid'];
 
@@ -200,19 +206,22 @@ class Input_data_master extends Controller
 
                     if ($token == $tool->generate_token($key, $username, $type)) {
                         if ($user->chek_token($username, $token, $type)) {
-                            $inputmaster = new Input_masterr();
-                            $hasil = $inputmaster->check_data_kelas($json->nama_kls, $json->thn_ajar);
+                            if ($user->getakses_admin($username)) {
+                                $inputmaster = new Input_masterr();
+                                $hasil = $inputmaster->check_data_kelas($json->nama_kls, $json->thn_ajar);
 
-                            if (!$hasil) {
-                                $hasil = $inputmaster->generate_id_kelas();
+                                if (!$hasil) {
+                                    $hasil = $inputmaster->generate_id_kelas();
 //                                $idkelas = substr(object_get($hasil[0], 'data'), 1);
-                                $inputmaster->input_kelas($hasil, $json->nama_kls, $json->thn_ajar);
-                                $result = [
-                                    'code' => 'OK4'
-                                ];
-                            } else {
-                                $result = ['code' => 'Data yang diinput sudah ada'];
-                            }
+                                    $inputmaster->input_kelas($hasil, $json->nama_kls, $json->thn_ajar);
+                                    $result = [
+                                        'code' => 'OK4'
+                                    ];
+                                } else
+                                    $result = ['code' => 'Data yang diinput sudah ada'];
+
+                            } else
+                                $result = ['code' => 'Akses Ditolak'];
                         } else
                             $result = ['code' => 'token tidak falid'];
 
@@ -228,5 +237,102 @@ class Input_data_master extends Controller
         }
     }
 
+    public function lihat_tanggal(Request $request)
+    {
+        $user = new User();
+        $tool = new Tool();
+
+        $json = $request->input('parsing');
+        if ($json == null) {
+            return Redirect::to('/');
+        } else {
+            if ($tool->IsJsonString($json)) {
+                $json = json_decode($json);
+                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
+                    isset($json->tanggal)) {
+                    $token = $json->token;
+                    $username = $json->x1d;
+                    $type = $json->type;
+                    $key = $json->key;
+
+                    if ($token == $tool->generate_token($key, $username, $type)) {
+                        if ($user->chek_token($username, $token, $type)) {
+                            if ($user->getakses_admin($username)) {
+
+                                $inputmaster = new Input_masterr();
+//                                $hasil = $inputmaster->history_tanggal($json->tanggal);
+                                $hasil = $inputmaster->history_tanggal('2019-05-11');
+
+                                $result = [
+                                    'code' => 'OK4',
+                                    'data'=> $hasil
+                                ];
+
+                            } else
+                                $result = ['code' => 'Akses Ditolak'];
+                        } else
+                            $result = ['code' => 'token tidak falid'];
+
+                    } else
+                        $result = ['code' => 'token salah'];
+
+                } else
+                    $result = ['code' => 'ISI nama PARAM dikirim salah'];
+
+
+            } else
+                $result = ['code' => 'format data yg dikirim salah '];
+
+            return $result;
+        }
+    }
+    public function lihat_tanggal2(Request $request)
+    {
+        $user = new User();
+        $tool = new Tool();
+
+        $json = $request->input('parsing');
+        if ($json == null) {
+            return Redirect::to('/');
+        } else {
+            if ($tool->IsJsonString($json)) {
+                $json = json_decode($json);
+                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
+                    isset($json->tanggal)) {
+                    $token = $json->token;
+                    $username = $json->x1d;
+                    $type = $json->type;
+                    $key = $json->key;
+
+                    if ($token == $tool->generate_token($key, $username, $type)) {
+                        if ($user->chek_token($username, $token, $type)) {
+                            if ($user->getakses_admin($username)) {
+
+                                $inputmaster = new Input_masterr();
+//                                $hasil = $inputmaster->history_tanggal2($json->tanggal);
+                                $hasil = $inputmaster->history_tanggal2('2019-05-10');
+
+                                $result = [
+                                    'code' => 'OK4',
+                                    'data'=> $hasil
+                                ];
+
+                            } else
+                                $result = ['code' => 'Akses Ditolak'];
+                        } else
+                            $result = ['code' => 'token tidak falid'];
+
+                    } else
+                        $result = ['code' => 'token salah'];
+
+                } else
+                    $result = ['code' => 'ISI nama PARAM dikirim salah'];
+
+            } else
+                $result = ['code' => 'format data yg dikirim salah '];
+
+            return $result;
+        }
+    }
 
 }

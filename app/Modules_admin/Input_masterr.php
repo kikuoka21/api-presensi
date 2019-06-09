@@ -38,7 +38,7 @@ class Input_masterr
             'no_ijazah' => $ijazah,
             'no_ujiansmp' => $no_ujian
         ]);
-        $this->input_users($nis,'d1fdc1c3d4fcaf10e212d10a896ee927', '0');
+        $this->input_users($nis, 'd1fdc1c3d4fcaf10e212d10a896ee927', '0');
 
     }
 
@@ -74,7 +74,7 @@ class Input_masterr
             'nama' => $nama,
             'level' => $level
         ]);
-        $this->input_users($nip,'d1fdc1c3d4fcaf10e212d10a896ee927', '1');
+        $this->input_users($nip, 'd1fdc1c3d4fcaf10e212d10a896ee927', '1');
     }
 
     public function check_data_libur($tgl)
@@ -113,11 +113,11 @@ class Input_masterr
     {
         $query = "SELECT MAX(id_kelas) as data FROM kelas";
         $hasil = DB::connection('mysql')->select(DB::raw($query));
-        if (!$hasil) {
+        if (!$hasil)
 //
             return "K00001";
 
-        } else {
+        else {
             $idkelas = substr(object_get($hasil[0], 'data'), 1) + 1;
             $panjang = strlen($idkelas);
             while ($panjang < 5) {
@@ -147,6 +147,27 @@ class Input_masterr
         ]);
 
     }
+
+    public function history_tanggal($tanggal)
+    {
+        $query = "select * from hari_libur where tanggal > :tgl ";
+        $hasil = DB::connection('mysql')->select(DB::raw($query), [
+            'tgl' => $tanggal
+        ]);
+
+        return $hasil;
+
+    }
+    public function history_tanggal2($tanggal)
+    {
+        $query = "select * from hari_libur where tanggal like :tgl ";
+        $hasil = DB::connection('mysql')->select(DB::raw($query), [
+            'tgl' => $tanggal.'%'
+        ]);
+
+        return $hasil;
+    }
+
 
 
 }

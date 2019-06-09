@@ -23,6 +23,16 @@ Route::prefix('admin')->group(function () {
         Route::post('tanggal', 'Admin\Input_data_master@input_tanggal');
         Route::post('kelas', 'Admin\Input_data_master@input_kelas');
 
+        Route::prefix('lihat')->group(function () {
+//            Route::post('siswa', 'Admin\Input_data_master@input_siswa');
+//            Route::post('staf', 'Admin\Input_data_master@input_staf');
+            Route::post('tanggal', 'Admin\Input_data_master@lihat_tanggal');
+            Route::post('history/tanggal', 'Admin\Input_data_master@lihat_tanggal2');
+//            Route::post('kelas', 'Admin\Input_data_master@input_kelas');
+
+
+        });
+
     });
 });
 

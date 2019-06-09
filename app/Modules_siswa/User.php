@@ -110,13 +110,54 @@ class User
         }
     }
 
-    public function update_pass($uid, $xpass)
+    public function getpass_lama($uid, $xpass)
     {
-        $query = "UPDATE users SET password= :pass where username= :xuid";
-        DB::connection('mysql')->select(DB::raw($query), [
+        $query = "SELECT username FROM users where username = :xuid and password= :pass  ";
+        $getid = DB::connection('mysql')->select(DB::raw($query), [
             'xuid' => $uid,
             'pass' => $xpass
         ]);
+        return $getid;
+    }
+
+    public function update_pass($uid, $xpass)
+    {
+        $query = "UPDATE users SET password= :pass , token= :tkn , token_2= :tkn2 where username= :xuid";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'xuid' => $uid,
+            'pass' => $xpass,
+            'tkn' => '',
+            'tkn2' => ''
+        ]);
+
+    }
+
+    public function getakses_admin($xuid)
+    {
+        $query = "SELECT akses FROM users where username = :xuid ";
+        $getid = DB::connection('mysql')->select(DB::raw($query), [
+            'xuid' => $xuid
+        ]);
+        if (!$getid) {
+            return false;
+        } else {
+            if (object_get($getid[0], 'akses') == '1') {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public function comparepass($uid, $pass)
+    {
+        $query = "SELECT username FROM users where username = :xuid and  password= :pass";
+        $result = DB::connection('mysql')->select(DB::raw($query), [
+            'xuid' => $uid,
+            'pass'=> $pass
+        ]);
+
+        return $result;
 
     }
 }

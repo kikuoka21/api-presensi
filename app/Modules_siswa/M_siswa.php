@@ -24,9 +24,10 @@ class M_siswa
 
     public function history_kelas($nis)
     {
-        $query = "SELECT  nama_kelas as kelas , kelas.tahun_ajar FROM  isikelas, kelas where 
+        $query = "SELECT isikelas.id_kelas as kd_kelas , nama_kelas as kelas , kelas.tahun_ajar FROM  isikelas, kelas where 
 					isikelas.id_kelas = kelas.id_kelas and 
-					isikelas.nis = :nis ";
+					isikelas.nis = :nis 
+					order by kelas.tahun_ajar desc ";
         $result = DB::connection('mysql')->select(DB::raw($query), [
             'nis' => $nis
         ]);
