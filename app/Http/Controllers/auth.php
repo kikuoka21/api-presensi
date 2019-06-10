@@ -32,6 +32,8 @@ class auth extends Controller
                     $type = $json->type;
                     $key = $json->key;
                     $hasil = $user->getUser($username);
+//                    $tool->Isi_Log('login OK4 ' . $username . ' ' . $key . ' ' . $inputnya);
+                    $inputnya = '';
                     if (!$hasil) {
                         $result = ['code' => 'nis yang dimasukan salah'];
                     } else {
@@ -39,10 +41,10 @@ class auth extends Controller
                             $token = $tool->generate_token($key, $username, $type);
                             if (object_get($hasil[0], 'akses') == '1' && $type == 'www') {
                                 $user->input_tokenweb($username, $token);
-                                $inputnya = 'web';
+                                $inputnya = 'berhasil web';
                             } else {
                                 $user->input_tokenmobile($username, $token);
-                                $inputnya = 'mobile';
+                                $inputnya = 'berhasil mobile';
                             }
                             $result = [
                                 'status' => object_get($hasil[0], 'akses'),
@@ -51,17 +53,21 @@ class auth extends Controller
                                 'tanggal' => $tool->tgl_skrng(),
                                 'data_pribadi' => $user->getdata_dashboard($username, object_get($hasil[0], 'akses'))
                             ];
-                            $tool->Isi_Log('login OK4 ' . $username . ' ' . $key . ' ' . $inputnya);
+
                             $result = [
                                 'code' => 'OK4',
 //                                'input' => $inputnya. '  '. $type,
 //                                'input' => $tool->time(),
                                 'data' => $result
                             ];
+
                         } else {
                             $result = ['code' => 'password yang dimasukan salah '];
                         }
                     }
+                    
+                    $tool->Isi_Log('login ' . $inputnya . ' ' . $username . ' ' . $key);
+
                 } else {
                     $result = ['code' => 'data yangdikirm salah'];
                 }
@@ -142,7 +148,7 @@ class auth extends Controller
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
                 if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
-                    isset($json->xp4s5)&& isset($json->xp4s5_lama)) {
+                    isset($json->xp4s5) && isset($json->xp4s5_lama)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
@@ -159,12 +165,12 @@ class auth extends Controller
                                 ];
                             } else {
                                 $compare = $user->comparepass($username, $json->xp4s5_lama);
-                                if ($compare){
+                                if ($compare) {
                                     $user->update_pass($username, $pass);
                                     $result = [
                                         'code' => 'OK4'
                                     ];
-                                }else{
+                                } else {
                                     $result = [
                                         'code' => 'Password Lama Anda Salah'
                                     ];

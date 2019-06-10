@@ -42,25 +42,27 @@ class siswa extends Controller
                             $tanggal = $tool->get_date();
 //                            $tanggal = '2019-05-11';
 
-                            if ($tool->tgl_merah()) {
-                                $hari_ini = [
-                                    'status' => 'L',
-                                    'ket' => 'Tidak ada KBM'
-                                ];
-                            } else {
-                                $hasil = $dashboard->harilibur($tanggal);
-                                if (!$hasil) {
+
+                            $hasil = $dashboard->harilibur($tanggal);
+                            if (!$hasil) {
+                                if ($tool->tgl_merah()) {
+                                    $hari_ini = [
+                                        'status' => 'L',
+                                        'ket' => 'Tidak ada KBM'
+                                    ];
+                                } else {
                                     $hari_ini = [
                                         'status' => 'M',
                                         'ket' => ''
                                     ];
-                                } else {
-                                    $hari_ini = [
-                                        'status' => 'L',
-                                        'ket' => object_get($hasil[0], 'ket')
-                                    ];
                                 }
+                            } else {
+                                $hari_ini = [
+                                    'status' => 'L',
+                                    'ket' => object_get($hasil[0], 'ket')
+                                ];
                             }
+
                             $msiswa = new M_siswa();
                             $hasil_kelas = $msiswa->getKels($username, $tool->thn_ajar_skrng());
                             if ($hasil_kelas) {

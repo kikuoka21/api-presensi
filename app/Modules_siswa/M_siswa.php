@@ -89,7 +89,7 @@ class M_siswa
 
     public function create_absen($nis, $tgl, $kd_kelas)
     {
-        $query = "INSERT INTO kehadiran ( nis, tanggal, id_kelas, stat , ket) VALUES (:nis ,:tgl ,:kode_kelas, 'A', 'Tidak Absen')";
+        $query = "INSERT INTO kehadiran ( nis, tanggal, id_kelas, stat , ket) VALUES (:nis ,:tgl ,:kode_kelas, 'A', 'Belum Absen')";
         DB::connection('mysql')->select(DB::raw($query), [
             'nis' => $nis,
             'tgl' => $tgl,

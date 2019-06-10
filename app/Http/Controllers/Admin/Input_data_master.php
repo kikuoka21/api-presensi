@@ -237,7 +237,7 @@ class Input_data_master extends Controller
         }
     }
 
-    public function lihat_tanggal2(Request $request)
+    public function history_tanggal(Request $request)
     {
         $user = new User();
         $tool = new Tool();

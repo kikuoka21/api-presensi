@@ -42,17 +42,18 @@ class admin extends Controller
 //
                             if ($user->getakses_admin($username)) {
                                 $tanggal = $tool->get_date();
-                                $tanggal = '2019-05-12';
+//                                $tanggal = '2019-05-12';
                                 $list = [];
-//							if ($tool->tgl_merah()) {
-                                if (false) {
-                                    $hari_ini = [
-                                        'status' => 'L',
-                                        'ket' => 'Tidak ada KBM'
-                                    ];
-                                } else {
-                                    $hasil = $dashboard->harilibur($tanggal);
-                                    if (!$hasil) {
+
+                                $hasil = $dashboard->harilibur($tanggal);
+                                if (!$hasil) {
+                                    if ($tool->tgl_merah()) {
+//                                    if (false) {
+                                        $hari_ini = [
+                                            'status' => 'L',
+                                            'ket' => 'Tidak ada KBM'
+                                        ];
+                                    } else {
                                         $hari_ini = [
                                             'status' => 'M',
                                             'ket' => ''
@@ -65,13 +66,15 @@ class admin extends Controller
                                         } else {
                                             $list = $madmin->getabsen_kelas($tanggal, $username);
                                         }
-                                    } else {
-                                        $hari_ini = [
-                                            'status' => 'L',
-                                            'ket' => object_get($hasil[0], 'ket')
-                                        ];
                                     }
+
+                                } else {
+                                    $hari_ini = [
+                                        'status' => 'L',
+                                        'ket' => object_get($hasil[0], 'ket')
+                                    ];
                                 }
+
                                 $result = [
                                     'code' => 'OK4',
                                     'date' => $hari_ini,
