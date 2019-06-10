@@ -28,7 +28,8 @@ Route::prefix('admin')->group(function () {
 //            Route::post('staf', 'Admin\Input_data_master@input_staf');
             Route::post('tanggal', 'Admin\Input_data_master@lihat_tanggal');
             Route::post('history/tanggal', 'Admin\Input_data_master@lihat_tanggal2');
-//            Route::post('kelas', 'Admin\Input_data_master@input_kelas');
+            Route::post('kelas/semua', 'Admin\Input_data_master@all_kelas');
+            Route::post('kelas', 'Admin\Input_data_master@input_kelas');
 
 
         });

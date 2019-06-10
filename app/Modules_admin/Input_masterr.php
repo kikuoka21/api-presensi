@@ -79,7 +79,7 @@ class Input_masterr
 
     public function check_data_libur($tgl)
     {
-        $query = "select tanggal from hari_libur where tanggal	= :tgl";
+        $query = "select tanggal as tgl,ket  from hari_libur where tanggal	= :tgl";
         $result = DB::connection('mysql')->select(DB::raw($query), [
             'tgl' => $tgl
         ]);
@@ -150,7 +150,7 @@ class Input_masterr
 
     public function history_tanggal($tanggal)
     {
-        $query = "select * from hari_libur where tanggal > :tgl ";
+        $query = "select tanggal as tgl, ket from hari_libur where tanggal > :tgl order by tanggal asc ";
         $hasil = DB::connection('mysql')->select(DB::raw($query), [
             'tgl' => $tanggal
         ]);
@@ -160,7 +160,16 @@ class Input_masterr
     }
     public function history_tanggal2($tanggal)
     {
-        $query = "select * from hari_libur where tanggal like :tgl ";
+        $query = "select tanggal as tgl, ket from hari_libur where tanggal like :tgl order by tanggal asc";
+        $hasil = DB::connection('mysql')->select(DB::raw($query), [
+            'tgl' => $tanggal.'%'
+        ]);
+
+        return $hasil;
+    }
+    public function all_kelas($tanggal)
+    {
+        $query = "select tanggal as tgl, ket from hari_libur where tanggal like :tgl order by tanggal asc";
         $hasil = DB::connection('mysql')->select(DB::raw($query), [
             'tgl' => $tanggal.'%'
         ]);

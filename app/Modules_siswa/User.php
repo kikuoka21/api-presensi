@@ -148,6 +148,22 @@ class User
             }
         }
     }
+    public function getakses_admin_piket($xuid)
+    {
+        $query = "SELECT level FROM staf where nip = :xuid ";
+        $getid = DB::connection('mysql')->select(DB::raw($query), [
+            'xuid' => $xuid
+        ]);
+        if (!$getid) {
+            return false;
+        } else {
+            if (object_get($getid[0], 'level') == '1') {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
 
     public function comparepass($uid, $pass)
     {
