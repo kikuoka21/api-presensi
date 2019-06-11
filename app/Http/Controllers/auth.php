@@ -65,7 +65,7 @@ class auth extends Controller
                             $result = ['code' => 'password yang dimasukan salah '];
                         }
                     }
-                    
+
                     $tool->Isi_Log('login ' . $inputnya . ' ' . $username . ' ' . $key);
 
                 } else {

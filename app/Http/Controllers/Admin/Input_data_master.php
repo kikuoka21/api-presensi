@@ -51,13 +51,12 @@ class Input_data_master extends Controller
                                         $json->alamat, $json->tmpt_lhr, $json->agama, $json->orangtua, $json->no_ijazah,
                                         $json->no_ujiansmp);
 
-//                                $inputmaster->input_users($json->nis, 'd1fdc1c3d4fcaf10e212d10a896ee927', '0');
 
                                     $result = [
                                         'code' => 'OK4'
                                     ];
                                 } else
-                                    $result = ['code' => 'nis yang dimasukan sudah ada'];
+                                    $result = ['code' => 'nis yang dimasukan sudah ada dengan nama '. object_get($hasil[0], 'nama')];
 
                             } else
                                 $result = ['code' => 'Akses Ditolak'];

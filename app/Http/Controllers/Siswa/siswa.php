@@ -134,7 +134,7 @@ class siswa extends Controller
                                         $getsiswa = $msiswa->get_all_siswa($kelas);
                                         $token = '';
                                         if ($getsiswa) {
-                                            $token = md5('sudah d!enkrip' . md5($tanggal . $kelas) . $username);
+                                            $token = md5('sudah d!enkrip' . md5($tanggal .'\''. $kelas) .'!'. $username);
                                             $msiswa->insert_token($kelas, $tanggal, $token);
                                             $code = 'OK4';
                                             for ($i = 0; $i < count($getsiswa); $i++) {

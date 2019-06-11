@@ -14,7 +14,7 @@ class Input_masterr
 {
     public function check_data_siswa($nis)
     {
-        $query = "select nis from siswa where nis= :nis";
+        $query = "select nama_siswa as nama from siswa where nis= :nis";
         $result = DB::connection('mysql')->select(DB::raw($query), [
             'nis' => $nis
         ]);
