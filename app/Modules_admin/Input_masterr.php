@@ -158,25 +158,47 @@ class Input_masterr
         return $hasil;
 
     }
+
     public function history_tanggal2($tanggal)
     {
         $query = "select tanggal as tgl, ket from hari_libur where tanggal like :tgl order by tanggal asc";
         $hasil = DB::connection('mysql')->select(DB::raw($query), [
-            'tgl' => $tanggal.'%'
+            'tgl' => $tanggal . '%'
         ]);
 
         return $hasil;
     }
+
     public function all_kelas($tanggal)
     {
-        $query = "select tanggal as tgl, ket from hari_libur where tanggal like :tgl order by tanggal asc";
+        $query = "select id_kelas , nama_kelas as nama,
+                  id_ketua_kelas, id_wali_kelas 
+                  from kelas where tahun_ajar = :tgl
+                  order by nama_kelas asc";
         $hasil = DB::connection('mysql')->select(DB::raw($query), [
-            'tgl' => $tanggal.'%'
+            'tgl' => $tanggal
         ]);
 
         return $hasil;
     }
 
+    public function get_nama_siswa($nis)
+    {
+        $query = "SELECT nama_siswa as nama FROM siswa  where  nis  =:nis ";
+        $result = DB::connection('mysql')->select(DB::raw($query), [
+            'nis' => $nis
+        ]);
+        return object_get($result[0], 'nama');
+    }
+
+    public function get_nama_wali($uid)
+    {
+        $query = "SELECT nama_staf as nama, level FROM staf  where  nip  =:nip ";
+        $result = DB::connection('mysql')->select(DB::raw($query), [
+            'nip' => $uid
+        ]);
+        return object_get($result[0], 'nama');
+    }
 
 
 }

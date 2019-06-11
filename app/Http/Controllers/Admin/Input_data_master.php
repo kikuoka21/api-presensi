@@ -56,7 +56,7 @@ class Input_data_master extends Controller
                                         'code' => 'OK4'
                                     ];
                                 } else
-                                    $result = ['code' => 'nis yang dimasukan sudah ada dengan nama '. object_get($hasil[0], 'nama')];
+                                    $result = ['code' => 'nis yang dimasukan sudah ada dengan nama ' . object_get($hasil[0], 'nama')];
 
                             } else
                                 $result = ['code' => 'Akses Ditolak'];
@@ -165,8 +165,8 @@ class Input_data_master extends Controller
 
                                     $result = ['code' => 'OK4'];
                                 } else
-                                    $result = ['code' => 'Tanggal yang anda masukan sudah ada dengan data '. object_get($hasil[0], 'tgl')
-                                        .', '.object_get($hasil[0], 'ket')];
+                                    $result = ['code' => 'Tanggal yang anda masukan sudah ada dengan data ' . object_get($hasil[0], 'tgl')
+                                        . ', ' . object_get($hasil[0], 'ket')];
                             } else
                                 $result = ['code' => 'Akses Ditolak'];
                         } else
@@ -335,6 +335,7 @@ class Input_data_master extends Controller
             return $result;
         }
     }
+
     public function all_kelas(Request $request)
     {
         $user = new User();
@@ -347,7 +348,7 @@ class Input_data_master extends Controller
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
                 if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
-                    isset($json->nama_kls) && isset($json->thn_ajar)) {
+                    isset($json->thn_ajar)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
@@ -357,12 +358,119 @@ class Input_data_master extends Controller
                         if ($user->chek_token($username, $token, $type)) {
                             if ($user->getakses_admin($username) && $user->getakses_admin_piket($username)) {
                                 $inputmaster = new Input_masterr();
-                                $hasil = $inputmaster->all_kelas($json->nama_kls, $json->thn_ajar);
+                                $hasil = $inputmaster->all_kelas($json->thn_ajar);
+                                if ($hasil) {
+                                    $balikan = [];
+                                    for ($i = 0; $i < count($hasil); $i++) {
+                                        $siswa = [
+                                            'id'=> '-',
+                                            'nama'=>'-'
+                                        ];
+                                        $staf = [
+                                            'id'=> '-',
+                                            'nama'=>'-'
+                                        ];
+                                        if (object_get($hasil[$i], 'id_ketua_kelas') != "") {
+                                            $siswa = [
+                                                'id'=> object_get($hasil[$i], 'id_ketua_kelas'),
+                                                'nama'=>$inputmaster->get_nama_siswa(object_get($hasil[$i], 'id_ketua_kelas'))
+                                            ];
 
+                                        }
+                                        if (object_get($hasil[$i], 'id_wali_kelas') != "") {
+                                            $staf = [
+                                                'id'=> object_get($hasil[$i], 'id_wali_kelas'),
+                                                'nama'=>$inputmaster->get_nama_wali(object_get($hasil[$i], 'id_wali_kelas'))
+                                            ];
+                                        }
+
+                                        $balikan[$i] = [
+                                            'id' => object_get($hasil[$i], 'id_kelas'),
+                                            'nama' => object_get($hasil[$i], 'nama'),
+                                            'siswa' => $siswa,
+                                            'walikelas' => $staf
+                                        ];
+                                    }
                                     $result = [
                                         'code' => 'OK4',
-                                        'data' => $hasil
+                                        'data' => $balikan
                                     ];
+                                } else {
+                                    $result = [
+                                        'code' => 'Tidak Ditemukan Kelas Pada Tahun Ajaran ' .
+                                            substr($json->thn_ajar, 0, 4) . '/' . substr($json->thn_ajar, 4)
+                                    ];
+                                }
+
+                            } else
+                                $result = ['code' => 'Akses Ditolak'];
+                        } else
+                            $result = ['code' => 'token tidak falid'];
+
+                    } else
+                        $result = ['code' => 'token salah'];
+
+                } else
+                    $result = ['code' => 'ISI nama PARAM dikirim salah'];
+            } else
+                $result = ['code' => 'format data yg dikirim salah '];
+
+            return $result;
+        }
+    }
+    public function isi_kelas(Request $request)
+    {
+        $user = new User();
+        $tool = new Tool();
+
+        $json = $request->input('parsing');
+        if ($json == null) {
+            return Redirect::to('/');
+        } else {
+            if ($tool->IsJsonString($json)) {
+                $json = json_decode($json);
+                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
+                    isset($json->thn_ajar)) {
+                    $token = $json->token;
+                    $username = $json->x1d;
+                    $type = $json->type;
+                    $key = $json->key;
+
+                    if ($token == $tool->generate_token($key, $username, $type)) {
+                        if ($user->chek_token($username, $token, $type)) {
+                            if ($user->getakses_admin($username) && $user->getakses_admin_piket($username)) {
+                                $inputmaster = new Input_masterr();
+                                $hasil = $inputmaster->all_kelas($json->thn_ajar);
+                                if ($hasil) {
+                                    $balikan = [];
+                                    for ($i = 0; $i < count($hasil); $i++) {
+                                        $siswa = '-';
+                                        $staf = '-';
+                                        if (object_get($hasil[$i], 'id_ketua_kelas') != "") {
+                                            $siswa = $inputmaster->get_nama_siswa(object_get($hasil[$i], 'id_ketua_kelas'));
+                                        }
+                                        if (object_get($hasil[$i], 'id_wali_kelas') != "") {
+                                            $staf = $inputmaster->get_nama_wali(object_get($hasil[$i], 'id_wali_kelas'));
+                                        }
+
+                                        $balikan[$i] = [
+                                            'id' => object_get($hasil[$i], 'id_kelas'),
+                                            'nama' => object_get($hasil[$i], 'nama'),
+                                            'siswa' => $siswa,
+                                            'walikelas' => $staf
+                                        ];
+                                    }
+                                    $result = [
+                                        'code' => 'OK4',
+                                        'data' => $balikan
+                                    ];
+                                } else {
+                                    $result = [
+                                        'code' => 'Tidak Ditemukan Kelas Pada Tahun Ajaran ' .
+                                            substr($json->thn_ajar, 0, 4) . '/' . substr($json->thn_ajar, 4)
+                                    ];
+                                }
+
                             } else
                                 $result = ['code' => 'Akses Ditolak'];
                         } else
