@@ -115,16 +115,33 @@ class Input_masterr
         $hasil = DB::connection('mysql')->select(DB::raw($query));
         if (!$hasil)
 //
-            return "K00001";
+            return "A00001";
 
         else {
+
             $idkelas = substr(object_get($hasil[0], 'data'), 1) + 1;
+            $hurufawal = substr(object_get($hasil[0], 'data'), 0, 1);
+
             $panjang = strlen($idkelas);
-            while ($panjang < 5) {
-                $idkelas = '0' . $idkelas;
-                $panjang = strlen($idkelas);
+            if ($panjang != 6) {
+                while ($panjang < 5) {
+                    $idkelas = '0' . $idkelas;
+                    $panjang = strlen($idkelas);
+                }
+                $idkelas = $hurufawal . $idkelas;
+            } else {
+                $kode = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+                $x = 0;
+                while ($kode[$x] != $hurufawal) {
+                    $x++;
+                }
+                $x++;
+                $idkelas = $kode[$x] . '00001';
+
             }
-            $idkelas = 'K' . $idkelas;
+
+            //total data kelas yang bisa di generate sekitar 2,599,974‬ data kelas
+
             return $idkelas;
         }
 
@@ -133,7 +150,7 @@ class Input_masterr
     public function input_kelas($id_kelas, $nama_kelas, $tahun_ajar)
     {
         $query = "INSERT INTO kelas ( id_kelas, nama_kelas, tahun_ajar) 
-					VALUES (:id ,:nama, :tahun )";
+					VALUES (:id ,:nama , :tahun )";
         DB::connection('mysql')->select(DB::raw($query), [
             'id' => $id_kelas,
             'nama' => $nama_kelas,
@@ -198,6 +215,40 @@ class Input_masterr
             'nip' => $uid
         ]);
         return object_get($result[0], 'nama');
+    }
+
+    public function get_siswakelas($kd_kls)
+    {
+        $query = "select siswa.nis, siswa.nama_siswa, isikelas.level 
+                  from siswa, isikelas where isikelas.id_kelas = :kd and siswa.nis = isikelas.nis
+                  order by nama_siswa asc";
+        $hasil = DB::connection('mysql')->select(DB::raw($query), [
+            'kd' => $kd_kls
+        ]);
+
+        return $hasil;
+    }
+    public function get_ketua_kelas($kd_kls)
+    {
+        $query = "select siswa.nis, siswa.nama_siswa as nama from siswa, kelas
+                  where kelas.id_kelas = :kd and
+                  siswa.nis = kelas.id_ketua_kelas";
+        $hasil = DB::connection('mysql')->select(DB::raw($query), [
+            'kd' => $kd_kls
+        ]);
+
+        return $hasil;
+    }
+    public function get_wali_kelas($kd_kls)
+    {
+        $query = "select staf.nip , staf.nama_staf as nama from kelas, staf
+                  where kelas.id_kelas = :kd and
+                  staf.nip = kelas.id_wali_kelas";
+        $hasil = DB::connection('mysql')->select(DB::raw($query), [
+            'kd' => $kd_kls
+        ]);
+
+        return $hasil;
     }
 
 
