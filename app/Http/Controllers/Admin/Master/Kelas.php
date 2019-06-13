@@ -516,7 +516,7 @@ class kelas extends Controller
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
                 if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
-                    isset($json->id_kelas)) {
+                    isset($json->id_kelas) && isset($json->p4ss)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
@@ -525,26 +525,33 @@ class kelas extends Controller
                     if ($token == $tool->generate_token($key, $username, $type)) {
                         if ($user->chek_token($username, $token, $type)) {
                             if ($user->getakses_admin($username) && $user->getakses_admin_piket($username)) {
-                                $inputmaster = new Modul_Kelas();
+                                $validasi = $user->getpass_lama($username,$json->p4ss );
+                                if ($validasi){
+                                    $inputmaster = new Modul_Kelas();
 
-                                $validasi = $inputmaster->validasi_kelas($json->id_kelas);
+                                    $validasi = $inputmaster->validasi_kelas($json->id_kelas);
 
-                                if (!$validasi) {
-                                    $result = [
-                                        'code' => 'Data kelas tidak ditemukan'
-                                    ];
-                                } else {
-                                    $inputmaster->hapus_kelas($json->id_kelas);
-                                    $msiswa = new M_siswa();
+                                    if (!$validasi) {
+                                        $result = [
+                                            'code' => 'Data kelas tidak ditemukan'
+                                        ];
+                                    } else {
+                                        $inputmaster->hapus_kelas($json->id_kelas);
+                                        $msiswa = new M_siswa();
 
-                                    $getsiswa = $msiswa->get_all_siswa($json->id_kelas);
-                                    for ($i = 0; $i < count($getsiswa); $i++) {
-                                        $inputmaster->hapus_siswa_kelas($json->id_kelas,object_get($getsiswa[$i], 'nis'));
+                                        $getsiswa = $msiswa->get_all_siswa($json->id_kelas);
+                                        for ($i = 0; $i < count($getsiswa); $i++) {
+                                            $inputmaster->hapus_siswa_kelas($json->id_kelas,object_get($getsiswa[$i], 'nis'));
+                                        }
+                                        $result = [
+                                            'code' => 'OK4',
+                                        ];
                                     }
+                                }else
                                     $result = [
-                                        'code' => 'OK4',
+                                        'code' => 'Pass yang dimasukan salah',
                                     ];
-                                }
+
 
 
                             } else

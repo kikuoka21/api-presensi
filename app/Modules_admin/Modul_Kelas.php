@@ -167,7 +167,7 @@ class Modul_Kelas
 
     public function hapus_kelas($idkelas)
     {
-        $query = "DELETE FROM  kelas where id_kelas = :id";
+        $query = "DELETE FROM kelas where id_kelas = :id";
         DB::connection('mysql')->select(DB::raw($query), [
             'id' => $idkelas
         ]);

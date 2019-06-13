@@ -20,9 +20,9 @@ Route::prefix('admin')->group(function () {
 
         Route::prefix('siswa')->group(function () {
             Route::post('input', 'Admin\Input_data_master@input_siswa');
-//        Route::post('list', 'Admin\Input_data_master@input_siswa');
-//        Route::post('ubah', 'Admin\Input_data_master@input_siswa');
-//        Route::post('hapus', 'Admin\Input_data_master@input_siswa');
+            Route::post('cari', 'Admin\Master\Siswa@cari_siswa');
+            Route::post('ubah', 'Admin\Master\Siswa@ubah_siswa');
+            Route::post('hapus', 'Admin\Input_data_master@input_siswa');// belum dibuat controllernya
         });
 
         Route::prefix('staf')->group(function () {
@@ -34,8 +34,8 @@ Route::prefix('admin')->group(function () {
         });
 
         Route::prefix('tanggal')->group(function () {
-            Route::post('list', 'Admin\Input_data_master@lihat_tanggal');
-            Route::post('history', 'Admin\Input_data_master@history_tanggal');
+            Route::post('list', 'Admin\Input_data_master@lihat_tanggal');//melihat tanggal yg belum terjadi kedepan
+            Route::post('history', 'Admin\Input_data_master@history_tanggal');//
             Route::post('input', 'Admin\Input_data_master@input_tanggal');
 
         });
@@ -65,8 +65,6 @@ Route::prefix('admin')->group(function () {
 
             });
         });
-
-
     });
 });
 
