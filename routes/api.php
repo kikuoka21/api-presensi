@@ -22,7 +22,7 @@ Route::prefix('admin')->group(function () {
             Route::post('input', 'Admin\Input_data_master@input_siswa');
             Route::post('cari', 'Admin\Master\Siswa@cari_siswa');
             Route::post('ubah', 'Admin\Master\Siswa@ubah_siswa');
-            Route::post('hapus', 'Admin\Input_data_master@input_siswa');// belum dibuat controllernya
+            Route::post('hapus', 'Admin\Master\Siswa@hapus_siswa');
         });
 
         Route::prefix('staf')->group(function () {

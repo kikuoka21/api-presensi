@@ -52,4 +52,32 @@ class Modul_siswa
 
     }
 
+    public function check_data_siswa($nis)
+    {
+        $query = "select nama_siswa as nama from siswa where nis= :nis";
+        $result = DB::connection('mysql')->select(DB::raw($query), [
+            'nis' => $nis
+        ]);
+        return $result;
+    }
+    public function hapus_data_siswa($nis)
+    {
+        $query = "DELETE FROM siswa where nis = :nis";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'nis' => $nis
+        ]);
+        $query = "DELETE FROM users where username = :nis";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'nis' => $nis
+        ]);
+        $query = "DELETE FROM isikelas where nis = :nis";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'nis' => $nis
+        ]);
+        $query = "DELETE FROM kehadiran where nis = :nis";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'nis' => $nis
+        ]);
+    }
+
 }
