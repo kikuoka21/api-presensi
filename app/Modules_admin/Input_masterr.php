@@ -217,39 +217,8 @@ class Input_masterr
         return object_get($result[0], 'nama');
     }
 
-    public function get_siswakelas($kd_kls)
-    {
-        $query = "select siswa.nis, siswa.nama_siswa, isikelas.level 
-                  from siswa, isikelas where isikelas.id_kelas = :kd and siswa.nis = isikelas.nis
-                  order by nama_siswa asc";
-        $hasil = DB::connection('mysql')->select(DB::raw($query), [
-            'kd' => $kd_kls
-        ]);
 
-        return $hasil;
-    }
-    public function get_ketua_kelas($kd_kls)
-    {
-        $query = "select siswa.nis, siswa.nama_siswa as nama from siswa, kelas
-                  where kelas.id_kelas = :kd and
-                  siswa.nis = kelas.id_ketua_kelas";
-        $hasil = DB::connection('mysql')->select(DB::raw($query), [
-            'kd' => $kd_kls
-        ]);
 
-        return $hasil;
-    }
-    public function get_wali_kelas($kd_kls)
-    {
-        $query = "select staf.nip , staf.nama_staf as nama from kelas, staf
-                  where kelas.id_kelas = :kd and
-                  staf.nip = kelas.id_wali_kelas";
-        $hasil = DB::connection('mysql')->select(DB::raw($query), [
-            'kd' => $kd_kls
-        ]);
-
-        return $hasil;
-    }
 
 
 }
