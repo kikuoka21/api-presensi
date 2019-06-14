@@ -43,8 +43,57 @@ class Siswa extends Controller
                                     $msiswa = new Modul_siswa();
 
                                     $result = [
-                                        'code' => 'coba',
+                                        'code' => 'OK4',
                                         'data' => $msiswa->cari_siswa($json->nama, $json->thn_lahir)
+                                    ];
+
+                                } else
+                                    $result = ['code' => 'Akses Ditolak'];
+                            } else
+                                $result = ['code' => 'token tidak falid'];
+
+                        } else
+                            $result = ['code' => 'token salah'];
+
+                    } else
+                        $result = ['code' => 'ISI nama PARAM dikirim salah'];
+                } else
+                    $result = ['code' => 'format data yg dikirim salah '];
+
+                return $result;
+            }
+        }
+
+    }
+
+    public function data_siswa(Request $request)
+    {
+        {
+            $user = new User();
+            $tool = new Tool();
+
+            $json = $request->input('parsing');
+            if ($json == null) {
+                return Redirect::to('/');
+            } else {
+                if ($tool->IsJsonString($json)) {
+                    $json = json_decode($json);
+                    if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
+                        isset($json->nis) ) {
+                        $token = $json->token;
+                        $username = $json->x1d;
+                        $type = $json->type;
+                        $key = $json->key;
+
+                        if ($token == $tool->generate_token($key, $username, $type)) {
+                            if ($user->chek_token($username, $token, $type)) {
+                                if ($user->getakses_admin($username)) {
+                                    $msiswa = new Modul_siswa();
+
+
+                                    $result = [
+                                        'code' => 'OK4',
+                                        'data' => $msiswa->get_profil_siswa($json->nis)
                                     ];
 
                                 } else

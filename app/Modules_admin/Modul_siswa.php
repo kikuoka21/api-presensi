@@ -15,13 +15,23 @@ class Modul_siswa
     public function cari_siswa($nama, $tahun)
     {
         $query = "select nis , nama_siswa FROM siswa where nama_siswa like :nama and tgl_lahir like :tahun or nis like :namaa and tgl_lahir like :tahunn ";
-        $respon=DB::connection('mysql')->select(DB::raw($query), [
+        $respon = DB::connection('mysql')->select(DB::raw($query), [
             'nama' => '%' . $nama . '%',
-            'tahun'=>  '%' . $tahun . '-%',
+            'tahun' => '%' . $tahun . '-%',
             'namaa' => '%' . $nama . '%',
-            'tahunn'=>  '%' . $tahun . '-%'
+            'tahunn' => '%' . $tahun . '-%'
         ]);
         return $respon;
+//        $getid = DB::table('users')->where('username', $nama)->get();
+//        return $getid;
+    }
+
+    public function get_profil_siswa($nis)
+    {
+        $user = DB::table('siswa')->where('nis', $nis)->first();
+
+        $getid = DB::table('users')->where('username', $nis)->first();
+        return $getid;
     }
 
 
@@ -60,6 +70,7 @@ class Modul_siswa
         ]);
         return $result;
     }
+
     public function hapus_data_siswa($nis)
     {
         $query = "DELETE FROM siswa where nis = :nis";

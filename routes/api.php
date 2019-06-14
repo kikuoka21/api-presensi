@@ -23,6 +23,7 @@ Route::prefix('admin')->group(function () {
             Route::post('cari', 'Admin\Master\Siswa@cari_siswa');
             Route::post('ubah', 'Admin\Master\Siswa@ubah_siswa');
             Route::post('hapus', 'Admin\Master\Siswa@hapus_siswa');
+            Route::post('datasiswa', 'Admin\Master\Siswa@data_siswa');// get data untuk d ubah
         });
 
         Route::prefix('staf')->group(function () {

@@ -134,20 +134,18 @@ class User
 
     public function getakses_admin($xuid)
     {
-        $query = "SELECT akses FROM users where username = :xuid ";
-        $getid = DB::connection('mysql')->select(DB::raw($query), [
-            'xuid' => $xuid
-        ]);
-        if (!$getid) {
+        $getid = DB::table('users')->select('akses')->where('username', $xuid)->get();
+        if (!$getid)
             return false;
-        } else {
-            if (object_get($getid[0], 'akses') == '1') {
+        else
+            if (object_get($getid[0], 'akses') == '1')
                 return true;
-            } else {
+            else
                 return false;
-            }
-        }
+
+
     }
+
     public function getakses_admin_piket($xuid)
     {
         $query = "SELECT level FROM staf where nip = :xuid ";
@@ -170,7 +168,7 @@ class User
         $query = "SELECT username FROM users where username = :xuid and  password= :pass";
         $result = DB::connection('mysql')->select(DB::raw($query), [
             'xuid' => $uid,
-            'pass'=> $pass
+            'pass' => $pass
         ]);
 
         return $result;
