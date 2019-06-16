@@ -87,10 +87,10 @@ class admin extends Controller
                                 $result = ['code' => 'Akses Ditolak'];
 
                         } else
-                            $result = ['code' => 'token data base sudah berubah'];
+                            $result = ['code' => 'TOKEN1'];
 
                     } else
-                        $result = ['code' => 'token beda'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];

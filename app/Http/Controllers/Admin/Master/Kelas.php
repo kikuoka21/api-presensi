@@ -77,10 +77,10 @@ class kelas extends Controller
                             } else
                                 $result = ['code' => 'Akses Ditolak'];
                         } else
-                            $result = ['code' => 'token tidak falid'];
+                            $result = ['code' => 'TOKEN1'];
 
                     } else
-                        $result = ['code' => 'token salah'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];
@@ -124,10 +124,10 @@ class kelas extends Controller
                                 $result = ['code' => 'Akses Ditolak'];
 
                         } else
-                            $result = ['code' => 'token tidak falid'];
+                            $result = ['code' => 'TOKEN1'];
 
                     } else
-                        $result = ['code' => 'token salah'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'Isi nama PARAM dikirim salah'];
@@ -178,10 +178,10 @@ class kelas extends Controller
                                 $result = ['code' => 'Akses Ditolak'];
 
                         } else
-                            $result = ['code' => 'token tidak falid'];
+                            $result = ['code' => 'TOKEN1'];
 
                     } else
-                        $result = ['code' => 'token salah'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'Isi nama PARAM dikirim salah'];
@@ -230,10 +230,10 @@ class kelas extends Controller
                                 $result = ['code' => 'Akses Ditolak'];
 
                         } else
-                            $result = ['code' => 'token tidak falid'];
+                            $result = ['code' => 'TOKEN1'];
 
                     } else
-                        $result = ['code' => 'token salah'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'Isi nama PARAM dikirim salah'];
@@ -284,10 +284,10 @@ class kelas extends Controller
                                 $result = ['code' => 'Akses Ditolak'];
 
                         } else
-                            $result = ['code' => 'token tidak falid'];
+                            $result = ['code' => 'TOKEN1'];
 
                     } else
-                        $result = ['code' => 'token salah'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'Isi nama PARAM dikirim salah'];
@@ -335,10 +335,10 @@ class kelas extends Controller
                                 $result = ['code' => 'Akses Ditolak'];
 
                         } else
-                            $result = ['code' => 'token tidak falid'];
+                            $result = ['code' => 'TOKEN1'];
 
                     } else
-                        $result = ['code' => 'token salah'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'Isi nama PARAM dikirim salah'];
@@ -384,10 +384,10 @@ class kelas extends Controller
                                 $result = ['code' => 'Akses Ditolak'];
 
                         } else
-                            $result = ['code' => 'token tidak falid'];
+                            $result = ['code' => 'TOKEN1'];
 
                     } else
-                        $result = ['code' => 'token salah'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'Isi nama PARAM dikirim salah'];
@@ -433,10 +433,10 @@ class kelas extends Controller
                                 $result = ['code' => 'Akses Ditolak'];
 
                         } else
-                            $result = ['code' => 'token tidak falid'];
+                            $result = ['code' => 'TOKEN1'];
 
                     } else
-                        $result = ['code' => 'token salah'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'Isi nama PARAM dikirim salah'];
@@ -489,10 +489,10 @@ class kelas extends Controller
                                 $result = ['code' => 'Akses Ditolak'];
 
                         } else
-                            $result = ['code' => 'token tidak falid'];
+                            $result = ['code' => 'TOKEN1'];
 
                     } else
-                        $result = ['code' => 'token salah'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'Isi nama PARAM dikirim salah'];
@@ -558,10 +558,10 @@ class kelas extends Controller
                                 $result = ['code' => 'Akses Ditolak'];
 
                         } else
-                            $result = ['code' => 'token tidak falid'];
+                            $result = ['code' => 'TOKEN1'];
 
                     } else
-                        $result = ['code' => 'token salah'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'Isi nama PARAM dikirim salah'];

@@ -63,10 +63,10 @@ class Input_data_master extends Controller
                                 $result = ['code' => 'Akses Ditolak'];
 
                         } else
-                            $result = ['code' => 'token tidak falid'];
+                            $result = ['code' => 'TOKEN1'];
 
                     } else
-                        $result = ['code' => 'token salah'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'Isi nama PARAM dikirim salah'];
@@ -117,10 +117,10 @@ class Input_data_master extends Controller
                             } else
                                 $result = ['code' => 'Akses Ditolak'];
                         } else
-                            $result = ['code' => 'token tidak falid'];
+                            $result = ['code' => 'TOKEN1'];
 
                     } else
-                        $result = ['code' => 'token salah'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];
@@ -171,10 +171,10 @@ class Input_data_master extends Controller
                             } else
                                 $result = ['code' => 'Akses Ditolak'];
                         } else
-                            $result = ['code' => 'token tidak falid'];
+                            $result = ['code' => 'TOKEN1'];
 
                     } else
-                        $result = ['code' => 'token salah'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];
@@ -221,10 +221,10 @@ class Input_data_master extends Controller
                             } else
                                 $result = ['code' => 'Akses Ditolak'];
                         } else
-                            $result = ['code' => 'token tidak falid'];
+                            $result = ['code' => 'TOKEN1'];
 
                     } else
-                        $result = ['code' => 'token salah'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];
@@ -271,10 +271,10 @@ class Input_data_master extends Controller
                             } else
                                 $result = ['code' => 'Akses Ditolak'];
                         } else
-                            $result = ['code' => 'token tidak falid'];
+                            $result = ['code' => 'TOKEN1'];
 
                     } else
-                        $result = ['code' => 'token salah'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];
@@ -323,10 +323,10 @@ class Input_data_master extends Controller
                             } else
                                 $result = ['code' => 'Akses Ditolak'];
                         } else
-                            $result = ['code' => 'token tidak falid'];
+                            $result = ['code' => 'TOKEN1'];
 
                     } else
-                        $result = ['code' => 'token salah'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];
@@ -398,7 +398,7 @@ class Input_data_master extends Controller
                                     ];
                                 } else {
                                     $result = [
-                                        'code' => 'Tidak Ditemukan ModulKelas Pada Tahun Ajaran ' .
+                                        'code' => 'Tidak Ditemukan Kelas Pada Tahun Ajaran ' .
                                             substr($json->thn_ajar, 0, 4) . '/' . substr($json->thn_ajar, 4)
                                     ];
                                 }
@@ -406,10 +406,10 @@ class Input_data_master extends Controller
                             } else
                                 $result = ['code' => 'Akses Ditolak'];
                         } else
-                            $result = ['code' => 'token tidak falid'];
+                            $result = ['code' => 'TOKEN1'];
 
                     } else
-                        $result = ['code' => 'token salah'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];
@@ -476,10 +476,10 @@ class Input_data_master extends Controller
                             } else
                                 $result = ['code' => 'Akses Ditolak'];
                         } else
-                            $result = ['code' => 'token tidak falid'];
+                            $result = ['code' => 'TOKEN1'];
 
                     } else
-                        $result = ['code' => 'token salah'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];

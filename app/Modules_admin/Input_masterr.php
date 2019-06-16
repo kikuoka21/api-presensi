@@ -100,7 +100,7 @@ class Input_masterr
 
     public function check_data_kelas($nama, $thn)
     {
-        $query = "select nama_kelas from kelas where nama_kelas	= :nama and tahun_ajar = :thn";
+        $query = "select nama_kelas from kelas where lower(nama_kelas)= lower(:nama) and tahun_ajar = :thn";
         $result = DB::connection('mysql')->select(DB::raw($query), [
             'nama' => $nama,
             'thn' => $thn

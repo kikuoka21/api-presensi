@@ -98,19 +98,16 @@ class auth extends Controller
 //
                     if ($token == $tool->generate_token($key, $username, $type)) {
                         if ($user->chek_token($username, $token, $type)) {
-
-
                             $result = [
                                 'code' => 'OK4',
                                 'thn-ajar' => $tool->thn_ajar_skrng(),
                                 'tanggal' => $tool->tgl_skrng(),
                                 'data' => $user->getdata_dashboard($username, $akses)
                             ];
-//                            $tool->Isi_Log('chek tkn OK4 ' . $username . ' ' . $key . ' ' . $akses);
                         } else
-                            $result = ['code' => 'Token Sudah Tidak Valid, Silahkan Login Kembali'];
+                            $result = ['code' => 'TOKEN1'];
                     } else
-                        $result = ['code' => 'Token Anda Salah, Silahkan Login Kembali'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];
@@ -134,7 +131,6 @@ class auth extends Controller
 
         return view('welcome')->with('result', $hasil . '<br><br>' . $pesan);
     }
-
 
     public function ubah_pass(Request $request)
     {
@@ -179,10 +175,10 @@ class auth extends Controller
 
                             }
                         } else
-                            $result = ['code' => 'token sudah tidak valid'];
+                            $result = ['code' => 'TOKEN1'];
 
                     } else
-                        $result = ['code' => 'token anda salah'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];

@@ -168,7 +168,7 @@ class siswa extends Controller
                             $result = ['code' => 'token data base sudah berubah'];
 
                     } else
-                        $result = ['code' => 'token beda'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];
@@ -245,7 +245,7 @@ class siswa extends Controller
                             $result = ['code' => 'token data base sudah berubah'];
 
                     } else
-                        $result = ['code' => 'token beda'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];
@@ -304,7 +304,7 @@ class siswa extends Controller
                             $result = ['code' => 'token data base sudah berubah'];
 
                     } else
-                        $result = ['code' => 'token beda'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];

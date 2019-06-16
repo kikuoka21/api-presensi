@@ -47,9 +47,9 @@ Route::prefix('admin')->group(function () {
             Route::post('isi', 'Admin\Master\Kelas@isi_kelas');
 
 
-            Route::post('tambah/list-siswa', 'Admin\Master\Kelas@list_siswa');
+            Route::post('tambah/list-siswa', 'Admin\Master\Kelas@list_siswa');// mendapat siswa yang belum mendapat kelas d tahun_ajaran tsb
             Route::post('tambah/siswa', 'Admin\Master\Kelas@tambah_siswa_kelas');
-//            Route::post('kelas', 'Admin\Input_data_master@isi_kelas'); // mendapat siswa yang belum mendapat kelas d tahun_ajaran tsb
+//            Route::post('kelas', 'Admin\Input_data_master@isi_kelas');
 
             Route::prefix('hapus')->group(function () {
                 Route::post('kelas', 'Admin\Master\Kelas@hapus_kelas');
