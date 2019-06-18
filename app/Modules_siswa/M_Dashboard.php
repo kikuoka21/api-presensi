@@ -22,4 +22,21 @@ class M_Dashboard
         return $result;
 
     }
+    public function get_kelas($thn_ajar)
+    {
+
+        $getid = DB::table('kelas')->where('tahun_ajar', $thn_ajar)->get();
+
+        return $getid;
+
+    }
+    public function get_data_kelas($id)
+    {
+
+        $getid = DB::table('kelas')->select('nama_kelas as nama', 'id_wali_kelas as wali','id_ketua_kelas as ketua', 'tahun_ajar')->where('id_kelas', $id)->first();
+
+        return $getid;
+
+
+    }
 }
