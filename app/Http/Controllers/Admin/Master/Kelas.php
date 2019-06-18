@@ -61,6 +61,8 @@ class kelas extends Controller
 
 
                                     $data = [
+                                    	"nama"=> object_get($validasi[0], 'nama_kelas'),
+                                    	"tahun"=> substr(object_get($validasi[0], 'tahun_ajar'), 0,4 ),
                                         "nis" => $nis,
                                         "nama_siswa" => $namasiswa,
                                         "nip" => $nip,

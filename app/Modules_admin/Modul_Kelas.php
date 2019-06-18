@@ -15,7 +15,7 @@ class Modul_Kelas
 
     public function validasi_kelas($kd_kls)
     {
-        $query = "select id_kelas from kelas where id_kelas = :kd";
+        $query = "select id_kelas , tahun_ajar, nama_kelas from kelas where id_kelas = :kd";
         $hasil = DB::connection('mysql')->select(DB::raw($query), [
             'kd' => $kd_kls
         ]);

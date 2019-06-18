@@ -14,7 +14,7 @@ class Modul_siswa
 {
     public function cari_siswa($nama, $tahun)
     {
-        $query = "select nis , nama_siswa FROM siswa where nama_siswa like :nama and tgl_lahir like :tahun or nis like :namaa and tgl_lahir like :tahunn ";
+        $query = "select nis , nama_siswa FROM siswa where nama_siswa like :nama and tgl_lahir like :tahun or nis like :namaa and tgl_lahir like :tahunn limit 20";
         $respon = DB::connection('mysql')->select(DB::raw($query), [
             'nama' => '%' . $nama . '%',
             'tahun' => '%' . $tahun . '-%',
@@ -28,9 +28,8 @@ class Modul_siswa
 
     public function get_profil_siswa($nis)
     {
-        $user = DB::table('siswa')->where('nis', $nis)->first();
+	    $getid = DB::table('siswa')->where('nis', $nis)->first();
 
-        $getid = DB::table('users')->where('username', $nis)->first();
         return $getid;
     }
 
