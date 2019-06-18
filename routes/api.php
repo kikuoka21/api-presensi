@@ -17,7 +17,6 @@ Route::prefix('admin')->group(function () {
 
 
     Route::prefix('master')->group(function () {
-
         Route::prefix('siswa')->group(function () {
             Route::post('input', 'Admin\Input_data_master@input_siswa');
             Route::post('cari', 'Admin\Master\User_Master@cari_siswa');
@@ -28,11 +27,10 @@ Route::prefix('admin')->group(function () {
 
         Route::prefix('staf')->group(function () {
             Route::post('input', 'Admin\Input_data_master@input_staf');
-
-        Route::post('list', 'Admin\Master\User_Master@cari_staf');
-        Route::post('data-staf', 'Admin\Master\User_Master@data_staf');
-        Route::post('ubah', 'Admin\Master\User_Master@update_staf');
-        Route::post('hapus', 'Admin\Master\User_Master@hapus_staf');
+            Route::post('list', 'Admin\Master\User_Master@cari_staf');
+            Route::post('data-staf', 'Admin\Master\User_Master@data_staf');
+            Route::post('ubah', 'Admin\Master\User_Master@update_staf');
+            Route::post('hapus', 'Admin\Master\User_Master@hapus_staf');
         });
 
         Route::prefix('tanggal')->group(function () {
