@@ -20,18 +20,19 @@ Route::prefix('admin')->group(function () {
 
         Route::prefix('siswa')->group(function () {
             Route::post('input', 'Admin\Input_data_master@input_siswa');
-            Route::post('cari', 'Admin\Master\Siswa@cari_siswa');
-            Route::post('ubah', 'Admin\Master\Siswa@ubah_siswa');
-            Route::post('hapus', 'Admin\Master\Siswa@hapus_siswa');
-            Route::post('datasiswa', 'Admin\Master\Siswa@data_siswa');// get data untuk d ubah
+            Route::post('cari', 'Admin\Master\User_Master@cari_siswa');
+            Route::post('ubah', 'Admin\Master\User_Master@ubah_siswa');
+            Route::post('hapus', 'Admin\Master\User_Master@hapus_siswa');
+            Route::post('datasiswa', 'Admin\Master\User_Master@data_siswa');// get data untuk d ubah
         });
 
         Route::prefix('staf')->group(function () {
             Route::post('input', 'Admin\Input_data_master@input_staf');
 
-//        Route::post('list', 'Admin\Input_data_master@input_siswa');
-//        Route::post('ubah', 'Admin\Input_data_master@input_siswa');
-//        Route::post('hapus', 'Admin\Input_data_master@input_siswa');
+        Route::post('list', 'Admin\Master\User_Master@cari_staf');
+        Route::post('data-staf', 'Admin\Master\User_Master@data_staf');
+        Route::post('ubah', 'Admin\Master\User_Master@update_staf');
+        Route::post('hapus', 'Admin\Master\User_Master@hapus_staf');
         });
 
         Route::prefix('tanggal')->group(function () {

@@ -172,16 +172,21 @@ class Modul_Kelas
             'id' => $idkelas
         ]);
 
-        $query = "select id_kelas from validasi_presensi where id_kelas = :id";
-        $hasil = DB::connection('mysql')->select(DB::raw($query), [
+        $query = "DELETE FROM  validasi_presensi where id_kelas = :id";
+        DB::connection('mysql')->select(DB::raw($query), [
             'id' => $idkelas
         ]);
-        if ($hasil){
-            $query = "DELETE FROM  validasi_presensi where id_kelas = :id";
-            DB::connection('mysql')->select(DB::raw($query), [
-                'id' => $idkelas
-            ]);
-        }
+
+        $query = "DELETE FROM  kehadiran where id_kelas = :id";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'id' => $idkelas
+        ]);
+
+        $query = "DELETE FROM  isikelas where id_kelas = :id";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'id' => $idkelas
+        ]);
+
     }
 
 

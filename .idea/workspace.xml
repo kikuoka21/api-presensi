@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8fbf9f14-ab58-4121-acb6-01d1ace263e4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/api-qrcode.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/kikuo.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/Input_data_master.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/Input_data_master.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/Master/Kelas.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/Master/Kelas.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/Master/Siswa.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/Master/User_Master.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Modules_admin/Modul_Kelas.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules_admin/Modul_Kelas.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules_admin/Modul_siswa.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules_admin/Modul_siswa.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Modules_admin/Modul_siswa.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules_admin/Modul_User_master.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,88 +21,89 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" doNotAsk="true">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="6669648">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.32" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="dummy" value="54" />
+          <entry key="php" value="532" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="PHP" value="531" />
+          <entry key="PLAIN_TEXT" value="54" />
+          <entry key="SQL" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="php" value="8" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="PHP" value="8" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="502">
-              <caret line="61" column="34" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/Input_data_master.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="361" column="62" selection-start-line="361" selection-start-column="62" selection-end-line="361" selection-end-column="62" />
+            <state relative-caret-position="133">
+              <caret line="18" column="48" lean-forward="true" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
               <folding>
-                <element signature="e#128#172#0#PHP" expanded="true" />
+                <element signature="e#426#817#2#PHP" />
+                <element signature="e#858#1165#2#PHP" />
+                <element signature="e#1209#1505#2#PHP" />
+                <element signature="e#1547#2774#2#PHP" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Siswa/siswa.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/Master/User_Master.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="284" column="46" lean-forward="true" selection-start-line="284" selection-start-column="46" selection-end-line="284" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/Master/Siswa.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="46" column="63" lean-forward="true" selection-start-line="46" selection-start-column="63" selection-end-line="46" selection-end-column="63" />
+            <state relative-caret-position="300">
+              <caret line="409" column="84" selection-start-line="409" selection-start-column="84" selection-end-line="409" selection-end-column="84" />
               <folding>
+                <element signature="e#6#89#0#PHP" expanded="true" />
                 <element signature="e#138#174#0#PHP" expanded="true" />
+                <element signature="e#386#2250#0#PHP" />
+                <element signature="e#2256#4081#0#PHP" />
+                <element signature="e#4087#6398#0#PHP" />
+                <element signature="e#6404#9009#0#PHP" />
+                <element signature="e#9016#10852#0#PHP" />
+                <element signature="e#11060#12929#0#PHP" />
+                <element signature="e#15320#17445#0#PHP" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Modules_admin/Modul_siswa.php">
+        <entry file="file://$PROJECT_DIR$/app/Modules_admin/Modul_User_master.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/Master/Kelas.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="310" column="37" lean-forward="true" selection-start-line="310" selection-start-column="37" selection-end-line="310" selection-end-column="37" />
+            <state relative-caret-position="368">
+              <caret line="111" column="35" selection-start-line="111" selection-start-column="20" selection-end-line="111" selection-end-column="35" />
               <folding>
-                <element signature="e#135#171#0#PHP" expanded="true" />
+                <element signature="e#121#148#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/auth.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="34" column="94" lean-forward="true" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="94" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Modules_admin/Modul_Kelas.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="17" column="58" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -118,10 +126,23 @@
       <find>get_ketua_kelas</find>
       <find>isi_kelas</find>
       <find>list_walikelas</find>
+      <find>Siswa</find>
+      <find>Admin\Master\S</find>
+      <find>Admin\Master\Siswa</find>
+      <find>Admin\Input_data_master@input_siswa</find>
+      <find>Modul_usermaster</find>
+      <find>($user-&gt;getakses_admin($username))</find>
+      <find>nis</find>
     </findStrings>
     <replaceStrings>
       <replace>TOKEN2</replace>
       <replace>TOKEN1</replace>
+      <replace>Admin\Master\Siswa</replace>
+      <replace>Admin\Master\User_Master</replace>
+      <replace>Modul_user_master</replace>
+      <replace>Admin\Master\User_Master@cari_staf</replace>
+      <replace>($user-&gt;getakses_admin($username) &amp;&amp; $user-&gt;getakses_admin_piket($username))</replace>
+      <replace>nip</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -136,17 +157,35 @@
         <option value="$PROJECT_DIR$/databasenya.txt" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/Master/siswa.php" />
         <option value="$PROJECT_DIR$/app/Modules_siswa/User.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/Master/Siswa.php" />
-        <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Siswa/siswa.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/auth.php" />
         <option value="$PROJECT_DIR$/app/Modules_admin/Input_masterr.php" />
-        <option value="$PROJECT_DIR$/app/Modules_admin/Modul_Kelas.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/Input_data_master.php" />
         <option value="$PROJECT_DIR$/app/Modules_admin/Modul_siswa.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/Master/Kelas.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/Master/Siswa.php" />
+        <option value="$PROJECT_DIR$/app/Modules_admin/Modul_User_master.php" />
+        <option value="$PROJECT_DIR$/app/Modules_admin/Modul_Kelas.php" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/Master/User_Master.php" />
       </list>
     </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="PhpServers">
     <servers />
@@ -254,7 +293,7 @@
       </profile-state>
     </entry>
   </component>
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
@@ -262,6 +301,52 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="api-qrcode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api-qrcode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api-qrcode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api-qrcode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api-qrcode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Modules_admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api-qrcode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Modules_siswa" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api-qrcode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
+              <item name="icon" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -301,6 +386,15 @@
               <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="Http" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="Controllers" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Admin" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Master" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="api-qrcode" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Http" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Controllers" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="Siswa" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
@@ -324,78 +418,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="api-qrcode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="api-qrcode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="api-qrcode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="api-qrcode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="api-qrcode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="Admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="api-qrcode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="Admin" type="462c0819:PsiDirectoryNode" />
-              <item name="Master" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="api-qrcode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="Siswa" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="api-qrcode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Middleware" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="api-qrcode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules_admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="api-qrcode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
-              <item name="icon" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -406,16 +428,17 @@
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\kikuo\api-qrcode\app\Http\Controllers\Admin\Master" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\user\api-qrcode\icon" />
       <recent name="C:\Users\kikuo\api-qrcode\app\Modules_admin" />
       <recent name="C:\Users\kikuo\api-qrcode\app\Http\Controllers\Admin" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\kikuo\api-qrcode\app\Http\Controllers\Admin\Master" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -454,17 +477,19 @@
       <workItem from="1560735043506" duration="52000" />
       <workItem from="1560747663960" duration="3539000" />
       <workItem from="1560822147277" duration="8832000" />
+      <workItem from="1560855179342" duration="1035000" />
+      <workItem from="1560856219245" duration="4401000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82381000" />
+    <option name="totallyTimeSpent" value="87817000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4983871" visible="true" weight="0.1748401" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4983871" visible="true" weight="0.17927383" />
       <window_info id="Structure" order="1" sideWeight="0.5016129" side_tool="true" weight="0.28290468" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -476,10 +501,10 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32827735" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" weight="0.32827735" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50035894" side_tool="true" weight="0.32932165" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49964106" visible="true" weight="0.18201517" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49964106" weight="0.18064517" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32903227" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -490,18 +515,14 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/admin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="969">
           <caret line="68" column="37" selection-start-line="68" selection-start-column="37" selection-end-line="68" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules_siswa/Tool.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-179">
-          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -527,21 +548,7 @@
     <entry file="file://$PROJECT_DIR$/app/Modules_siswa/M_Dashboard.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules_siswa/M_siswa.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="78" column="33" selection-start-line="78" selection-start-column="20" selection-end-line="78" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ubah_data_master.php" />
-    <entry file="file://$PROJECT_DIR$/app/Modules_siswa/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="112" column="20" selection-start-line="112" selection-start-column="20" selection-end-line="112" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Siswa/presensi.php" />
     <entry file="file://$PROJECT_DIR$/artisan">
       <provider selected="true" editor-type-id="text-editor">
@@ -563,9 +570,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Siswa/siswa.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1291">
+          <caret line="284" column="46" selection-start-line="284" selection-start-column="46" selection-end-line="284" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/Input_data_master.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
+        <state relative-caret-position="6052">
           <caret line="361" column="62" selection-start-line="361" selection-start-column="62" selection-end-line="361" selection-end-column="62" />
           <folding>
             <element signature="e#128#172#0#PHP" expanded="true" />
@@ -573,58 +587,89 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/Master/Siswa.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="46" column="63" lean-forward="true" selection-start-line="46" selection-start-column="63" selection-end-line="46" selection-end-column="63" />
-          <folding>
-            <element signature="e#138#174#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Siswa/siswa.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="284" column="46" lean-forward="true" selection-start-line="284" selection-start-column="46" selection-end-line="284" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules_admin/Modul_siswa.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules_admin/Modul_Kelas.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="17" column="58" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/auth.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="34" column="94" lean-forward="true" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/Master/Kelas.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="310" column="37" lean-forward="true" selection-start-line="310" selection-start-column="37" selection-end-line="310" selection-end-column="37" />
+        <state relative-caret-position="5219">
+          <caret line="312" column="37" selection-start-line="312" selection-start-column="37" selection-end-line="312" selection-end-column="37" />
           <folding>
             <element signature="e#135#171#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules_siswa/Tool.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="29" column="34" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules_siswa/M_siswa.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-220">
+          <caret line="78" column="33" selection-start-line="78" selection-start-column="20" selection-end-line="78" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/auth.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2250">
+          <caret line="34" column="94" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules_siswa/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="96" column="17" lean-forward="true" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules_admin/Modul_Kelas.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="436">
+          <caret line="184" column="8" selection-start-line="184" selection-start-column="8" selection-end-line="184" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules_admin/Modul_User_master.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="111" column="35" selection-start-line="111" selection-start-column="20" selection-end-line="111" selection-end-column="35" />
+          <folding>
+            <element signature="e#121#148#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/Master/User_Master.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="409" column="84" selection-start-line="409" selection-start-column="84" selection-end-line="409" selection-end-column="84" />
+          <folding>
+            <element signature="e#6#89#0#PHP" expanded="true" />
+            <element signature="e#138#174#0#PHP" expanded="true" />
+            <element signature="e#386#2250#0#PHP" />
+            <element signature="e#2256#4081#0#PHP" />
+            <element signature="e#4087#6398#0#PHP" />
+            <element signature="e#6404#9009#0#PHP" />
+            <element signature="e#9016#10852#0#PHP" />
+            <element signature="e#11060#12929#0#PHP" />
+            <element signature="e#15320#17445#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="61" column="34" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="40" />
+        <state relative-caret-position="133">
+          <caret line="18" column="48" lean-forward="true" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
+          <folding>
+            <element signature="e#426#817#2#PHP" />
+            <element signature="e#858#1165#2#PHP" />
+            <element signature="e#1209#1505#2#PHP" />
+            <element signature="e#1547#2774#2#PHP" />
+          </folding>
         </state>
       </provider>
     </entry>

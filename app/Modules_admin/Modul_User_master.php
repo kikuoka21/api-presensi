@@ -8,9 +8,10 @@
 
 namespace App\Modules_admin;
 
+use App\Modules_siswa\Tool;
 use DB;
 
-class Modul_siswa
+class Modul_user_master
 {
     public function cari_siswa($nama, $tahun)
     {
@@ -28,7 +29,7 @@ class Modul_siswa
 
     public function get_profil_siswa($nis)
     {
-	    $getid = DB::table('siswa')->where('nis', $nis)->first();
+        $getid = DB::table('siswa')->where('nis', $nis)->first();
 
         return $getid;
     }
@@ -84,9 +85,78 @@ class Modul_siswa
         DB::connection('mysql')->select(DB::raw($query), [
             'nis' => $nis
         ]);
+        $query = "UPDATE kelas SET id_ketua_kelas = :kosong
+                  where id_ketua_kelas = :nis ";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'kosong' => '',
+            'nis' => $nis
+        ]);
         $query = "DELETE FROM kehadiran where nis = :nis";
         DB::connection('mysql')->select(DB::raw($query), [
             'nis' => $nis
+        ]);
+    }
+
+    public function cari_staf($nama)
+    {
+        $query = "select nip  , nama_staf as nama FROM staf where nama_staf like :nama or nip like :namaa limit 20";
+        $respon = DB::connection('mysql')->select(DB::raw($query), [
+            'nama' => '%' . $nama . '%',
+            'namaa' => '%' . $nama . '%'
+        ]);
+        return $respon;
+//        $getid = DB::table('users')->where('username', $nama)->get();
+//        return $getid;
+    }
+
+    public function get_profil_staf($nip)
+    {
+        $getid = DB::table('staf')->where('nip', $nip)->first();
+
+        return $getid;
+    }
+
+    public function update_staf($nip, $nama, $level)
+    {
+        $query = "UPDATE staf SET nama_staf = :nama,
+                  level = :level
+                  where nip = :nip";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'nip' => $nip,
+            'nama' => $nama,
+            'level' => $level
+        ]);
+        if ($level == 1) {
+            $tool = new Tool();
+            $tahun = $tool->thn_ajar_skrng();
+//            $query = "select id_kelas from kelas where tahun_ajar = :thn and id_wali_kelas = :nip";
+            $query = "UPDATE kelas SET id_wali_kelas = :kosong
+                  where id_wali_kelas = :nip and tahun_ajar = :thn";
+            DB::connection('mysql')->select(DB::raw($query), [
+                'kosong' => '',
+                'thn' => $tahun,
+                'nip' => $nip
+            ]);
+        }
+
+
+    }
+
+    public function hapus_data_Staf($nip)
+    {
+        $query = "DELETE FROM staf where nip = :nip";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'nip' => $nip
+        ]);
+        $query = "DELETE FROM users where username = :nip";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'nip' => $nip
+        ]);
+        $query = "UPDATE kelas SET id_wali_kelas = :kosong
+                  where id_wali_kelas = :nip ";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'kosong' => '',
+            'nip' => $nip
         ]);
     }
 
