@@ -14,9 +14,20 @@ Route::prefix('auth')->group(function () {
 //admin
 Route::prefix('admin')->group(function () {
     Route::post('dashboard', 'Admin\admin@dashboard');
-    Route::post('lihat', 'Admin\admin@list_kelas');
-//    Route::post('laporan-bulan', 'Admin\admin@laporan');
-    Route::post('laporan-bulan', 'Admin\admin@laporan2');
+
+
+    Route::post('lihat', 'Admin\admin@list_kelas');//dikirim tgl skrng
+
+    Route::post('laporan-bulan', 'Admin\admin@laporan2');//laporan perbulan
+    Route::post('laporan-smes', 'Admin\admin@laporan_smes');//laporan perbulan
+
+    Route::prefix('absen-ubah')->group(function () {
+        Route::post('getdata', 'Admin\admin@get_absen_kelas');//bisa untuk laporan perhari
+        Route::post('per-siswa', 'Admin\admin@ubah_persiswa');//
+        Route::post('per-kelas', 'Admin\admin@ubah_perkelas');//semua kelas
+
+    });
+
 
     Route::prefix('master')->group(function () {
         Route::prefix('siswa')->group(function () {
@@ -44,7 +55,7 @@ Route::prefix('admin')->group(function () {
 
         Route::prefix('kelas')->group(function () {
             Route::post('input', 'Admin\Input_data_master@input_kelas');
-            Route::post('list', 'Admin\Input_data_master@all_kelas');
+            Route::post('list', 'Admin\Input_data_master@all_kelas');//dikirim thn ajar cukup
             Route::post('isi', 'Admin\Master\Kelas@isi_kelas');
 
 

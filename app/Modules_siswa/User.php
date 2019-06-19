@@ -146,6 +146,20 @@ class User
 
     }
 
+    public function getpengurus_kelas($xuid, $id_kelas)
+    {
+        $getid = DB::table('isikelas')->select('level')->where('nis', $xuid)->where('id_kelas', $id_kelas)->get();
+        if (!$getid)
+            return false;
+        else
+            if (object_get($getid[0], 'akses') == '1')
+                return true;
+            else
+                return false;
+
+
+    }
+
     public function getakses_admin_piket($xuid)
     {
         $query = "SELECT level FROM staf where nip = :xuid ";

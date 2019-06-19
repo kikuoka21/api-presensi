@@ -35,7 +35,10 @@ class M_Dashboard
 	public function get_data_kelas($id)
 	{
 
-		$getid = DB::table('kelas')->select('nama_kelas as nama', 'id_wali_kelas as wali', 'id_ketua_kelas as ketua', 'tahun_ajar')->where('id_kelas', $id)->first();
+		$getid = DB::table('kelas')
+            ->select('nama_kelas as nama', 'id_wali_kelas as wali', 'id_ketua_kelas as ketua', 'tahun_ajar')
+            ->where('id_kelas', $id)
+            ->first();
 
 		return $getid;
 

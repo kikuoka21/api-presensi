@@ -53,7 +53,8 @@ class Tool
     public function batasan_tglskrng($tanggal)
     {
         $mytime = date_create($tanggal);
-        if ($this->tgl_skrng() != date_format($mytime, "Y-m-d"))
+        $skrng = date_create($this->tgl_skrng());
+        if ($skrng >= $mytime)
             return true;
         else
             return false;
