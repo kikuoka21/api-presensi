@@ -15,7 +15,8 @@ Route::prefix('auth')->group(function () {
 Route::prefix('admin')->group(function () {
     Route::post('dashboard', 'Admin\admin@dashboard');
     Route::post('lihat', 'Admin\admin@list_kelas');
-    Route::post('laporan-bulan', 'Admin\admin@laporan');
+//    Route::post('laporan-bulan', 'Admin\admin@laporan');
+    Route::post('laporan-bulan', 'Admin\admin@laporan2');
 
     Route::prefix('master')->group(function () {
         Route::prefix('siswa')->group(function () {

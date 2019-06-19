@@ -12,31 +12,33 @@ use DB;
 
 class M_Dashboard
 {
-    public function harilibur($tanggal)
-    {
-        $query = "SELECT ket FROM hari_libur where tanggal = :tgl ";
-        $result = DB::connection('mysql')->select(DB::raw($query), [
-            'tgl' => $tanggal
-        ]);
+	public function harilibur($tanggal)
+	{
+		$query = "SELECT ket FROM hari_libur where tanggal = :tgl ";
+		$result = DB::connection('mysql')->select(DB::raw($query), [
+			'tgl' => $tanggal
+		]);
 
-        return $result;
+		return $result;
 
-    }
-    public function get_kelas($thn_ajar)
-    {
+	}
 
-        $getid = DB::table('kelas')->where('tahun_ajar', $thn_ajar)->get();
+	public function get_kelas($thn_ajar)
+	{
 
-        return $getid;
+		$getid = DB::table('kelas')->where('tahun_ajar', $thn_ajar)->get();
 
-    }
-    public function get_data_kelas($id)
-    {
+		return $getid;
 
-        $getid = DB::table('kelas')->select('nama_kelas as nama', 'id_wali_kelas as wali','id_ketua_kelas as ketua', 'tahun_ajar')->where('id_kelas', $id)->first();
+	}
 
-        return $getid;
+	public function get_data_kelas($id)
+	{
+
+		$getid = DB::table('kelas')->select('nama_kelas as nama', 'id_wali_kelas as wali', 'id_ketua_kelas as ketua', 'tahun_ajar')->where('id_kelas', $id)->first();
+
+		return $getid;
 
 
-    }
+	}
 }
