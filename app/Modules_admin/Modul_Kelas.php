@@ -97,11 +97,16 @@ class Modul_Kelas
     public function hapus_siswa_kelas($idkelas, $nis)
     {
         $query = "DELETE FROM  isikelas where nis = :nis and id_kelas = :id";
-        $result = DB::connection('mysql')->select(DB::raw($query), [
+        DB::connection('mysql')->select(DB::raw($query), [
             'id' => $idkelas,
             'nis' => $nis
         ]);
-        return $result;
+        $query = "UPDATE kelas SET id_ketua_kelas = :ksng where id_ketua_kelas = :nis and id_kelas = :id";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'id' => $idkelas,
+            'ksng' => '',
+            'nis' => $nis
+        ]);
     }
 
     public function ganti_lv_siswa($idkelas, $nis, $level)
@@ -112,6 +117,15 @@ class Modul_Kelas
             'nis' => $nis,
             'level' => $level
         ]);
+        if ($level == 0){
+            $query = "UPDATE kelas SET id_ketua_kelas = :kosong where id_ketua_kelas = :nis and id_kelas = :id";
+            DB::connection('mysql')->select(DB::raw($query), [
+                'id' => $idkelas,
+                'nis' => $nis,
+                'kosong' => ''
+            ]);
+        }
+
     }
 
     public function list_walikelas($tahun)
@@ -142,6 +156,12 @@ class Modul_Kelas
         DB::connection('mysql')->select(DB::raw($query), [
             'id' => $idkelas,
             'nis' => $nis
+        ]);
+        $query = "UPDATE isikelas SET level = :level where nis= :nis and id_kelas = :id";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'id' => $idkelas,
+            'nis' => $nis,
+            'level' => '1'
         ]);
     }
 
