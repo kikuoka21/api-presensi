@@ -87,7 +87,7 @@ class Input_masterr
 
     }
 
-    public function input_libur($tanggal, $ket)
+    public function input_libur2($tanggal, $ket)
     {
         $query = "INSERT INTO hari_libur ( tanggal, ket) 
 					VALUES (:tgl ,:ket )";
@@ -95,6 +95,14 @@ class Input_masterr
             'tgl' => $tanggal,
             'ket' => $ket
         ]);
+    }
+
+    public function input_libur($tanggal, $ket)
+    {
+	    DB::table('hari_libur')
+		    ->updateOrInsert(
+			    ['tanggal' => $tanggal],['tanggal' => $tanggal, 'ket' => $ket]
+		    );
     }
 
 
@@ -167,7 +175,7 @@ class Input_masterr
 
     public function history_tanggal($tanggal)
     {
-        $query = "select tanggal as tgl, ket from hari_libur where tanggal > :tgl order by tanggal asc limit 20";
+        $query = "select tanggal as tgl, ket from hari_libur where tanggal > :tgl order by tanggal asc limit 30";
         $hasil = DB::connection('mysql')->select(DB::raw($query), [
             'tgl' => $tanggal
         ]);

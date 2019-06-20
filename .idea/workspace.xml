@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8fbf9f14-ab58-4121-acb6-01d1ace263e4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/Input_data_master.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/Input_data_master.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Siswa/presensi.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Siswa/presensi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Siswa/siswa.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Siswa/siswa.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Modules_admin/Input_masterr.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules_admin/Input_masterr.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Modules_siswa/M_Dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules_siswa/M_Dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules_siswa/M_presensi.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules_siswa/M_presensi.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules_siswa/Tool.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules_siswa/Tool.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules_siswa/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules_siswa/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/databasenya.txt" beforeDir="false" afterPath="$PROJECT_DIR$/databasenya.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,82 +19,29 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="6669648">
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="php" value="17" />
-          <entry key="txt" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="PHP" value="17" />
-          <entry key="PLAIN_TEXT" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="php" value="1392" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="PHP" value="1392" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="61" column="129" selection-start-line="61" selection-start-column="124" selection-end-line="61" selection-end-column="129" />
+            <state relative-caret-position="420">
+              <caret line="92" column="61" lean-forward="true" selection-start-line="92" selection-start-column="61" selection-end-line="92" selection-end-column="61" />
               <folding>
-                <element signature="e#425#840#2#PHP" />
-                <element signature="e#881#1269#2#PHP" />
-                <element signature="e#1313#1609#2#PHP" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/Input_data_master.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="360" column="55" selection-start-line="360" selection-start-column="55" selection-end-line="360" selection-end-column="55" />
-              <folding>
-                <element signature="e#128#172#0#PHP" expanded="true" />
+                <element signature="e#897#3434#2#PHP" />
+                <element signature="e#2175#3426#2#PHP" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/databasenya.txt">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Siswa/presensi.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="176" lean-forward="true" selection-start-line="176" selection-end-line="176" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/admin.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="438" column="75" selection-start-line="438" selection-start-column="75" selection-end-line="438" selection-end-column="75" />
+            <state relative-caret-position="221">
+              <caret line="366" column="46" selection-start-line="366" selection-start-column="46" selection-end-line="366" selection-end-column="46" />
               <folding>
-                <element signature="e#6#88#0#PHP" expanded="true" />
-                <element signature="e#130#166#0#PHP" expanded="true" />
-                <element signature="e#26354#28425#0#PHP" />
-                <element signature="e#28432#30504#0#PHP" />
-                <element signature="e#32142#32286#0#PHP" />
-                <element signature="e#32327#32467#0#PHP" />
-                <element signature="e#32519#32761#0#PHP" />
+                <element signature="e#468#2352#0#PHP" />
+                <element signature="e#2358#9576#0#PHP" />
               </folding>
             </state>
           </provider>
@@ -103,29 +50,39 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Modules_siswa/M_Dashboard.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="40" column="12" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
+            <state relative-caret-position="539">
+              <caret line="81" column="27" selection-start-line="81" selection-start-column="27" selection-end-line="81" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Modules_admin/Modul_User_master.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/Master/Kelas.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="88" column="46" selection-start-line="87" selection-start-column="18" selection-end-line="88" selection-end-column="46" />
+            <state relative-caret-position="425">
+              <caret line="303" column="52" selection-start-line="303" selection-start-column="52" selection-end-line="303" selection-end-column="52" />
               <folding>
-                <element signature="e#121#148#0#PHP" expanded="true" />
+                <element signature="e#135#171#0#PHP" expanded="true" />
+                <element signature="e#399#2587#0#PHP" />
+                <element signature="e#2590#3855#0#PHP" />
+                <element signature="e#3858#5335#0#PHP" />
+                <element signature="e#5338#6787#0#PHP" />
+                <element signature="e#6790#8269#0#PHP" />
+                <element signature="e#8272#9513#0#PHP" />
+                <element signature="e#9516#10753#0#PHP" />
+                <element signature="e#10756#11996#0#PHP" />
+                <element signature="e#11999#13453#0#PHP" />
+                <element signature="e#13456#15342#0#PHP" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Modules_siswa/Tool.php">
+        <entry file="file://$PROJECT_DIR$/app/Modules_siswa/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
+            <state relative-caret-position="86">
+              <caret line="148" column="37" selection-start-line="148" selection-start-column="20" selection-end-line="148" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -134,10 +91,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>list</find>
-      <find>token tidak falid</find>
-      <find>token beda</find>
-      <find>token data base sudah berubah</find>
       <find>input_kela</find>
       <find>all</find>
       <find>token salah</find>
@@ -151,7 +104,6 @@
       <find>Modul_usermaster</find>
       <find>($user-&gt;getakses_admin($username))</find>
       <find>nis</find>
-      <find>lihat_tanggal</find>
       <find>:</find>
       <find>&quot;</find>
       <find>all_kelas</find>
@@ -161,13 +113,17 @@
       <find>[0],</find>
       <find>object_get(</find>
       <find>laporan2</find>
-      <find>get_absen_kelas</find>
       <find>tahun</find>
       <find>Tahun Ajaran Sudah Berganti</find>
+      <find>lihat_tanggal</find>
+      <find>tgl</find>
+      <find>=&gt; $json]</find>
+      <find>'token</find>
+      <find>$tanggal</find>
+      <find>get_absen_kelas</find>
     </findStrings>
     <replaceStrings>
       <replace>TOKEN2</replace>
-      <replace>TOKEN1</replace>
       <replace>Admin\Master\Siswa</replace>
       <replace>Admin\Master\User_Master</replace>
       <replace>Modul_user_master</replace>
@@ -178,6 +134,8 @@
       <replace>'</replace>
       <replace>-&gt;</replace>
       <replace>Tanggal Salah</replace>
+      <replace>TOKEN1</replace>
+      <replace>kelas</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -197,27 +155,22 @@
         <option value="$PROJECT_DIR$/app/Modules_admin/Modul_User_master.php" />
         <option value="$PROJECT_DIR$/app/Modules_admin/Modul_Kelas.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/Master/User_Master.php" />
-        <option value="$PROJECT_DIR$/app/Modules_admin/Input_masterr.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/Input_data_master.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/laporan.php" />
         <option value="$PROJECT_DIR$/app/Modules_siswa/M_siswa.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Siswa/siswa.php" />
         <option value="$PROJECT_DIR$/app/Modules_admin/M_admin.php" />
         <option value="$PROJECT_DIR$/app/Modules_siswa/User.php" />
-        <option value="$PROJECT_DIR$/app/Modules_siswa/M_Dashboard.php" />
         <option value="$PROJECT_DIR$/app/Modules_siswa/M_presensi.php" />
         <option value="$PROJECT_DIR$/app/Modules_siswa/Tool.php" />
-        <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/admin.php" />
         <option value="$PROJECT_DIR$/databasenya.txt" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/Input_data_master.php" />
+        <option value="$PROJECT_DIR$/app/Modules_admin/Input_masterr.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Siswa/siswa.php" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/app/Modules_siswa/M_Dashboard.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Siswa/presensi.php" />
       </list>
     </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
@@ -459,13 +412,20 @@
               <item name="api-qrcode" type="b2602c69:ProjectViewProjectNode" />
               <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="Siswa" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="api-qrcode" type="b2602c69:ProjectViewProjectNode" />
               <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Modules_siswa" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api-qrcode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
+              <item name="icon" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -543,13 +503,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118099000" />
+    <option name="totallyTimeSpent" value="126678000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4983871" visible="true" weight="0.18154311" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4983871" visible="true" weight="0.17963752" />
       <window_info id="Structure" order="1" sideWeight="0.5016129" side_tool="true" weight="0.28290468" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -564,7 +523,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32827735" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50035894" side_tool="true" weight="0.32932165" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49964106" weight="0.18064517" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49964106" visible="true" weight="0.17984831" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32903227" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -591,13 +550,6 @@
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/laporan.php" />
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Siswa/presensi.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="74" column="59" selection-start-line="74" selection-start-column="59" selection-end-line="74" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Modules_admin/M_admin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="756">
@@ -612,13 +564,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Siswa/siswa.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="270" column="36" selection-start-line="270" selection-start-column="36" selection-end-line="270" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/Master/User_Master.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="402">
@@ -630,72 +575,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/Master/Kelas.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="938">
-          <caret line="310" column="37" selection-start-line="310" selection-start-column="37" selection-end-line="310" selection-end-column="37" />
-          <folding>
-            <element signature="e#135#171#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules_siswa/M_siswa.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="97" column="5" lean-forward="true" selection-start-line="97" selection-start-column="5" selection-end-line="97" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/auth.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-255">
-          <caret line="34" column="94" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules_siswa/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1286">
-          <caret line="148" column="37" selection-start-line="148" selection-start-column="20" selection-end-line="148" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules_siswa/M_presensi.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="73" column="20" selection-start-line="73" selection-start-column="20" selection-end-line="73" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules_siswa/M_Dashboard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="40" column="12" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules_admin/Input_masterr.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3131">
-          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Modules_siswa/Tool.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="258">
           <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/Input_data_master.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="360" column="55" selection-start-line="360" selection-start-column="55" selection-end-line="360" selection-end-column="55" />
-          <folding>
-            <element signature="e#128#172#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -709,38 +592,129 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/databasenya.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="55" column="28" lean-forward="true" selection-end-line="176" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/auth.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="34" column="28" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules_siswa/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="148" column="37" selection-start-line="148" selection-start-column="20" selection-end-line="148" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/Input_data_master.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="861">
+          <caret line="225" column="24" lean-forward="true" selection-start-line="225" selection-start-column="24" selection-end-line="225" selection-end-column="24" />
+          <folding>
+            <element signature="e#128#172#0#PHP" expanded="true" />
+            <element signature="e#5161#7308#0#PHP" />
+            <element signature="e#7314#9136#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/Master/Kelas.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="303" column="52" selection-start-line="303" selection-start-column="52" selection-end-line="303" selection-end-column="52" />
+          <folding>
+            <element signature="e#135#171#0#PHP" expanded="true" />
+            <element signature="e#399#2587#0#PHP" />
+            <element signature="e#2590#3855#0#PHP" />
+            <element signature="e#3858#5335#0#PHP" />
+            <element signature="e#5338#6787#0#PHP" />
+            <element signature="e#6790#8269#0#PHP" />
+            <element signature="e#8272#9513#0#PHP" />
+            <element signature="e#9516#10753#0#PHP" />
+            <element signature="e#10756#11996#0#PHP" />
+            <element signature="e#11999#13453#0#PHP" />
+            <element signature="e#13456#15342#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules_admin/Input_masterr.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="100" column="5" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="61" column="129" selection-start-line="61" selection-start-column="124" selection-end-line="61" selection-end-column="129" />
+        <state relative-caret-position="420">
+          <caret line="92" column="61" lean-forward="true" selection-start-line="92" selection-start-column="61" selection-end-line="92" selection-end-column="61" />
           <folding>
-            <element signature="e#425#840#2#PHP" />
-            <element signature="e#881#1269#2#PHP" />
-            <element signature="e#1313#1609#2#PHP" />
+            <element signature="e#897#3434#2#PHP" />
+            <element signature="e#2175#3426#2#PHP" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="438" column="75" selection-start-line="438" selection-start-column="75" selection-end-line="438" selection-end-column="75" />
+        <state relative-caret-position="530">
+          <caret line="561" column="33" lean-forward="true" selection-start-line="486" selection-end-line="561" selection-end-column="33" />
           <folding>
             <element signature="e#6#88#0#PHP" expanded="true" />
-            <element signature="e#130#166#0#PHP" expanded="true" />
-            <element signature="e#26354#28425#0#PHP" />
-            <element signature="e#28432#30504#0#PHP" />
-            <element signature="e#32142#32286#0#PHP" />
-            <element signature="e#32327#32467#0#PHP" />
-            <element signature="e#32519#32761#0#PHP" />
+            <element signature="e#12599#20008#0#PHP" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/databasenya.txt">
+    <entry file="file://$PROJECT_DIR$/app/Modules_siswa/M_siswa.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="176" lean-forward="true" selection-start-line="176" selection-end-line="176" />
+        <state relative-caret-position="-748">
+          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Siswa/siswa.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="280" column="53" lean-forward="true" selection-start-line="280" selection-start-column="53" selection-end-line="280" selection-end-column="53" />
+          <folding>
+            <element signature="e#395#2338#0#PHP" />
+            <element signature="e#2341#4547#0#PHP" />
+            <element signature="e#4550#6546#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules_siswa/M_presensi.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1059">
+          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules_siswa/M_Dashboard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="81" column="27" selection-start-line="81" selection-start-column="27" selection-end-line="81" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Siswa/presensi.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="366" column="46" selection-start-line="366" selection-start-column="46" selection-end-line="366" selection-end-column="46" />
+          <folding>
+            <element signature="e#468#2352#0#PHP" />
+            <element signature="e#2358#9576#0#PHP" />
+          </folding>
         </state>
       </provider>
     </entry>

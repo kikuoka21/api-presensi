@@ -36,11 +36,50 @@ class M_Dashboard
 	{
 
 		$getid = DB::table('kelas')
-            ->select('nama_kelas as nama', 'id_wali_kelas as wali', 'id_ketua_kelas as ketua', 'tahun_ajar')
-            ->where('id_kelas', $id)
-            ->first();
+			->select('nama_kelas as nama', 'id_wali_kelas as wali', 'id_ketua_kelas as ketua', 'tahun_ajar')
+			->where('id_kelas', $id)
+			->first();
 
 		return $getid;
+
+
+	}
+
+	public function get_kode_kelas($thn_ajar, $nis)
+	{
+
+//		$getid = DB::table('isikelas')
+//			->join("kelas", "kelas.id_kelas", "=", "isikelas.id_kelas")
+//			->where('kelas.tahun_ajar', $thn_ajar)
+//			->where('isikelas.nis', $nis)
+//			->get();
+//
+//		return $getid;
+
+		$query = "SELECT kelas.id_kelas FROM kelas,isikelas where
+					kelas.tahun_ajar = :thn
+					and kelas.id_kelas = isikelas.id_kelas
+					and isikelas.nis = :nis
+					";
+		$result = DB::connection('mysql')->select(DB::raw($query), [
+			'thn' => $thn_ajar,
+			'nis' => $nis
+		]);
+
+		return $result;
+
+
+	}
+
+	public function getnama_siswa($id)
+	{
+
+		$getid = DB::table('siswa')
+			->select('nama_siswa')
+			->where('nis', $id)
+			->first();
+
+		return $getid->nama_siswa;
 
 
 	}

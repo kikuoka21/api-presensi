@@ -50,6 +50,7 @@ Route::prefix('admin')->group(function () {
             Route::post('list', 'Admin\Input_data_master@lihat_tanggal');//melihat tanggal yg belum terjadi kedepan
             Route::post('history', 'Admin\Input_data_master@history_tanggal');//
             Route::post('input', 'Admin\Input_data_master@input_tanggal');
+            Route::post('ubah', 'Admin\Input_data_master@ubah_tanggal');
 
         });
 
@@ -89,8 +90,9 @@ Route::prefix('siswa')->group(function () {
     Route::prefix('presensi')->group(function () {
         Route::post('buat', 'Siswa\siswa@create_qr');
         Route::post('isi', 'Siswa\siswa@isi_absen');
+        Route::post('saya', 'Siswa\presensi@presensi_siswa');
 
-        Route::prefix('lihat')->group(function () {
+        Route::prefix('lihat')->group(function () {//pengurus kelas only
             Route::post('harian', 'Siswa\presensi@get_presensi_harian');
             Route::post('perbulan', 'Siswa\presensi@get_presensi_perbulan');
         });

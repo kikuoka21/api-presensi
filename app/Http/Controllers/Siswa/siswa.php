@@ -82,10 +82,10 @@ class siswa extends Controller
 							];
 
 						} else
-							$result = ['code' => 'token data base sudah berubah'];
+							$result = ['code' => 'TOKEN1'];
 
 					} else {
-						$result = ['code' => $json];
+						$result = ['code' => 'TOKEN2'];
 					}
 
 				} else
@@ -165,7 +165,7 @@ class siswa extends Controller
 
 
 						} else
-							$result = ['code' => 'token data base sudah berubah'];
+							$result = ['code' => 'TOKEN1'];
 
 					} else
 						$result = ['code' => 'TOKEN2'];
@@ -242,7 +242,7 @@ class siswa extends Controller
 							}
 
 						} else
-							$result = ['code' => 'token data base sudah berubah'];
+							$result = ['code' => 'TOKEN1'];
 
 					} else
 						$result = ['code' => 'TOKEN2'];
@@ -301,7 +301,7 @@ class siswa extends Controller
 							}
 
 						} else
-							$result = ['code' => 'token data base sudah berubah'];
+							$result = ['code' => 'TOKEN1'];
 
 					} else
 						$result = ['code' => 'TOKEN2'];

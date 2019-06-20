@@ -187,6 +187,59 @@ class Input_data_master extends Controller
         }
     }
 
+    public function ubah_tanggal(Request $request)
+    {
+        $user = new User();
+        $tool = new Tool();
+
+        $json = $request->input('parsing');
+        if ($json == null) {
+            return Redirect::to('/');
+        } else {
+            if ($tool->IsJsonString($json)) {
+                $json = json_decode($json);
+                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
+                    isset($json->tanggal) && isset($json->ket)) {
+                    $token = $json->token;
+                    $username = $json->x1d;
+                    $type = $json->type;
+                    $key = $json->key;
+
+                    if ($token == $tool->generate_token($key, $username, $type)) {
+                        if ($user->chek_token($username, $token, $type)) {
+//                            if ($user->getakses_admin($username) ) {
+                            if ($user->getakses_admin($username) && $user->getakses_admin_piket($username)) {
+
+                                $inputmaster = new Input_masterr();
+
+
+                                $hasil = $inputmaster->check_data_libur($json->tanggal);
+
+                                if ($hasil) {
+                                    $inputmaster->input_libur($json->tanggal, $json->ket);
+
+                                    $result = ['code' => 'OK4'];
+                                } else
+                                    $result = ['code' => 'Tidak ada data'];
+                            } else
+                                $result = ['code' => 'Akses Ditolak'];
+                        } else
+                            $result = ['code' => 'TOKEN1'];
+
+                    } else
+                        $result = ['code' => 'TOKEN2'];
+
+                } else
+                    $result = ['code' => 'ISI nama PARAM dikirim salah'];
+
+
+            } else
+                $result = ['code' => 'format data yg dikirim salah '];
+
+            return $result;
+        }
+    }
+
     public function lihat_tanggal(Request $request)
     {
         $user = new User();
