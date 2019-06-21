@@ -409,7 +409,7 @@ class User_Master extends Controller
                                         $msiswa = new Modul_user_master();
                                         $hasil = $msiswa->get_profil_staf($json->nip);
                                         if ($hasil) {
-                                            $msiswa->hapus_data_Staf($json->nip);
+//                                            $msiswa->hapus_data_Staf($json->nip);
                                             $result = [
                                                 'code' => 'OK4'
                                             ];
@@ -431,7 +431,8 @@ class User_Master extends Controller
                             $result = ['code' => 'TOKEN2'];
 
                     } else
-                        $result = ['code' => 'ISI nama PARAM dikirim salah'];
+                        $result = ['code' => 'ISI nama PARAM dikirim salah'.isset($json->token) . isset($json->x1d) . isset($json->type) . isset($json->key) .
+                            isset($json->nip) . isset($json->p4ss)];
                 } else
                     $result = ['code' => 'format data yg dikirim salah '];
 

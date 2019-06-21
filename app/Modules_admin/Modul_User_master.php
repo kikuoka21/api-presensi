@@ -99,7 +99,7 @@ class Modul_user_master
 
     public function cari_staf($nama)
     {
-        $query = "select nip  , nama_staf as nama FROM staf where nama_staf like :nama or nip like :namaa limit 20";
+        $query = "select * FROM staf where lower(nama_staf) like lower(:nama) or nip like :namaa limit 20";
         $respon = DB::connection('mysql')->select(DB::raw($query), [
             'nama' => '%' . $nama . '%',
             'namaa' => '%' . $nama . '%'
