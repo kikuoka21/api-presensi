@@ -51,6 +51,7 @@ Route::prefix('admin')->group(function () {
             Route::post('history', 'Admin\Input_data_master@history_tanggal');//
             Route::post('input', 'Admin\Input_data_master@input_tanggal');
             Route::post('ubah', 'Admin\Input_data_master@ubah_tanggal');
+            Route::post('hapus', 'Admin\Input_data_master@hapus_tanggal');
 
         });
 

@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\DB;
 
 class M_siswa
 {
+
+    public function get_profil_siswa($nis)
+    {
+        $getid = DB::table('siswa')->where('nis', $nis)->first();
+
+        return $getid;
+    }
     public function getprofil($nis)
     {
         $query = "SELECT nis, nisn, nama_siswa as nama, tmp_lahir, tgl_lahir, agama, orang_tua, alamat FROM siswa where nis = :nis ";

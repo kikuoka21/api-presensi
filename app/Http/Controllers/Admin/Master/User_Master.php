@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Admin\Master;
 
 use App\Http\Controllers\Controller;
 use App\Modules_admin\Modul_user_master;
+use App\Modules_siswa\M_siswa;
 use App\Modules_siswa\Tool;
 use App\Modules_siswa\User;
 use Illuminate\Http\Request;
@@ -88,13 +89,32 @@ class User_Master extends Controller
                         if ($token == $tool->generate_token($key, $username, $type)) {
                             if ($user->chek_token($username, $token, $type)) {
                                 if ($user->getakses_admin($username) && $user->getakses_admin_piket($username)) {
-                                    $msiswa = new Modul_user_master();
+//                                    $msiswa = new Modul_user_master();
+
+                                    $msiswa = new M_siswa();
+                                    $profil = $msiswa->get_profil_siswa($json->nis);
+                                    $kelas = $msiswa->history_kelas($json->nis);
+                                    if ($profil) {
+                                        if (!$kelas) {
+                                            $kelas = [];
+                                        }
+
+                                        $result = [
+                                            'code' => 'OK4',
+                                            'data' => $profil,
+                                            'kelas' => $kelas
+                                        ];
+                                    } else {
+                                        $result = [
+                                            'code' => 'Data Tidak Ditemukan'
+                                        ];
+                                    }
 
 
-                                    $result = [
-                                        'code' => 'OK4',
-                                        'data' => $msiswa->get_profil_siswa($json->nis)
-                                    ];
+//                                    $result = [
+//                                        'code' => 'OK4',
+//                                        'data' => $msiswa->get_profil_siswa($json->nis)
+//                                    ];
 
                                 } else
                                     $result = ['code' => 'Akses Ditolak'];
@@ -226,7 +246,6 @@ class User_Master extends Controller
 
     }
 
-
     public function cari_staf(Request $request)
     {
         {
@@ -287,29 +306,31 @@ class User_Master extends Controller
             } else {
                 if ($tool->IsJsonString($json)) {
                     $json = json_decode($json);
-                    if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
-                        isset($json->nip)) {
+                    if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key)) {
                         $token = $json->token;
                         $username = $json->x1d;
                         $type = $json->type;
                         $key = $json->key;
+                        if (isset($json->nip) && $user->getakses_admin($username) && $user->getakses_admin_piket($username)) {
+                            $target_nip = $json->nip;
+                        } else {
+                            $target_nip = $json->x1d;
+                        }
 
                         if ($token == $tool->generate_token($key, $username, $type)) {
                             if ($user->chek_token($username, $token, $type)) {
-                                if ($user->getakses_admin($username) && $user->getakses_admin_piket($username)) {
-                                    $user_master = new Modul_user_master();
-                                    $data = $user_master->get_profil_staf($json->nip);
-                                    if ($data) {
-                                        $result = [
-                                            'code' => 'OK4',
-                                            'data' => $data
-                                        ];
-                                    } else
-                                        $result = ['code' => 'Data Staf tidak ditemukan'];
+                                $user_master = new Modul_user_master();
+                                $data = $user_master->get_profil_staf($target_nip);
 
-
+                                if ($data) {
+                                    $result = [
+                                        'code' => 'OK4',
+                                        'data' => $data,
+                                        'kelas' => $user_master->get_kelas_staf($target_nip)
+                                    ];
                                 } else
-                                    $result = ['code' => 'Akses Ditolak'];
+                                    $result = ['code' => 'Data Staf tidak ditemukan'];
+
                             } else
                                 $result = ['code' => 'TOKEN1'];
 
@@ -340,7 +361,7 @@ class User_Master extends Controller
                 if ($tool->IsJsonString($json)) {
                     $json = json_decode($json);
                     if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
-                        isset($json->nip)&&isset($json->nama)&&isset($json->level)) {
+                        isset($json->nip) && isset($json->nama) && isset($json->level)) {
                         $token = $json->token;
                         $username = $json->x1d;
                         $type = $json->type;
@@ -379,8 +400,6 @@ class User_Master extends Controller
 
     }
 
-
-
     public function hapus_staf(Request $request)
     {
         {
@@ -409,7 +428,7 @@ class User_Master extends Controller
                                         $msiswa = new Modul_user_master();
                                         $hasil = $msiswa->get_profil_staf($json->nip);
                                         if ($hasil) {
-//                                            $msiswa->hapus_data_Staf($json->nip);
+                                            $msiswa->hapus_data_Staf($json->nip);
                                             $result = [
                                                 'code' => 'OK4'
                                             ];
@@ -431,7 +450,7 @@ class User_Master extends Controller
                             $result = ['code' => 'TOKEN2'];
 
                     } else
-                        $result = ['code' => 'ISI nama PARAM dikirim salah'.isset($json->token) . isset($json->x1d) . isset($json->type) . isset($json->key) .
+                        $result = ['code' => 'ISI nama PARAM dikirim salah' . isset($json->token) . isset($json->x1d) . isset($json->type) . isset($json->key) .
                             isset($json->nip) . isset($json->p4ss)];
                 } else
                     $result = ['code' => 'format data yg dikirim salah '];
@@ -441,7 +460,6 @@ class User_Master extends Controller
         }
 
     }
-
 
 
 }

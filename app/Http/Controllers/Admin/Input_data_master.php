@@ -32,7 +32,7 @@ class Input_data_master extends Controller
                 if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
                     isset($json->nis) && isset($json->nisn) && isset($json->nama_siswa) && isset($json->tmpt_lhr) &&
                     isset($json->tgl_lhr) && isset($json->agama) && isset($json->orangtua) && isset($json->alamat)
-                    && isset($json->no_ijazah) && isset($json->no_ujiansmp)) {
+                    && isset($json->no_ijazah) && isset($json->no_ujiansmp) && isset($json->jenkel)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
@@ -48,7 +48,7 @@ class Input_data_master extends Controller
 
                                 if (!$hasil) {
                                     // jika tidak d temukan nis tersebut
-                                    $inputmaster->input_siswa($json->nis, $json->nisn, $json->nama_siswa, $json->tgl_lhr,
+                                    $inputmaster->input_siswa($json->nis, $json->nisn, $json->nama_siswa, $json->jenkel, $json->tgl_lhr,
                                         $json->alamat, $json->tmpt_lhr, $json->agama, $json->orangtua, $json->no_ijazah,
                                         $json->no_ujiansmp);
 
@@ -132,6 +132,7 @@ class Input_data_master extends Controller
             return $result;
         }
     }
+
 
     public function input_tanggal(Request $request)
     {
@@ -337,6 +338,63 @@ class Input_data_master extends Controller
 
             return $result;
         }
+    }
+
+
+    public function hapus_tanggal(Request $request)
+    {
+        {
+            $user = new User();
+            $tool = new Tool();
+
+            $json = $request->input('parsing');
+            if ($json == null) {
+                return Redirect::to('/');
+            } else {
+                if ($tool->IsJsonString($json)) {
+                    $json = json_decode($json);
+                    if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
+                        isset($json->tgl) && isset($json->p4ss)) {
+                        $token = $json->token;
+                        $username = $json->x1d;
+                        $type = $json->type;
+                        $key = $json->key;
+
+                        if ($token == $tool->generate_token($key, $username, $type)) {
+                            if ($user->chek_token($username, $token, $type)) {
+                                if ($user->getakses_admin($username) && $user->getakses_admin_piket($username)) {
+
+                                    $validasi = $user->getpass_lama($username, $json->p4ss);
+                                    if ($validasi) {
+                                        $inputmaster = new Input_masterr();
+                                        $inputmaster->hapus_libur($json->tgl);
+
+                                        $result = ['code' => 'OK4'];
+
+
+                                    } else
+                                        $result = [
+                                            'code' => 'Pass yang dimasukan salah'
+                                        ];
+
+                                } else
+                                    $result = ['code' => 'Akses Ditolak'];
+                            } else
+                                $result = ['code' => 'TOKEN1'];
+
+                        } else
+                            $result = ['code' => 'TOKEN2'];
+
+                    } else
+                        $result = ['code' => 'ISI nama PARAM dikirim salah' . isset($json->token) . isset($json->x1d) . isset($json->type) . isset($json->key) .
+                            isset($json->nip) . isset($json->p4ss)];
+                } else
+                    $result = ['code' => 'format data yg dikirim salah '];
+
+                return $result;
+            }
+        }
+
     }
 
     public function input_kelas(Request $request)

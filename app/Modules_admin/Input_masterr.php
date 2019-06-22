@@ -21,15 +21,16 @@ class Input_masterr
         return $result;
     }
 
-    public function input_siswa($nis, $nisn, $nama, $tgl_lahir, $alamat, $tmp_lahir, $agama, $orangtua, $ijazah, $no_ujian)
+    public function input_siswa($nis, $nisn, $nama, $jenkel, $tgl_lahir, $alamat, $tmp_lahir, $agama, $orangtua, $ijazah, $no_ujian)
     {
-        $query = "INSERT INTO siswa ( nis, nisn, nama_siswa, tgl_lahir, alamat, tmp_lahir, 
+        $query = "INSERT INTO siswa ( nis, nisn, nama_siswa, jenkel, tgl_lahir, alamat, tmp_lahir, 
                     agama, orang_tua,no_ijazah, no_ujiansmp )
-					VALUES (:nis ,:nisn,:nama ,:tgl, :alamat,:tmp_lahir, :agama, :orang_tua,:no_ijazah, :no_ujiansmp)";
+					VALUES (:nis ,:nisn,:nama ,:jenkel ,:tgl, :alamat,:tmp_lahir, :agama, :orang_tua,:no_ijazah, :no_ujiansmp)";
         DB::connection('mysql')->select(DB::raw($query), [
             'nis' => $nis,
             'nisn' => $nisn,
             'nama' => $nama,
+            'jenkel' => $jenkel,
             'tgl' => $tgl_lahir,
             'alamat' => $alamat,
             'tmp_lahir' => $tmp_lahir,
@@ -99,10 +100,17 @@ class Input_masterr
 
     public function input_libur($tanggal, $ket)
     {
-	    DB::table('hari_libur')
-		    ->updateOrInsert(
-			    ['tanggal' => $tanggal],['tanggal' => $tanggal, 'ket' => $ket]
-		    );
+        DB::table('hari_libur')
+            ->updateOrInsert(
+                ['tanggal' => $tanggal], ['tanggal' => $tanggal, 'ket' => $ket]
+            );
+
+        DB::table('kehadiran')->where('tanggal', $tanggal)->delete();
+    }
+
+    public function hapus_libur($tanggal)
+    {
+        DB::table('hari_libur')->where('tanggal', $tanggal)->delete();
     }
 
 
@@ -224,9 +232,6 @@ class Input_masterr
         ]);
         return object_get($result[0], 'nama');
     }
-
-
-
 
 
 }

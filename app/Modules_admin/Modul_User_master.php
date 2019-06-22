@@ -116,6 +116,13 @@ class Modul_user_master
         return $getid;
     }
 
+    public function get_kelas_staf($nip)
+    {
+        $getid = DB::table('kelas')->select('nama_kelas', 'tahun_ajar')->where('id_wali_kelas', $nip)->orderBy('tahun_ajar', 'desc')->get();
+
+        return $getid;
+    }
+
     public function update_staf($nip, $nama, $level)
     {
         $query = "UPDATE staf SET nama_staf = :nama,
