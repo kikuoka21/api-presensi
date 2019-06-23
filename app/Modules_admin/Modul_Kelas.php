@@ -59,17 +59,22 @@ class Modul_Kelas
         return $hasil;
     }
 
-    public function list_siswa($thn_ajaran, $tahun_lahir)
+    public function list_siswa($cari, $thn_ajaran, $tahun_lahir)
     {
-        $query = "select  nis, nisn, nama_siswa as nama 
+
+        $query = "select  nis,  nama_siswa as nama 
                     from siswa where  siswa.tgl_lahir like :thn_lahir and nis not in (
-                    select isikelas.nis from siswa, isikelas, kelas 
-                    where isikelas.id_kelas = kelas.id_kelas 
-                    and kelas.tahun_ajar = :thn)
-                    order by nama_siswa asc ";
+                    select isikelas.nis from isikelas inner join kelas 
+                    on isikelas.id_kelas = kelas.id_kelas 
+                    where kelas.tahun_ajar = :thn)
+                    and ( lower(nama_siswa) like lower(:cari) or nis like :cari2)
+                    order by nama_siswa asc 
+                    limit 40";
         $result = DB::connection('mysql')->select(DB::raw($query), [
             'thn' => $thn_ajaran,
-            'thn_lahir' => $tahun_lahir . '%'
+            'thn_lahir' => $tahun_lahir . '%',
+            'cari' => '%' . $cari . '%',
+            'cari2' => '%' . $cari . '%'
         ]);
         return $result;
     }
@@ -117,7 +122,7 @@ class Modul_Kelas
             'nis' => $nis,
             'level' => $level
         ]);
-        if ($level == 0){
+        if ($level == 0) {
             $query = "UPDATE kelas SET id_ketua_kelas = :kosong where id_ketua_kelas = :nis and id_kelas = :id";
             DB::connection('mysql')->select(DB::raw($query), [
                 'id' => $idkelas,

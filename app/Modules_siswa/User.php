@@ -179,12 +179,14 @@ class User
 
     public function comparepass($uid, $pass)
     {
-        $query = "SELECT username FROM users where username = :xuid and  password= :pass";
-        $result = DB::connection('mysql')->select(DB::raw($query), [
-            'xuid' => $uid,
-            'pass' => $pass
-        ]);
+        $result = DB::table('users')->select('username')->where('username', $uid)->where('password', $pass)->get();
 
+//        $query = "SELECT username FROM users where username = :xuid and  = :pass";
+//        $result = DB::connection('mysql')->select(DB::raw($query), [
+//            'xuid' => $uid,
+//            'pass' => $pass
+//        ]);
+//
         return $result;
 
     }

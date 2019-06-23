@@ -20,14 +20,7 @@ class M_siswa
 
         return $getid;
     }
-    public function getprofil($nis)
-    {
-        $query = "SELECT nis, nisn, nama_siswa as nama, tmp_lahir, tgl_lahir, agama, orang_tua, alamat FROM siswa where nis = :nis ";
-        $result = DB::connection('mysql')->select(DB::raw($query), [
-            'nis' => $nis
-        ]);
-        return $result;
-    }
+
 
     public function history_kelas($nis)
     {

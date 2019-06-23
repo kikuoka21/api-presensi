@@ -347,7 +347,7 @@ class admin extends Controller
                     $username = $json->x1d;
                     $type = $json->type;
                     $key = $json->key;
-                    $json->tgl = substr($json->tgl, 0,7).'-01';
+                    $json->tgl = substr($json->tgl, 0, 7) . '-01';
                     if ($token == $tool->generate_token($key, $username, $type)) {
                         if ($user->chek_token($username, $token, $type)) {
 //
@@ -594,7 +594,7 @@ class admin extends Controller
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
                 if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
-                    isset($json->tgl) && isset($json->nis) && isset($json->stat)) {
+                    isset($json->tgl) && isset($json->nis) && isset($json->stat) && isset($json->ket) && isset($json->p4ss)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
@@ -603,18 +603,24 @@ class admin extends Controller
                         if ($user->chek_token($username, $token, $type)) {
                             if ($user->getakses_admin($username)) {
 
-                                $madmin = new M_presensi();
-                                $dashboard = new M_Dashboard();
+                                $validas = $user->getpass_lama($username, $json->p4ss);
+                                if ($validas) {
+                                    $madmin = new M_presensi();
+                                    $dashboard = new M_Dashboard();
 
-                                $hasil = $dashboard->harilibur($json->tgl);
-                                if (!$hasil && !$tool->convert_tgl_merah($json->tgl)) {
-                                    $madmin->update_persiswa($json->tgl, $json->nis, $json->stat, $json->x1d);
+                                    $hasil = $dashboard->harilibur($json->tgl);
+                                    if (!$hasil && !$tool->convert_tgl_merah($json->tgl)) {
+                                        $madmin->update_persiswa($json->tgl, $json->nis, $json->stat, $json->x1d, $json->ket);
 
-                                    $result = ['code' => 'OK4'];
+                                        $result = ['code' => 'OK4'];
 
-                                } else {
-                                    $result = ['code' => 'Tidak Mengubah Presensi di hari libur'];
-                                }
+                                    } else
+                                        $result = ['code' => 'Tidak Mengubah Presensi di hari libur'];
+
+                                } else
+                                    $result = [
+                                        'code' => 'Pass yang dimasukan salah',
+                                    ];
 
                             } else
                                 $result = ['code' => 'Akses Ditolak'];
@@ -648,7 +654,7 @@ class admin extends Controller
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
                 if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
-                    isset($json->tgl) && isset($json->id_kelas) && isset($json->stat)) {
+                    isset($json->tgl) && isset($json->id_kelas) && isset($json->stat) && isset($json->ket) && isset($json->p4ss)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
@@ -656,17 +662,23 @@ class admin extends Controller
                     if ($token == $tool->generate_token($key, $username, $type)) {
                         if ($user->chek_token($username, $token, $type)) {
                             if ($user->getakses_admin($username)) {
+                                $validas = $user->getpass_lama($username, $json->p4ss);
+                                if ($validas) {
+                                    $madmin = new M_presensi();
+                                    $dashboard = new M_Dashboard();
 
-                                $madmin = new M_presensi();
-                                $dashboard = new M_Dashboard();
+                                    $hasil = $dashboard->harilibur($json->tgl);
+                                    if (!$hasil && !$tool->convert_tgl_merah($json->tgl)) {
+                                        $madmin->update_perkelas($json->tgl, $json->id_kelas, $json->stat, $json->x1d, $json->ket);
+                                        $result = ['code' => 'OK4'];
+                                    } else {
+                                        $result = ['code' => 'Tidak Mengubah Presensi di hari libur'];
+                                    }
+                                } else
+                                    $result = [
+                                        'code' => 'Pass yang dimasukan salah',
+                                    ];
 
-                                $hasil = $dashboard->harilibur($json->tgl);
-                                if (!$hasil && !$tool->convert_tgl_merah($json->tgl)) {
-                                    $madmin->update_perkelas($json->tgl, $json->id_kelas, $json->stat, $json->x1d);
-                                    $result = ['code' => 'OK4'];
-                                } else {
-                                    $result = ['code' => 'Tidak Mengubah Presensi di hari libur'];
-                                }
 
                             } else
                                 $result = ['code' => 'Akses Ditolak'];

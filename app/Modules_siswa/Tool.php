@@ -58,7 +58,6 @@ class Tool
             return true;
         else
             return false;
-//
     }
 
     public function bulan_depan($tanggal)

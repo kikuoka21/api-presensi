@@ -36,7 +36,6 @@ class M_admin
 		]);
 
 		return $result;
-
 	}
 
 	public function getabsen_kelas($tanggal, $username)

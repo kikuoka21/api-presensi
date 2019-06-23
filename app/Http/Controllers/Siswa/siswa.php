@@ -278,7 +278,7 @@ class siswa extends Controller
 						if ($user->chek_token($username, $token, $type)) {
 
 							$msiswa = new M_siswa();
-							$profil = $msiswa->getprofil($json->x1d);
+							$profil = $msiswa->get_profil_siswa($json->x1d);
 							$kelas = $msiswa->history_kelas($json->x1d);
 
 							if ($profil) {
@@ -286,7 +286,7 @@ class siswa extends Controller
 									$kelas = [];
 								}
 								$data = [
-									'profil' => $profil[0],
+									'profil' => $profil,
 									'kelas' => $kelas
 								];
 

@@ -450,8 +450,9 @@ class User_Master extends Controller
                             $result = ['code' => 'TOKEN2'];
 
                     } else
-                        $result = ['code' => 'ISI nama PARAM dikirim salah' . isset($json->token) . isset($json->x1d) . isset($json->type) . isset($json->key) .
-                            isset($json->nip) . isset($json->p4ss)];
+                        $result = [
+                            'code' => 'ISI nama PARAM dikirim salah'
+                        ];
                 } else
                     $result = ['code' => 'format data yg dikirim salah '];
 

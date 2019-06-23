@@ -87,26 +87,26 @@ class M_presensi
 
     }
 
-    public function update_persiswa($tanggal, $username, $stat, $admin)
+    public function update_persiswa($tanggal, $username, $stat, $admin, $ket)
     {
         DB::table('kehadiran')
             ->where('nis', $username)
             ->where('tanggal', $tanggal)
             ->update([
                 'stat' => $stat,
-                'ket' => 'diubah oleh ' . $admin
+                'ket' => $ket.' via.' . $admin
             ]);
 
     }
 
-    public function update_perkelas($tanggal, $kelas, $stat, $admin)
+    public function update_perkelas($tanggal, $kelas, $stat, $admin, $ket)
     {
         DB::table('kehadiran')
             ->where('id_kelas', $kelas)
             ->where('tanggal', $tanggal)
             ->update([
                 'stat' => $stat,
-                'ket' => 'diubah via oleh ' . $admin . ' group'
+                'ket' => $ket.' via.' . $admin . ' group'
             ]);
 
     }

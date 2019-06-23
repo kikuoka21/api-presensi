@@ -105,7 +105,7 @@ class kelas extends Controller
 			if ($tool->IsJsonString($json)) {
 				$json = json_decode($json);
 				if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
-					isset($json->thn) && isset($json->thn_lahir)) {
+					isset($json->thn) && isset($json->thn_lahir)&& isset($json->nama)) {
 					$token = $json->token;
 					$username = $json->x1d;
 					$type = $json->type;
@@ -115,7 +115,7 @@ class kelas extends Controller
 						if ($user->chek_token($username, $token, $type)) {
 							if ($user->getakses_admin($username) && $user->getakses_admin_piket($username)) {
 								$inputmaster = new Modul_Kelas();
-								$hasil = $inputmaster->list_siswa($json->thn, $json->thn_lahir);
+								$hasil = $inputmaster->list_siswa($json->nama, $json->thn, $json->thn_lahir);
 
 								$result = [
 									'code' => 'OK4',
