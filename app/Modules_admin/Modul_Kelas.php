@@ -202,10 +202,6 @@ class Modul_Kelas
             'id' => $idkelas
         ]);
 
-        $query = "DELETE FROM  kehadiran where id_kelas = :id";
-        DB::connection('mysql')->select(DB::raw($query), [
-            'id' => $idkelas
-        ]);
 
         $query = "DELETE FROM  isikelas where id_kelas = :id";
         DB::connection('mysql')->select(DB::raw($query), [

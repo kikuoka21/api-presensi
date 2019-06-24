@@ -105,12 +105,19 @@ class Input_masterr
                 ['tanggal' => $tanggal], ['tanggal' => $tanggal, 'ket' => $ket]
             );
 
-        DB::table('kehadiran')->where('tanggal', $tanggal)->delete();
+        DB::table('kehadiran')->where('tanggal', $tanggal)->update([
+            'stat' => 'L',
+            'ket' => $ket
+        ]);
     }
 
     public function hapus_libur($tanggal)
     {
         DB::table('hari_libur')->where('tanggal', $tanggal)->delete();
+        DB::table('kehadiran')->where('tanggal', $tanggal)->update([
+            'stat' => 'A',
+            'ket' => 'hari libur pada '.$tanggal.' dihapus'
+        ]);
     }
 
 

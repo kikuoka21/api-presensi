@@ -91,7 +91,7 @@ class presensi extends Controller
 															$absen[0] = [
 																'stat' => 'A',
 																'ket' => "Tidak Dibuatnya QR"];
-															$madmin->create_absen(object_get($arraysiswa[$i], 'nis'), date_format($tanggal, "Y-m-d"), $json->id_kelas);
+															$madmin->create_absen(object_get($arraysiswa[$i], 'nis'), date_format($tanggal, "Y-m-d"));
 														}
 
 													}
@@ -218,7 +218,7 @@ class presensi extends Controller
 																	'tanggal' => date_format($tanggal, "Y-m-d"),
 																	'stat' => 'A',
 																	'ket' => "Tidak Dibuatnya QR"];
-																$madmin->create_absen(object_get($arraysiswa[$i], 'nis'), date_format($tanggal, "Y-m-d"), $json->kelas);
+																$madmin->create_absen(object_get($arraysiswa[$i], 'nis'), date_format($tanggal, "Y-m-d"));
 															}
 
 															$list[$arrayke] = $absen;
@@ -347,8 +347,8 @@ class presensi extends Controller
 													$absen = [
 														'tanggal' => date_format($tanggal, "Y-m-d"),
 														'stat' => 'A',
-														'ket' => "Tidak Dibuatnya QR"];
-													$madmin->create_absen($json->x1d, date_format($tanggal, "Y-m-d"), $kd_kelas);
+														'ket' => "Belum Absen"];
+													$madmin->create_absen($json->x1d, date_format($tanggal, "Y-m-d"));
 												}
 
 												$list[$arrayke] = $absen;

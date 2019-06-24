@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Siswa\presensi;
 use App\Modules_admin\Input_masterr;
 use App\Modules_admin\M_admin;
 use App\Modules_admin\Modul_Kelas;
@@ -43,7 +44,7 @@ class admin extends Controller
                     $key = $json->key;
                     if ($token == $tool->generate_token($key, $username, $type)) {
                         if ($user->chek_token($username, $token, $type)) {
-//
+//$username = '760695';
                             if ($user->getakses_admin($username)) {
                                 $tanggal = $tool->get_date();
 //                                $tanggal = '2019-05-12';
@@ -64,11 +65,39 @@ class admin extends Controller
                                         ];
 
                                         $madmin = new M_admin();
-                                        if ($user->getakses_admin($username)) {
-                                            $list = $madmin->getsiswasemua($tool->thn_ajar_skrng());
+                                        if ($user->getakses_admin_piket($username)) {
+                                            $list = $madmin->getabsen_all2($tanggal, $tool->thn_ajar_skrng());
                                         } else {
-                                            $list = $madmin->getsiswa($username, $tool->thn_ajar_skrng() );
-//                                            $list = $madmin->getabsen_kelas($tanggal, $username);
+                                            $siswa = $madmin->getsiswa($username, $tool->thn_ajar_skrng());
+                                            if ($siswa) {
+                                                for ($i = 0; $i < count($siswa); $i++) {
+
+                                                    $presen = new M_presensi();
+                                                    $absen = $presen->getabsen_siswa2($tanggal, $siswa[$i]->nis);
+                                                    if (!$absen) {
+                                                        $presensi = [
+                                                            "nis" => $siswa[$i]->nis,
+                                                            "nama" => $dashboard->getnama_siswa($siswa[$i]->nis),
+                                                            "kelas" => "X-5",
+                                                            "stat" => "A",
+                                                            "ket" => "Belum Absen"];
+                                                        $msiswa = new M_siswa();
+                                                        $msiswa->create_absen($siswa[$i]->nis, $tanggal);
+                                                    } else {
+
+
+                                                        $presensi = [
+                                                            "nis" => $siswa[$i]->nis,
+                                                            "nama" => $dashboard->getnama_siswa($siswa[$i]->nis),
+                                                            "kelas" => "X-5",
+                                                            "stat" => $absen[0]->stat,
+                                                            "ket" => $absen[0]->ket];
+                                                    }
+                                                    $list[$i] = $presensi;
+
+                                                }
+                                            }
+
                                         }
                                     }
 
@@ -128,45 +157,28 @@ class admin extends Controller
                             if ($user->getakses_admin($username)) {
 
 
-//								$dashboard = new M_Dashboard();
-//								$result = [
-//									'code' => 'OK4',
-////                                    'ada' => $tool->convert_tgl_merah($json->tgl)
-//									'list_absen' => $dashboard->get_kelas($tool->thn_ajar_pertanggal($json->tgl))
-//
-//								];
                                 $inputmaster = new Input_masterr();
                                 $hasil = $inputmaster->all_kelas($tool->thn_ajar_pertanggal($json->tgl));
                                 if ($hasil) {
                                     $balikan = [];
                                     for ($i = 0; $i < count($hasil); $i++) {
-                                        $siswa = [
-                                            'id' => '-',
-                                            'nama' => '-'
-                                        ];
-                                        $staf = [
-                                            'id' => '-',
-                                            'nama' => '-'
-                                        ];
+                                        $siswa = '-';
+                                        $staf = '-';
                                         if (object_get($hasil[$i], 'id_ketua_kelas') != "") {
-                                            $siswa = [
-                                                'id' => object_get($hasil[$i], 'id_ketua_kelas'),
-                                                'nama' => $inputmaster->get_nama_siswa(object_get($hasil[$i], 'id_ketua_kelas'))
-                                            ];
+                                            $siswa = '(' . object_get($hasil[$i], 'id_ketua_kelas') . ') ' .
+                                                $inputmaster->get_nama_siswa(object_get($hasil[$i], 'id_ketua_kelas'));
 
                                         }
                                         if (object_get($hasil[$i], 'id_wali_kelas') != "") {
-                                            $staf = [
-                                                'id' => object_get($hasil[$i], 'id_wali_kelas'),
-                                                'nama' => $inputmaster->get_nama_wali(object_get($hasil[$i], 'id_wali_kelas'))
-                                            ];
+                                            $staf = '(' .object_get($hasil[$i], 'id_wali_kelas'). ') ' .
+                                                $inputmaster->get_nama_wali(object_get($hasil[$i], 'id_wali_kelas'));
                                         }
 
                                         $balikan[$i] = [
                                             'id' => object_get($hasil[$i], 'id_kelas'),
                                             'nama_kelas' => object_get($hasil[$i], 'nama'),
-                                            'ketua' => $siswa,
-                                            'wali' => $staf
+                                            'wali' => $staf,
+                                            'ketua' => $siswa
                                         ];
                                     }
                                     $result = [
@@ -277,8 +289,8 @@ class admin extends Controller
                                                                 $absen = [
                                                                     'tanggal' => date_format($tanggal, "Y-m-d"),
                                                                     'stat' => 'A',
-                                                                    'ket' => "Tidak Dibuatnya QR"];
-                                                                $madmin->create_absen(object_get($arraysiswa[$i], 'nis'), date_format($tanggal, "Y-m-d"), $json->id_kelas);
+                                                                    'ket' => "Belum Absen"];
+                                                                $madmin->create_absen(object_get($arraysiswa[$i], 'nis'), date_format($tanggal, "Y-m-d"));
                                                             }
 
                                                             $list[$arrayke] = $absen;
@@ -404,7 +416,7 @@ class admin extends Controller
                                                             $absen[0] = [
                                                                 'stat' => 'A',
                                                                 'ket' => "Tidak Dibuatnya QR"];
-                                                            $madmin->create_absen(object_get($arraysiswa[$i], 'nis'), date_format($tanggal, "Y-m-d"), $json->id_kelas);
+                                                            $madmin->create_absen(object_get($arraysiswa[$i], 'nis'), date_format($tanggal, "Y-m-d"));
                                                         }
 
                                                     }
@@ -542,8 +554,13 @@ class admin extends Controller
 
                                     $hasil = $dashboard->harilibur($json->tgl);
                                     if (!$hasil && !$tool->convert_tgl_merah($json->tgl)) {
-                                        $madmin->update_perkelas($json->tgl, $json->id_kelas, $json->stat, $json->x1d, $json->ket);
-                                        $result = ['code' => 'OK4'];
+                                        if ($tool->batasan_tglskrng($json->tgl)) {
+                                            $madmin->update_perkelas($json->tgl, $json->stat, $json->x1d, $json->ket);
+                                            $result = ['code' => 'OK4'];
+                                        } else {
+                                            $result = ['code' => 'Tidak Mengubah Presensi diatas tanggal ' . $tool->tgl_skrng()];
+
+                                        }
                                     } else {
                                         $result = ['code' => 'Tidak Mengubah Presensi di hari libur'];
                                     }
@@ -663,7 +680,7 @@ class admin extends Controller
                                                         $hasil = $dashboard->harilibur(date_format($tanggal, "Y-m-d"));
                                                         if (!$hasil && !$tool->convert_tgl_merah(date_format($tanggal, "Y-m-d"))) {
                                                             $alpha++;
-                                                            $madmin->create_absen(object_get($arraysiswa[$i], 'nis'), date_format($tanggal, "Y-m-d"), $json->id_kelas);
+                                                            $madmin->create_absen(object_get($arraysiswa[$i], 'nis'), date_format($tanggal, "Y-m-d"));
 
                                                         }
                                                     }

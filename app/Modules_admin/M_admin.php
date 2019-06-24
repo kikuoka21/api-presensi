@@ -25,39 +25,39 @@ class M_admin
 
 
 
-//	public function getabsen_all2($tanggal, $thnajar)
-//	{
-//		$query = "select siswa.nis,siswa.nama_siswa as nama,kelas.nama_kelas as kelas, stat, ket  from siswa
-//                  inner join kehadiran on kehadiran.nis = siswa.nis
-//                  inner join isikelas on isikelas.nis = siswa.nis
-//                  inner join kelas on isikelas.id_kelas = kelas.id_kelas
-//                  where  kehadiran.stat = 'A'
-//                  and tanggal = :tgl
-//                  and kelas.tahun_ajar = :thn";
-//		$result = DB::connection('mysql')->select(DB::raw($query), [
-//			'tgl' => $tanggal,
-//			'thn' => $thnajar,
-//		]);
-//
-//		return $result;
-//	}
-
-	public function getabsen_kelas($tanggal, $username)
+	public function getabsen_all2($tanggal, $thnajar)
 	{
-		$query = "SELECT siswa.nis,siswa.nama_siswa as nama,kelas.nama_kelas as kelas, stat, ket FROM kehadiran, kelas, siswa
-				where kehadiran.id_kelas = kelas.id_kelas 
-				and kelas.id_wali_kelas = :nip
-				and kehadiran.nis= siswa.nis					
-				and kehadiran.stat = 'A'
-  				and tanggal = :tgl
-				order by siswa.nama_siswa asc";
+		$query = "select siswa.nis,siswa.nama_siswa as nama,kelas.nama_kelas as kelas, stat, ket  from siswa
+                  inner join kehadiran on kehadiran.nis = siswa.nis
+                  inner join isikelas on isikelas.nis = siswa.nis
+                  inner join kelas on isikelas.id_kelas = kelas.id_kelas
+                  where  kehadiran.stat = 'A'
+                  and tanggal = :tgl
+                  and kelas.tahun_ajar = :thn";
 		$result = DB::connection('mysql')->select(DB::raw($query), [
 			'tgl' => $tanggal,
-			'nip' => $username
+			'thn' => $thnajar,
 		]);
 
 		return $result;
 	}
+
+//	public function getabsen_kelas($tanggal, $username)
+//	{
+//		$query = "SELECT siswa.nis,siswa.nama_siswa as nama,kelas.nama_kelas as kelas, stat, ket FROM kehadiran, kelas, siswa
+//				where kehadiran.id_kelas = kelas.id_kelas
+//				and kelas.id_wali_kelas = :nip
+//				and kehadiran.nis= siswa.nis
+//				and kehadiran.stat = 'A'
+//  				and tanggal = :tgl
+//				order by siswa.nama_siswa asc";
+//		$result = DB::connection('mysql')->select(DB::raw($query), [
+//			'tgl' => $tanggal,
+//			'nip' => $username
+//		]);
+//
+//		return $result;
+//	}
 
 	public function getsiswa($username, $thn){
 	    $query = "select nis from kelas

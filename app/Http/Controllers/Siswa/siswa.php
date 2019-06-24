@@ -131,6 +131,7 @@ class siswa extends Controller
 								if (!$hasil) {
 									$hasil = $msiswa->get_flag_($kelas, $tanggal);
 									if (!$hasil) {
+//									if (true) {
 										$getsiswa = $msiswa->get_all_siswa($kelas);
 										$token = '';
 										if ($getsiswa) {
@@ -138,9 +139,9 @@ class siswa extends Controller
 											$msiswa->insert_token($kelas, $tanggal, $token);
 											$code = 'OK4';
 											for ($i = 0; $i < count($getsiswa); $i++) {
-												$check = $msiswa->check_absen(object_get($getsiswa[$i], 'nis'), $tanggal, $kelas);
+												$check = $msiswa->check_absen(object_get($getsiswa[$i], 'nis'), $tanggal);
 												if (!$check)
-													$msiswa->create_absen(object_get($getsiswa[$i], 'nis'), $tanggal, $kelas);
+													$msiswa->create_absen(object_get($getsiswa[$i], 'nis'), $tanggal);
 											}
 
 										} else {
@@ -210,12 +211,12 @@ class siswa extends Controller
 							$tokenkelas = $msiswa->get_flag_($kelas, $tanggal);
 							if (object_get($tokenkelas[0], 'token') == $json->token_absen) {
 
-								$hasil = $msiswa->check_absen($username, $tanggal, $kelas);
+								$hasil = $msiswa->check_absen($username, $tanggal);
 								if ($hasil) {
 									$flag = object_get($hasil[0], 'stat');
 
 									if ($flag == 'A') {
-										$msiswa->update_absen($username, $tanggal, $kelas, "H", "");
+										$msiswa->update_absen($username, $tanggal, "H", "");
 										$code = 'OK4';
 									} else {
 										if ($flag == 'H')

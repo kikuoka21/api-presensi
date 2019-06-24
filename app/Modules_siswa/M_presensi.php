@@ -30,13 +30,12 @@ class M_presensi
         return $result;
     }
 
-    public function create_absen($nis, $tgl, $kd_kelas)
+    public function create_absen($nis, $tgl)
     {
-        $query = "INSERT INTO kehadiran ( nis, tanggal, id_kelas, stat , ket) VALUES (:nis ,:tgl ,:kode_kelas, 'A', 'Tidak Dibuatnya QR')";
+        $query = "INSERT INTO kehadiran ( nis, tanggal, stat , ket) VALUES (:nis ,:tgl , 'A', 'Belum Absen')";
         DB::connection('mysql')->select(DB::raw($query), [
             'nis' => $nis,
-            'tgl' => $tgl,
-            'kode_kelas' => $kd_kelas
+            'tgl' => $tgl
         ]);
     }
 
@@ -84,11 +83,12 @@ class M_presensi
 
     }
 
-    public function update_perkelas($tanggal, $kelas, $stat, $admin, $ket)
+    public function update_perkelas($tanggal, $stat, $admin, $ket)
     {
         DB::table('kehadiran')
-            ->where('id_kelas', $kelas)
+//            ->where('id_kelas', $kelas)
             ->where('tanggal', $tanggal)
+            ->Join('siswa', 'siswa.nis', '=', 'kehadiran.nis')
             ->update([
                 'stat' => $stat,
                 'ket' => $ket.' via.' . $admin . ' group'

@@ -86,44 +86,40 @@ class M_siswa
 
     }
 
-
-    public function create_absen($nis, $tgl, $kd_kelas)
+    public function create_absen($nis, $tgl)
     {
-        $query = "INSERT INTO kehadiran ( nis, tanggal, id_kelas, stat , ket) VALUES (:nis ,:tgl ,:kode_kelas, 'A', 'Belum Absen')";
+        $query = "INSERT INTO kehadiran ( nis, tanggal,  stat , ket) VALUES (:nis ,:tgl , 'A', 'Belum Absen')";
         DB::connection('mysql')->select(DB::raw($query), [
             'nis' => $nis,
             'tgl' => $tgl,
-            'kode_kelas' => $kd_kelas
         ]);
     }
 
 
 
 
-    public function check_absen($nis, $tgl, $kd_kelas)
+    public function check_absen($nis, $tgl)
     {
-        $query = "SELECT stat FROM kehadiran where nis = :nis and tanggal = :tgl and id_kelas = :kode ";
+        $query = "SELECT stat FROM kehadiran where nis = :nis and tanggal = :tgl";
 
         $result = DB::connection('mysql')->select(DB::raw($query), [
             'nis' => $nis,
-            'tgl' => $tgl,
-            'kode' => $kd_kelas
+            'tgl' => $tgl
 
         ]);
 
         return $result;
     }
 
-    public function update_absen($nis, $tgl, $kd_kelas, $stat, $ket)
+    public function update_absen($nis, $tgl, $stat, $ket)
     {
 
-        $query = "UPDATE kehadiran SET stat= :stat , ket = :ket where tanggal= :tgl and nis =:nis and id_kelas= :idkelas ";
+        $query = "UPDATE kehadiran SET stat= :stat , ket = :ket where tanggal= :tgl and nis =:nis  ";
         DB::connection('mysql')->select(DB::raw($query), [
             'stat' => $stat,
             'ket' => $ket,
             'tgl' => $tgl,
-            'nis' => $nis,
-            'idkelas' => $kd_kelas
+            'nis' => $nis
         ]);
 
     }
