@@ -138,7 +138,9 @@ class siswa extends Controller
 											$msiswa->insert_token($kelas, $tanggal, $token);
 											$code = 'OK4';
 											for ($i = 0; $i < count($getsiswa); $i++) {
-												$msiswa->create_absen(object_get($getsiswa[$i], 'nis'), $tanggal, $kelas);
+												$check = $msiswa->check_absen(object_get($getsiswa[$i], 'nis'), $tanggal, $kelas);
+												if (!$check)
+													$msiswa->create_absen(object_get($getsiswa[$i], 'nis'), $tanggal, $kelas);
 											}
 
 										} else {

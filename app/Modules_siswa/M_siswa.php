@@ -98,6 +98,8 @@ class M_siswa
     }
 
 
+
+
     public function check_absen($nis, $tgl, $kd_kelas)
     {
         $query = "SELECT stat FROM kehadiran where nis = :nis and tanggal = :tgl and id_kelas = :kode ";

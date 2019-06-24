@@ -728,25 +728,19 @@ class admin extends Controller
 
 
                                     $inputmaster = new Modul_Kelas();
-                                    $ketua = $inputmaster->get_ketua_kelas($json->id_kelas);
                                     $wali = $inputmaster->get_wali_kelas($json->id_kelas);
 
-                                    $namasiswa = '-';
                                     $namawali = '-';
-                                    if ($ketua) {
-                                        $namasiswa = object_get($ketua[0], 'nama');
-
-                                    }
                                     if ($wali) {
                                         $namawali = object_get($wali[0], 'nama');
                                     }
                                     $datakls = [
-                                        'nama' => $kelas->nama,
-                                        'ketua' => $namasiswa,
+                                        'nama_kelas' => $kelas->nama,
+                                        'thn_ajar' => $kelas->tahun_ajar,
                                         'wali' => $namawali
                                     ];
 
-                                    if ($json->smes == 'Ga') {
+                                    if (strtolower($json->smes) == 'ga') {
                                         $smes = 'Gasal';
                                         $tnggal = substr($kelas->tahun_ajar, 0, 4) . '-06-01';
                                         $batas = substr($kelas->tahun_ajar, 0, 4) . '-12-01';
@@ -800,12 +794,6 @@ class admin extends Controller
 
                                                         }
                                                     }
-//                                                    $xxxx[$array] = [
-//                                                        'Main_date' => date_format($tanggal, "Y-m-d"),
-//                                                        'batas' => date_format($tanggal_batas, "Y-m-d"),
-//
-//                                                    ];//
-//                                                    $array++;
                                                     date_add($tanggal, date_interval_create_from_date_string("1 days"));
 
                                                 } else
@@ -820,6 +808,7 @@ class admin extends Controller
                                                 'izin' => $izin,
                                                 'alpha' => $alpha,
                                                 'hadir' => $hadir
+//	                                            'total'=> $sakit+$izin+$alpha+$hadir
                                             ];
                                         }
                                         $akhir = date_create($akhir);
@@ -835,14 +824,14 @@ class admin extends Controller
                                         $result = ['code' => 'OK4',
                                             'data' => $datakls,
                                             'periode' => $periode,
-                                            'bbb' => $data
+                                            'siswa' => $data
                                         ];
 
                                     } else
                                         $result = ['code' => 'Tidak Ada siswa dalam kelas ' . $kelas->nama];
 
                                 } else {
-                                    $result = ['code' => 'data kelas tidak ditemukan'];
+                                    $result = ['code' => 'Data kelas tidak ditemukan'];
                                 }
 
 
