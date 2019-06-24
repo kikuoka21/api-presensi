@@ -14,21 +14,6 @@ use DB;
 
 class M_presensi
 {
-    public function getabsen_kelas_tanggal($tanggal, $kelas)
-    {
-        $query = "SELECT siswa.nis,siswa.nama_siswa as nama, stat, ket FROM kehadiran, kelas, siswa
-				where kehadiran.id_kelas = :kelas
-				and kehadiran.nis= siswa.nis
-                and kehadiran.id_kelas = kelas.id_kelas	
-  				and tanggal = :tgl
-				order by siswa.nama_siswa asc";
-        $result = DB::connection('mysql')->select(DB::raw($query), [
-            'tgl' => $tanggal,
-            'kelas' => $kelas
-        ]);
-
-        return $result;
-    }
 
     public function getabsen_kelas_siswa($kelas)
     {
