@@ -78,7 +78,7 @@ class M_presensi
             ->where('tanggal', $tanggal)
             ->update([
                 'stat' => $stat,
-                'ket' => $ket.' diubah persiswa oleh ' . $admin
+                'ket' => $ket.' diubah perSiswa oleh ' . $admin
             ]);
 
     }
@@ -92,7 +92,7 @@ class M_presensi
             ->where('isikelas.id_kelas', $id_kelas)
             ->update([
                 'stat' => $stat,
-                'ket' => $ket.' diubah perkelas oleh ' . $admin
+                'ket' => $ket.' diubah perKelas oleh ' . $admin
             ]);
 
     }

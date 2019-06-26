@@ -499,8 +499,7 @@ class admin extends Controller
                                     if (!$hasil && !$tool->convert_tgl_merah($json->tgl)) {
                                         $madmin->update_persiswa($json->tgl, $json->nis, $json->stat, $json->x1d, $json->ket);
 
-                                        $result = ['code' => $json
-                                        ];
+                                        $result = ['code' => 'OK4'];
 
                                     } else
                                         $result = ['code' => 'Tidak Mengubah Presensi di hari libur'];
@@ -521,9 +520,7 @@ class admin extends Controller
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];
-
-
-
+                
             } else
                 $result = ['code' => 'format data yg dikirim salah '];
 
