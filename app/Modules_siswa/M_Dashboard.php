@@ -48,14 +48,6 @@ class M_Dashboard
 	public function get_kode_kelas($thn_ajar, $nis)
 	{
 
-//		$getid = DB::table('isikelas')
-//			->join("kelas", "kelas.id_kelas", "=", "isikelas.id_kelas")
-//			->where('kelas.tahun_ajar', $thn_ajar)
-//			->where('isikelas.nis', $nis)
-//			->get();
-//
-//		return $getid;
-
 		$query = "SELECT kelas.id_kelas FROM kelas,isikelas where
 					kelas.tahun_ajar = :thn
 					and kelas.id_kelas = isikelas.id_kelas

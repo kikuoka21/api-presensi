@@ -78,20 +78,21 @@ class M_presensi
             ->where('tanggal', $tanggal)
             ->update([
                 'stat' => $stat,
-                'ket' => $ket.' via.' . $admin
+                'ket' => $ket.' diubah persiswa oleh ' . $admin
             ]);
 
     }
 
-    public function update_perkelas($tanggal, $stat, $admin, $ket)
+    public function update_perkelas($tanggal, $stat, $id_kelas, $admin, $ket)
     {
         DB::table('kehadiran')
 //            ->where('id_kelas', $kelas)
+            ->Join('isikelas', 'isikelas.nis', '=', 'kehadiran.nis')
             ->where('tanggal', $tanggal)
-            ->Join('siswa', 'siswa.nis', '=', 'kehadiran.nis')
+            ->where('isikelas.id_kelas', $id_kelas)
             ->update([
                 'stat' => $stat,
-                'ket' => $ket.' via.' . $admin . ' group'
+                'ket' => $ket.' diubah perkelas oleh ' . $admin
             ]);
 
     }

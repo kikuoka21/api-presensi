@@ -52,16 +52,27 @@ class M_siswa
     }
 
 
-    public function get_flag_($kode, $tgl)
+    public function get_flag_($kode)
     {
-        $query = "SELECT token FROM validasi_presensi where id_kelas = :kode and tanggal = :tgl";
+//        $query = "SELECT token FROM validasi_presensi where id_kelas = :kode and tanggal = :tgl";
+//
+//        $result = DB::connection('mysql')->select(DB::raw($query), [
+//            'kode' => $kode,
+//            'tgl' => $tgl
+//        ]);
+//
+//        return $result;
 
-        $result = DB::connection('mysql')->select(DB::raw($query), [
-            'kode' => $kode,
-            'tgl' => $tgl
-        ]);
+        $getid = DB::table('validasi_presensi')->select('token')->where('id_kelas', $kode)->first();
+        return $getid;
+    }
 
-        return $result;
+    public function get_flag_2($kode, $tgl)
+    {
+//        $query = "SELECT token FROM validasi_presensi where id_kelas = :kode and tanggal = :tgl";
+//
+        $getid = DB::table('validasi_presensi')->select('token')->where('id_kelas', $kode)->where('tanggal', $tgl)->first();
+        return $getid;
     }
 
     public function insert_token($kode, $tgl, $token)
@@ -78,12 +89,13 @@ class M_siswa
 
     public function get_all_siswa($kd_kls)
     {
-        $query = "SELECT nis FROM isikelas where id_kelas = :kode";
-        $result = DB::connection('mysql')->select(DB::raw($query), [
-            'kode' => $kd_kls
-        ]);
-        return $result;
-
+//        $query = "SELECT nis FROM isikelas where id_kelas = :kode";
+//        $result = DB::connection('mysql')->select(DB::raw($query), [
+//            'kode' => $kd_kls
+//        ]);
+//        return $result;
+        $getid = DB::table('isikelas')->select('siswa.nis')->join('siswa', 'siswa.nis', '=', 'isikelas.nis')->where('id_kelas', $kd_kls)->orderBy('siswa.nama_siswa', 'desc')->get();
+        return $getid;
     }
 
     public function create_absen($nis, $tgl)
@@ -100,15 +112,10 @@ class M_siswa
 
     public function check_absen($nis, $tgl)
     {
-        $query = "SELECT stat FROM kehadiran where nis = :nis and tanggal = :tgl";
 
-        $result = DB::connection('mysql')->select(DB::raw($query), [
-            'nis' => $nis,
-            'tgl' => $tgl
+        $getid = DB::table('kehadiran')->select('stat')->where('nis', $nis)->where('tanggal', $tgl)->first();
 
-        ]);
-
-        return $result;
+        return $getid;
     }
 
     public function update_absen($nis, $tgl, $stat, $ket)

@@ -170,7 +170,7 @@ class admin extends Controller
 
                                         }
                                         if (object_get($hasil[$i], 'id_wali_kelas') != "") {
-                                            $staf = '(' .object_get($hasil[$i], 'id_wali_kelas'). ') ' .
+                                            $staf = '(' . object_get($hasil[$i], 'id_wali_kelas') . ') ' .
                                                 $inputmaster->get_nama_wali(object_get($hasil[$i], 'id_wali_kelas'));
                                         }
 
@@ -256,7 +256,8 @@ class admin extends Controller
                                             $namawali = object_get($wali[0], 'nama');
                                         }
                                         $datakls = [
-                                            'nama' => $kelas->nama,
+                                            'nama_kelas' => $kelas->nama,
+                                            'thn_ajar' => $kelas->tahun_ajar,
                                             'ketua' => $namasiswa,
                                             'wali' => $namawali
                                         ];
@@ -312,7 +313,7 @@ class admin extends Controller
                                             }
                                             $result = [
                                                 'code' => 'OK4',
-                                                'datakelas' => $datakls,
+                                                'data' => $datakls,
                                                 'presensi' => $data
 
                                             ];
@@ -370,37 +371,38 @@ class admin extends Controller
                         if ($user->chek_token($username, $token, $type)) {
                             if ($user->getakses_admin($username)) {
 
-                                $dashboard = new M_Dashboard();
-                                $kelas = $dashboard->get_data_kelas($json->id_kelas);
-                                if ($kelas) {
-                                    if ($tool->thn_ajar_pertanggal($json->tgl) == $kelas->tahun_ajar) {
+                                if ($tool->batasan_tglskrng($json->tgl)) {
+                                    $dashboard = new M_Dashboard();
+                                    $kelas = $dashboard->get_data_kelas($json->id_kelas);
+                                    if ($kelas) {
+                                        if ($tool->thn_ajar_pertanggal($json->tgl) == $kelas->tahun_ajar) {
+                                            $madmin = new M_presensi();
 
-                                        $inputmaster = new Modul_Kelas();
-                                        $ketua = $inputmaster->get_ketua_kelas($json->id_kelas);
-                                        $wali = $inputmaster->get_wali_kelas($json->id_kelas);
+                                            $arraysiswa = $madmin->getabsen_kelas_siswa($json->id_kelas);
+                                            if ($arraysiswa) {
+                                                $inputmaster = new Modul_Kelas();
+                                                $ketua = $inputmaster->get_ketua_kelas($json->id_kelas);
+                                                $wali = $inputmaster->get_wali_kelas($json->id_kelas);
 
-                                        $namasiswa = '-';
-                                        $namawali = '-';
-                                        if ($ketua) {
-                                            $namasiswa = object_get($ketua[0], 'nama');
+                                                $namasiswa = '-';
+                                                $namawali = '-';
+                                                if ($ketua) {
+                                                    $namasiswa = object_get($ketua[0], 'nama');
 
-                                        }
-                                        if ($wali) {
-                                            $namawali = object_get($wali[0], 'nama');
-                                        }
-                                        $datakls = [
-                                            'nama' => $kelas->nama,
-                                            'ketua' => $namasiswa,
-                                            'wali' => $namawali
-                                        ];
+                                                }
+                                                if ($wali) {
+                                                    $namawali = object_get($wali[0], 'nama');
+                                                }
+                                                $datakls = [
+                                                    'nama' => $kelas->nama,
+                                                    'ketua' => $namasiswa,
+                                                    'thn_ajar' => $kelas->tahun_ajar,
+                                                    'wali' => $namawali
+                                                ];
 
-                                        $madmin = new M_presensi();
-
-                                        $arraysiswa = $madmin->getabsen_kelas_siswa($json->id_kelas);
-                                        if ($arraysiswa) {
-                                            for ($i = 0; $i < count($arraysiswa); $i++) {
-                                                $tanggal = date_create($json->tgl);
-                                                if ($tool->batasan_tglskrng(date_format($tanggal, "Y-m-d"))) {
+                                                $data = [];
+                                                for ($i = 0; $i < count($arraysiswa); $i++) {
+                                                    $tanggal = date_create($json->tgl);
                                                     $absen = $madmin->getabsen_siswa2(date_format($tanggal, "Y-m-d"), $arraysiswa[$i]->nis);
                                                     if (!$absen) {
                                                         $hasil = $dashboard->harilibur(date_format($tanggal, "Y-m-d"));
@@ -415,7 +417,7 @@ class admin extends Controller
                                                         } else {
                                                             $absen[0] = [
                                                                 'stat' => 'A',
-                                                                'ket' => "Tidak Dibuatnya QR"];
+                                                                'ket' => "Belum Absen"];
                                                             $madmin->create_absen(object_get($arraysiswa[$i], 'nis'), date_format($tanggal, "Y-m-d"));
                                                         }
 
@@ -426,26 +428,26 @@ class admin extends Controller
                                                         'nama' => object_get($arraysiswa[$i], 'nama'),
                                                         'kehadiran' => $absen[0]
                                                     ];
-                                                    $result = [
-                                                        'code' => 'OK4',
-                                                        'tanggal' => date_format($tanggal, "Y-m-d"),
-                                                        'datakelas' => $datakls,
-                                                        'presensi' => $data
 
-                                                    ];
 
-                                                } else
-                                                    $result = ['code' => 'Presensi belum dimulai di tanggal ' . $tanggal];
-                                            }
+                                                }
+                                                $result = [
+                                                    'code' => 'OK4',
+                                                    'tanggal' => date_format($tanggal, "Y-m-d"),
+                                                    'data' => $datakls,
+                                                    'presensi' => $data
+
+                                                ];
+
+                                            } else
+                                                $result = ['code' => 'Tidak Ada siswa dalam kelas ' . $kelas->nama];
                                         } else
-                                            $result = ['code' => 'Tidak Ada siswa dalam kelas ' . $kelas->nama];
+                                            $result = ['code' => 'Tanggal Salah'];
+
                                     } else
-                                        $result = ['code' => 'Tanggal Salah'];
-
-                                } else {
-                                    $result = ['code' => 'data kelas tidak ditemukan'];
-                                }
-
+                                        $result = ['code' => 'data kelas tidak ditemukan'];
+                                } else
+                                    $result = ['code' => 'Presensi belum dimulai di tanggal ' . $json->tgl];
 
                             } else
                                 $result = ['code' => 'Akses Ditolak'];
@@ -497,7 +499,8 @@ class admin extends Controller
                                     if (!$hasil && !$tool->convert_tgl_merah($json->tgl)) {
                                         $madmin->update_persiswa($json->tgl, $json->nis, $json->stat, $json->x1d, $json->ket);
 
-                                        $result = ['code' => 'OK4'];
+                                        $result = ['code' => $json
+                                        ];
 
                                     } else
                                         $result = ['code' => 'Tidak Mengubah Presensi di hari libur'];
@@ -518,6 +521,7 @@ class admin extends Controller
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];
+
 
 
             } else
@@ -555,7 +559,7 @@ class admin extends Controller
                                     $hasil = $dashboard->harilibur($json->tgl);
                                     if (!$hasil && !$tool->convert_tgl_merah($json->tgl)) {
                                         if ($tool->batasan_tglskrng($json->tgl)) {
-                                            $madmin->update_perkelas($json->tgl, $json->stat, $json->x1d, $json->ket);
+                                            $madmin->update_perkelas($json->tgl, $json->stat, $json->id_kelas, $json->x1d, $json->ket);
                                             $result = ['code' => 'OK4'];
                                         } else {
                                             $result = ['code' => 'Tidak Mengubah Presensi diatas tanggal ' . $tool->tgl_skrng()];
@@ -589,7 +593,6 @@ class admin extends Controller
             return $result;
         }
     }
-
 
     public function laporan_smes(Request $request)
     {
@@ -658,7 +661,7 @@ class admin extends Controller
                                             $alpha = 0;
                                             $sakit = 0;
                                             $izin = 0;
-                                            $hadir = 0;
+                                            $telat = 0;
                                             while (date_format($tanggal_batas, "Y-m-d") != date_format($tanggal, "Y-m-d")) {
 
                                                 $akhir = date_format($tanggal, "Y-m-d");
@@ -674,8 +677,8 @@ class admin extends Controller
                                                             $izin++;
                                                         } else if ($ket == 'S') {
                                                             $sakit++;
-                                                        } else
-                                                            $hadir++;
+                                                        } else if ($ket == 'T')
+                                                            $telat++;
                                                     } else {
                                                         $hasil = $dashboard->harilibur(date_format($tanggal, "Y-m-d"));
                                                         if (!$hasil && !$tool->convert_tgl_merah(date_format($tanggal, "Y-m-d"))) {
@@ -697,7 +700,7 @@ class admin extends Controller
                                                 'sakit' => $sakit,
                                                 'izin' => $izin,
                                                 'alpha' => $alpha,
-                                                'hadir' => $hadir
+                                                'telat' => $telat
 //	                                            'total'=> $sakit+$izin+$alpha+$hadir
                                             ];
                                         }

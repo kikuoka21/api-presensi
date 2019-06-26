@@ -90,7 +90,7 @@ class presensi extends Controller
 														} else {
 															$absen[0] = [
 																'stat' => 'A',
-																'ket' => "Tidak Dibuatnya QR"];
+																'ket' => "Belum Absen"];
 															$madmin->create_absen(object_get($arraysiswa[$i], 'nis'), date_format($tanggal, "Y-m-d"));
 														}
 
@@ -217,7 +217,7 @@ class presensi extends Controller
 																$absen = [
 																	'tanggal' => date_format($tanggal, "Y-m-d"),
 																	'stat' => 'A',
-																	'ket' => "Tidak Dibuatnya QR"];
+																	'ket' => "Belum Absen"];
 																$madmin->create_absen(object_get($arraysiswa[$i], 'nis'), date_format($tanggal, "Y-m-d"));
 															}
 
@@ -394,11 +394,5 @@ class presensi extends Controller
 		}
 	}
 
-	private function tambahnol($angka)
-	{
-		if (strlen($angka) == 1) {
-			$angka = '0' . $angka;
-		}
-		return $angka;
-	}
+
 }
