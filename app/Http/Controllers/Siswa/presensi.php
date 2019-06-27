@@ -318,6 +318,7 @@ class presensi extends Controller
 									}
 									$datakls = [
 										'nama' => $kelas->nama,
+										'thn_ajar' => $kelas->tahun_ajar,
 										'ketua' => $namasiswa,
 										'wali' => $namawali
 									];
@@ -364,7 +365,6 @@ class presensi extends Controller
 
 									$result = [
 										'code' => 'OK4',
-										'nama_siswa' => $dashboard->getnama_siswa($username),
 										'datakelas' => $datakls,
 										'kehadiran' => $list
 
