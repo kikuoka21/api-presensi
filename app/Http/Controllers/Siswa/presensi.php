@@ -327,7 +327,7 @@ class presensi extends Controller
 
 
 									$tanggal = date_create($json->tanggal);
-									$bln_dpn = $tool->bulan_depan($json->tanggal);
+		 							$bln_dpn = $tool->bulan_depan($json->tanggal);
 									$arrayke = 0;
 									$list = [];
 									while ($bln_dpn != date_format($tanggal, "Y-m-d")) {

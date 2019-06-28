@@ -33,7 +33,7 @@ class auth extends Controller
                     $key = $json->key;
                     $hasil = $user->getUser($username);
 //                    $tool->Isi_Log('login OK4 ' . $username . ' ' . $key . ' ' . $inputnya);
-                    $inputnya = '';
+//                    $inputnya = '';
                     if (!$hasil) {
                         $result = ['code' => 'nis yang dimasukan salah'];
                     } else {
@@ -41,10 +41,10 @@ class auth extends Controller
                             $token = $tool->generate_token($key, $username, $type);
                             if (object_get($hasil[0], 'akses') == '1' && $type == 'www') {
                                 $user->input_tokenweb($username, $token);
-                                $inputnya = 'berhasil web';
+//                                $inputnya = 'berhasil web';
                             } else {
                                 $user->input_tokenmobile($username, $token);
-                                $inputnya = 'berhasil mobile';
+//                                $inputnya = 'berhasil mobile';
                             }
                             $result = [
                                 'status' => object_get($hasil[0], 'akses'),
@@ -66,7 +66,8 @@ class auth extends Controller
                         }
                     }
 
-                    $tool->Isi_Log('login ' . $inputnya . ' ' . $username . ' ' . $key);
+//                    $tool->Isi_Log('login ' . $inputnya . ' ' . $username . ' ' . $key);
+                    $tool->Isi_Log('login ' . $username . ' ' . $key);
 
                 } else {
                     $result = ['code' => 'data yangdikirm salah'];
