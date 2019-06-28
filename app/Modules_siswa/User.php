@@ -145,6 +145,18 @@ class User
 
 
     }
+    public function getakses_pengurus($xuid, $kdkls)
+    {
+        $getid = DB::table('isikelas')->select('level')->where('nis', $xuid)->where('id_kelas', $kdkls)->get();
+        if (!$getid)
+            return false;
+        else
+            if (object_get($getid[0], 'level') == '1')
+                return true;
+            else
+                return false;
+
+    }
 
     public function getpengurus_kelas($xuid, $id_kelas)
     {
