@@ -1,0 +1,70 @@
+tampilkan tampilan menu utama guru
+tampilkan tampilan button scanner QR-code
+tampilkan tampilan button profil
+tampilkan tampilan button kehadiran saya
+tampilkan tampilan button ganti password
+tampilkan tampilan button Logout
+
+check status staf
+if (check = "staf guru piket")
+	tampilkan tampilan button master siswa
+	tampilkan tampilan button master staf
+	tampilkan tampilan button master kelas
+	tampilkan tampilan button master tanggal
+	tampilkan tampilan button ubah presensi
+end if 
+
+if (pilih = master siswa)
+	tampilkan tampilan menu master siswa
+end if
+
+if (pilih = master staf)
+	tampilkan tampilan menu master staf
+end if
+
+if (pilih = master kelas)
+	tampilkan tampilan menu master kelas
+end if
+
+if (pilih = master tanggal)
+	tampilkan tampilan menu master tanggal
+end if
+
+if (pilih = ubah presensi)
+	tampilkan tampilan ubah presensi 
+end if
+
+if (pilih = laporan presensi)
+	tampilkan tampilan pilihan tahun dan bulan  
+	pilih bulan dan tahun
+	if (balasan pesan api  = OK4)
+		tampilkan list kelas 
+		if (pilih kelas)
+			tampilkan tampilan rekap presensi kelas perbulan
+		end if
+	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+		tampilkan pesan dari API
+		tampilkan tampilan login
+	else
+		tampilkan pesan dari API
+	end if
+end if
+
+if (pilih = ganti password)
+	tampilkan tampilan ganti password
+	input password lama, password baru dan ulangi password baru 
+	if (balasan pesan api  = OK4)
+		tampilkan pesan "password berhasil diubah"
+		kembali ke menu utama
+	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+		tampilkan pesan dari API
+		tampilkan tampilan login
+	else
+		tampilkan pesan dari API
+		kembali ke menu utama siswa
+	end if
+end if
+
+if (pilih = logout) 
+	tampilkan tampilan login
+end if

@@ -1,0 +1,52 @@
+tampilkan tampilan ubah data kelas
+tampilkan tampilan button ubah nama kelas
+tampilkan tampilan button ubah wali kelas
+tampilkan tampilan button ubah ketua kelas
+tampilkan tampilan button hapus siswa
+tampilkan tampilan button tambah siswa
+
+
+if (pilih = ubah nama kelas)
+	tampilkan tampilan ubah nama kelas
+	input nama kelas
+	if (balasan pesan api  = OK4)
+		tampilkan pesan "nama kelas berhasil diubah"
+		kembali ke tampilan ubah data kelas
+	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+		tampilkan pesan dari API
+		tampilkan tampilan login
+	else
+		tampilkan pesan dari API
+		kembali ke menu master kelas
+	end if
+end if
+
+if (pilih = ubah wali kelas)
+	tampilkan tampilan list staf 
+	pilih staf
+	if (balasan pesan api  = OK4)
+		tampilkan pesan "wali kelas berhasil diubah"
+		kembali ke tampilan ubah data kelas
+	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+		tampilkan pesan dari API
+		tampilkan tampilan login
+	else
+		tampilkan pesan dari API
+		kembali ke tampilan ubah data kelas
+	end if
+end if
+
+if (pilih = ubah nama kelas)
+	tampilkan tampilan ubah nama kelas
+	input nama kelas
+	if (balasan pesan api  = OK4)
+		tampilkan pesan "nama kelas berhasil diubah"
+		kembali ke tampilan ubah data kelas
+	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+		tampilkan pesan dari API
+		tampilkan tampilan login
+	else
+		tampilkan pesan dari API
+		kembali ke tampilan ubah data kelas
+	end if
+end if

@@ -1,0 +1,82 @@
+tampilkan tampilan menu master kelas
+tampilkan tampilan button input kelas
+tampilkan tampilan button lihat data kelas
+tampilkan tampilan button ubah data kelas
+tampilkan tampilan button ganti password kelas
+tampilkan tampilan button hapus kelas
+
+if (pilih = input kelas baru)
+	tampilkan tampilan input kelas
+	input data kelas
+	if (balasan pesan api  = OK4)
+		tampilkan pesan "input kelas berhasil"
+		kembali ke tampilkan menu master kelas
+	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+		tampilkan pesan dari API
+		tampilkan tampilan login
+	else
+		tampilkan pesan dari API
+		kembali ke menu master kelas
+	end if
+end if
+
+if (pilih = lihat data kelas)
+	tampilkan tampilan cari kelas
+	input tahun ajar
+	if (balasan pesan api  = OK4)
+		tampilkan list kelas
+		if (pilih = kelas)
+			tampilkan data kelas
+		end if
+	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+		tampilkan pesan dari API
+		tampilkan tampilan login
+	else
+		tampilkan pesan dari API
+		kembali ke menu master kelas
+	end if
+end if
+
+if (pilih = ubah data kelas)
+	tampilkan tampilan cari kelas
+	input tahun ajar
+	if (balasan pesan api  = OK4)
+		tampilkan list kelas
+		if (pilih = kelas)
+			tampilkan tampilan ubah data kelas
+		end if
+	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+		tampilkan pesan dari API
+		tampilkan tampilan login
+	else
+		tampilkan pesan dari API
+		kembali ke menu master kelas
+	end if
+end if
+
+if (pilih = hapus kelas)
+	tampilkan tampilan cari kelas
+	input tahun ajar
+	if (balasan pesan api  = OK4)
+		tampilkan list kelas
+		if (pilih = kelas)
+			input password kelas
+			if (balasan pesan api  = OK4)
+				tampilkan pesan "hapus kelas berhasil"
+				kembali ke tampilkan menu master kelas
+			else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+				tampilkan pesan dari API
+				tampilkan tampilan login
+			else
+				tampilkan pesan dari API
+				kembali ke menu master kelas
+			end if
+		end if
+	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+		tampilkan pesan dari API
+		tampilkan tampilan login
+	else
+		tampilkan pesan dari API
+		kembali ke menu master kelas
+	end if
+end if

@@ -1,0 +1,115 @@
+tampilkan tampilan menu master staf
+tampilkan tampilan button input staf
+tampilkan tampilan button lihat data staf
+tampilkan tampilan button ubah data staf
+tampilkan tampilan button ganti password staf
+tampilkan tampilan button hapus staf
+
+if (pilih = input staf baru)
+	tampilkan tampilan input staf
+	input data staf
+	if (balasan pesan api  = OK4)
+		tampilkan pesan "input staf berhasil"
+		kembali ke tampilkan menu master staf
+	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+		tampilkan pesan dari API
+		tampilkan tampilan login
+	else
+		tampilkan pesan dari API
+		kembali ke menu master staf
+	end if
+end if
+
+if (pilih = lihat data staf)
+	tampilkan tampilan cari staf
+	input nama atau nip
+	if (balasan pesan api  = OK4)
+		tampilkan list staf
+		if (pilih = staf)
+			tampilkan data staf
+		end if
+	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+		tampilkan pesan dari API
+		tampilkan tampilan login
+	else
+		tampilkan pesan dari API
+		kembali ke menu master staf
+	end if
+end if
+
+if (pilih = ubah data staf)
+	tampilkan tampilan cari staf
+	input nama atau nip
+	if (balasan pesan api  = OK4)
+		tampilkan list staf
+		if (pilih = staf)
+			tampilkan data staf
+			ubah data staf
+			if (balasan pesan api  = OK4)
+				tampilkan pesan "ubah staf berhasil"
+				kembali ke tampilkan list staf
+			else 
+				tampilkan pesan dari API
+				kembali ke menu master staf
+			end if
+		end if
+	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+		tampilkan pesan dari API
+		tampilkan tampilan login
+	else
+		tampilkan pesan dari API
+		kembali ke menu master staf
+	end if
+end if
+
+if (pilih = ubah password staf)
+	tampilkan tampilan cari staf
+	input nama atau nip
+	if (balasan pesan api  = OK4)
+		tampilkan list staf
+		if (pilih = staf)
+			tampilkan tampilan ubah password
+			input password dan ulangi password
+			if (balasan pesan api  = OK4)
+				tampilkan pesan "password staf berhasil diubah"
+				kembali ke tampilkan list staf
+			else 
+				tampilkan pesan dari API
+				kembali ke menu master staf
+			end if
+		end if
+	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+		tampilkan pesan dari API
+		tampilkan tampilan login
+	else
+		tampilkan pesan dari API
+		kembali ke menu master staf
+	end if
+end if
+
+if (pilih = hapus staf)
+	tampilkan tampilan cari staf
+	input nama atau nip
+	if (balasan pesan api  = OK4)
+		tampilkan list staf
+		if (pilih = staf)
+			input password staf
+			if (balasan pesan api  = OK4)
+				tampilkan pesan "hapus staf berhasil"
+				kembali ke tampilkan menu master staf
+			else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+				tampilkan pesan dari API
+				tampilkan tampilan login
+			else
+				tampilkan pesan dari API
+				kembali ke menu master staf
+			end if
+		end if
+	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+		tampilkan pesan dari API
+		tampilkan tampilan login
+	else
+		tampilkan pesan dari API
+		kembali ke menu master staf
+	end if
+end if
