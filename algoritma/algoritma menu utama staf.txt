@@ -1,4 +1,4 @@
-tampilkan tampilan menu utama guru
+tampilkan tampilan menu utama staf
 tampilkan tampilan button scanner QR-code
 tampilkan tampilan button profil
 tampilkan tampilan button kehadiran saya
@@ -6,7 +6,7 @@ tampilkan tampilan button ganti password
 tampilkan tampilan button Logout
 
 check status staf
-if (check = "staf guru piket")
+if (check = "staf admin")
 	tampilkan tampilan button master siswa
 	tampilkan tampilan button master staf
 	tampilkan tampilan button master kelas
@@ -35,19 +35,7 @@ if (pilih = ubah presensi)
 end if
 
 if (pilih = laporan presensi)
-	tampilkan tampilan pilihan tahun dan bulan  
-	pilih bulan dan tahun
-	if (balasan pesan api  = OK4)
-		tampilkan list kelas 
-		if (pilih kelas)
-			tampilkan tampilan rekap presensi kelas perbulan
-		end if
-	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-		tampilkan pesan dari API
-		tampilkan tampilan login
-	else
-		tampilkan pesan dari API
-	end if
+	tampilkan tampilan menu laporan presensi
 end if
 
 if (pilih = ganti password)

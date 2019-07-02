@@ -22,7 +22,7 @@ end if
 
 if (pilih = lihat data siswa)
 	tampilkan tampilan cari siswa
-	pilih tahun lahir 
+	input tahun lahir
 	input nama atau nis
 	if (balasan pesan api  = OK4)
 		tampilkan list siswa

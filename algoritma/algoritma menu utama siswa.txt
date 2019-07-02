@@ -1,0 +1,97 @@
+tampilkan tampilan menu utama siswa
+tampilkan tampilan button scanner QR-code
+tampilkan tampilan button profil
+tampilkan tampilan button kehadiran saya
+tampilkan tampilan button ganti password
+tampilkan tampilan button Logout
+
+check status siswa 
+if (check = "pengurus kelas")
+	tampilkan tampilan button buat QR-code presensi
+	tampilkan tampilan button lihat preensi perhari
+end if 
+
+if (pilih = profil)
+	tampilkan tampilan profil
+	
+	if (balasan pesan api  = OK4)
+		tampilkan tampilan profil siswa
+	else
+		tampilkan pesan dari API
+		kembali ke menu utama siswa
+	end if
+end if
+
+if (pilih = Button scanner qr-code)
+	tampilkan tampilan scanner qr-code
+	scan QR-Code
+	if (balasan pesan api  = OK4 )
+		tampilkan pesan "presensi berhasil"
+		kembali ke menu utama siswa
+	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+		tampilkan pesan dari API
+		tampilkan tampilan login
+	else
+		tampilkan pesan dari API
+		kembali ke menu utama siswa
+	end if
+end if
+
+if (pilih = kehadiran saya)
+	tampilkan tampilan pilihan tahun dan bulan  
+	pilih bulan dan tahun
+	if (balasan pesan api  = OK4)
+		tampilkan tampilan rekap presensi siswa
+	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+		tampilkan pesan dari API
+		tampilkan tampilan login
+	else
+		tampilkan pesan dari API
+		kembali ke menu utama siswa
+	end if
+end if
+
+if (pilih = buat qr code )
+	if (balasan pesan api  = OK4)
+		tampilkan tampilan QR-code
+	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+		tampilkan pesan dari API
+		tampilkan tampilan login
+	else
+		tampilkan pesan dari API
+		kembali ke menu utama siswa
+	end if
+end if
+
+if (pilih = lihat presensi kelas)
+	tampilkan tampilan pilihan tahun dan bulan  
+	pilih bulan dan tahun
+	if (balasan pesan api  = OK4)
+		tampilkan tampilan rekap presensi kelas 
+	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+		tampilkan pesan dari API
+		tampilkan tampilan login
+	else
+		tampilkan pesan dari API
+		kembali ke menu utama siswa
+	end if
+end if
+
+if (pilih = ganti password)
+	tampilkan tampilan ganti password
+	input password lama, password baru dan ulangi password baru 
+	if (balasan pesan api  = OK4)
+		tampilkan pesan "password berhasil diubah"
+		kembali ke menu utama
+	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+		tampilkan pesan dari API
+		tampilkan tampilan login
+	else
+		tampilkan pesan dari API
+		kembali ke menu utama siswa
+	end if
+end if
+
+if (pilih = logout) 
+	tampilkan tampilan login
+end if
