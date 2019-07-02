@@ -2,8 +2,8 @@ tampilkan tampilan ubah data kelas
 tampilkan tampilan button ubah nama kelas
 tampilkan tampilan button ubah wali kelas
 tampilkan tampilan button ubah ketua kelas
-tampilkan tampilan button hapus siswa
 tampilkan tampilan button tambah siswa
+tampilkan tampilan button hapus siswa
 
 
 if (pilih = ubah nama kelas)
@@ -36,11 +36,43 @@ if (pilih = ubah wali kelas)
 	end if
 end if
 
-if (pilih = ubah nama kelas)
-	tampilkan tampilan ubah nama kelas
-	input nama kelas
+if (pilih = ubah ketua kelas)
+	tampilkan tampilan list cari siswa
+	pilih siswa
+
 	if (balasan pesan api  = OK4)
-		tampilkan pesan "nama kelas berhasil diubah"
+		tampilkan pesan "ketua kelas berhasil diubah"
+		kembali ke tampilan ubah data kelas
+	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+		tampilkan pesan dari API
+		tampilkan tampilan login
+	else
+		tampilkan pesan dari API
+		kembali ke tampilan ubah data kelas
+	end if
+end if
+
+if (pilih = tambah siswa)
+	tampilkan tampilan list cari siswa
+	pilih siswa
+
+	if (balasan pesan api  = OK4)
+		tampilkan pesan "siswa berhasil ditambah dalam kelas"
+		kembali ke tampilan ubah data kelas
+	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
+		tampilkan pesan dari API
+		tampilkan tampilan login
+	else
+		tampilkan pesan dari API
+		kembali ke tampilan ubah data kelas
+	end if
+end if
+
+if (pilih = hapus siswa)
+	tampilkan tampilan list siswa
+	pilih siswa
+	if (balasan pesan api  = OK4)
+		tampilkan pesan "siswa berhasil dihapus dalam kelas"
 		kembali ke tampilan ubah data kelas
 	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
 		tampilkan pesan dari API
