@@ -10,13 +10,10 @@ if (pilih = input kelas baru)
 	input data kelas
 	if (balasan pesan api  = OK4)
 		tampilkan pesan "input kelas berhasil"
-		kembali ke tampilkan menu master kelas
-	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-		tampilkan pesan dari API
-		tampilkan tampilan login
+		kembali ke menu master kelas
 	else
 		tampilkan pesan dari API
-		kembali ke menu master kelas
+		kembali ke tampilan input kelas
 	end if
 end if
 
@@ -24,13 +21,9 @@ if (pilih = lihat data kelas)
 	tampilkan tampilan cari kelas
 	input tahun ajar
 	if (balasan pesan api  = OK4)
-		tampilkan list kelas
-		if (pilih = kelas)
-			tampilkan data kelas
-		end if
-	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-		tampilkan pesan dari API
-		tampilkan tampilan login
+		tampilkan daftar kelas
+		pilih kelas
+		tampilkan data kelas
 	else
 		tampilkan pesan dari API
 		kembali ke menu master kelas
@@ -41,13 +34,9 @@ if (pilih = ubah data kelas)
 	tampilkan tampilan cari kelas
 	input tahun ajar
 	if (balasan pesan api  = OK4)
-		tampilkan list kelas
-		if (pilih = kelas)
-			tampilkan tampilan ubah data kelas
-		end if
-	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-		tampilkan pesan dari API
-		tampilkan tampilan login
+		tampilkan daftar kelas
+		pilih kelas
+		tampilkan tampilan menu ubah data kelas
 	else
 		tampilkan pesan dari API
 		kembali ke menu master kelas
@@ -58,23 +47,16 @@ if (pilih = hapus kelas)
 	tampilkan tampilan cari kelas
 	input tahun ajar
 	if (balasan pesan api  = OK4)
-		tampilkan list kelas
-		if (pilih = kelas)
-			input password kelas
-			if (balasan pesan api  = OK4)
-				tampilkan pesan "hapus kelas berhasil"
-				kembali ke tampilkan menu master kelas
-			else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-				tampilkan pesan dari API
-				tampilkan tampilan login
-			else
-				tampilkan pesan dari API
-				kembali ke menu master kelas
-			end if
-		end if
-	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-		tampilkan pesan dari API
-		tampilkan tampilan login
+		tampilkan daftar kelas
+		pilih kelas
+        input password kelas
+        if (balasan pesan api  = OK4)
+            tampilkan pesan "hapus kelas berhasil"
+            kembali ke menu master kelas
+        else
+            tampilkan pesan dari API
+            kembali ke tampilan daftar kelas
+        end if
 	else
 		tampilkan pesan dari API
 		kembali ke menu master kelas

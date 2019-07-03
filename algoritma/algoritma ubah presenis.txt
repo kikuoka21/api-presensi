@@ -2,30 +2,24 @@ tampilkan tampilan ubah presensi
 tampilkan button pilih tanggal
 
 if (balasan pesan api  = OK4)
-	tampilkan list kelas 
-	if (pilih kelas)
-		tampilkan tampilan rekap presensi kelas perhari
-		tampilkan list siswa dan status kehadiran
-		tampilkan button ubah perkelas
+	tampilkan daftar kelas
+	pilih kelas
+    tampilkan tampilan rekap presensi kelas perhari
+    tampilkan daftar siswa dan status kehadiran
+    tampilkan button ubah perkelas
 
-		if (pilih button ubah || pilih siswa)
-			tampilkan tampilan ganti password
-			input status, keterangan dan password 
-			if (balasan pesan api  = OK4)
-				tampilkan pesan "ubah presensi berhasil"
-				kembali ke tampilkan list kelas 
-			else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-				tampilkan pesan dari API
-				tampilkan tampilan login
-			else
-				tampilkan pesan dari API
-				kembali ke tampilkan list kelas 
-			end if
-		end if
-	end if
-else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-	tampilkan pesan dari API
-	tampilkan tampilan login
+    if (pilih button ubah || pilih siswa)
+        tampilkan tampilan ganti password
+        input status, keterangan dan password
+        if (balasan pesan api  = OK4)
+            tampilkan pesan "ubah presensi berhasil"
+            kembali ke tampilan rekap presensi kelas perhari
+        else
+            tampilkan pesan dari API
+            kembali ke tampilan rekap presensi kelas perhari
+        end if
+    end if
 else
 	tampilkan pesan dari API
+	kembali ke tampilan ubah presensi
 end if

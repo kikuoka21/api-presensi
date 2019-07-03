@@ -11,25 +11,19 @@ if (pilih = ubah nama kelas)
 	input nama kelas
 	if (balasan pesan api  = OK4)
 		tampilkan pesan "nama kelas berhasil diubah"
-		kembali ke tampilan ubah data kelas
-	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-		tampilkan pesan dari API
-		tampilkan tampilan login
+		kembali ke menu master kelas
 	else
 		tampilkan pesan dari API
-		kembali ke menu master kelas
+		kembali ke tampilan ubah data kelas
 	end if
 end if
 
 if (pilih = ubah wali kelas)
-	tampilkan tampilan list staf 
+	tampilkan tampilan daftar staf 
 	pilih staf
 	if (balasan pesan api  = OK4)
 		tampilkan pesan "wali kelas berhasil diubah"
 		kembali ke tampilan ubah data kelas
-	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-		tampilkan pesan dari API
-		tampilkan tampilan login
 	else
 		tampilkan pesan dari API
 		kembali ke tampilan ubah data kelas
@@ -37,15 +31,12 @@ if (pilih = ubah wali kelas)
 end if
 
 if (pilih = ubah ketua kelas)
-	tampilkan tampilan list cari siswa
+	tampilkan tampilan daftar cari siswa
 	pilih siswa
 
 	if (balasan pesan api  = OK4)
 		tampilkan pesan "ketua kelas berhasil diubah"
 		kembali ke tampilan ubah data kelas
-	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-		tampilkan pesan dari API
-		tampilkan tampilan login
 	else
 		tampilkan pesan dari API
 		kembali ke tampilan ubah data kelas
@@ -53,32 +44,27 @@ if (pilih = ubah ketua kelas)
 end if
 
 if (pilih = tambah siswa)
-	tampilkan tampilan list cari siswa
+	tampilkan tampilan daftar cari siswa
+	cari siswa
 	pilih siswa
 
 	if (balasan pesan api  = OK4)
 		tampilkan pesan "siswa berhasil ditambah dalam kelas"
-		kembali ke tampilan ubah data kelas
-	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-		tampilkan pesan dari API
-		tampilkan tampilan login
+		kembali ke tampilan daftar cari siswa
 	else
 		tampilkan pesan dari API
-		kembali ke tampilan ubah data kelas
+		kembali ke tampilan daftar cari siswa
 	end if
 end if
 
 if (pilih = hapus siswa)
-	tampilkan tampilan list siswa
+	tampilkan tampilan daftar siswa
 	pilih siswa
 	if (balasan pesan api  = OK4)
 		tampilkan pesan "siswa berhasil dihapus dalam kelas"
-		kembali ke tampilan ubah data kelas
-	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-		tampilkan pesan dari API
-		tampilkan tampilan login
+		kembali ke tampilan daftar siswa
 	else
 		tampilkan pesan dari API
-		kembali ke tampilan ubah data kelas
+		kembali ke tampilan daftar siswa
 	end if
 end if

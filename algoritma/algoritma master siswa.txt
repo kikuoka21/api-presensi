@@ -10,7 +10,7 @@ if (pilih = input siswa baru)
 	input data siswa
 	if (balasan pesan api  = OK4)
 		tampilkan pesan "input siswa berhasil"
-		kembali ke tampilkan menu master siswa
+		kembali ke tampilan menu master siswa
 	else
 		tampilkan pesan dari API
 		kembali ke menu master siswa
@@ -22,9 +22,9 @@ if (pilih = lihat data siswa)
 	input tahun lahir
 	input nama atau nis
 	if (balasan pesan api  = OK4)
-		tampilkan list siswa
-		if (pilih = siswa)
-			tampilkan data siswa
+		tampilkan daftar siswa
+		pilih siswa
+		tampilkan data siswa
 	else
 		tampilkan pesan dari API
 		kembali ke menu master siswa
@@ -36,18 +36,17 @@ if (pilih = ubah data siswa)
 	pilih tahun lahir 
 	input nama atau nis
 	if (balasan pesan api  = OK4)
-		tampilkan list siswa
-		if (pilih = siswa)
-			tampilkan data siswa
-			ubah data siswa
-			if (balasan pesan api  = OK4)
-				tampilkan pesan "ubah siswa berhasil"
-				kembali ke tampilkan list siswa
-			else 
-				tampilkan pesan dari API
-				kembali ke tampilan list siswa
-			end if
-		end if
+		tampilkan daftar siswa
+		pilih siswa
+        tampilkan data siswa
+        ubah data siswa
+        if (balasan pesan api  = OK4)
+            tampilkan pesan "ubah siswa berhasil"
+            kembali ke tampilan daftar siswa
+        else
+            tampilkan pesan dari API
+            kembali ke tampilan daftar siswa
+        end if
 	else
 		tampilkan pesan dari API
 		kembali ke menu master siswa
@@ -59,18 +58,17 @@ if (pilih = ubah password siswa)
 	pilih tahun lahir 
 	input nama atau nis
 	if (balasan pesan api  = OK4)
-		tampilkan list siswa
-		if (pilih = siswa)
-			tampilkan tampilan ubah password
-			input password dan ulangi password
-			if (balasan pesan api  = OK4)
-				tampilkan pesan "password siswa berhasil diubah"
-				kembali ke tampilkan list siswa 
-			else 
-				tampilkan pesan dari API
-				kembali ke menu master siswa
-			end if
-		end if
+		tampilkan daftar siswa
+		pilih siswa
+        tampilkan tampilan ubah password
+        input password dan ulangi password
+        if (balasan pesan api  = OK4)
+            tampilkan pesan "password siswa berhasil diubah"
+            kembali ke tampilan daftar siswa
+        else
+            tampilkan pesan dari API
+            kembali ke menu master siswa
+        end if
 	else
 		tampilkan pesan dari API
 		kembali ke menu master siswa
@@ -82,17 +80,16 @@ if (pilih = hapus siswa)
 	pilih tahun lahir 
 	input nama atau nis
 	if (balasan pesan api  = OK4)
-		tampilkan list siswa
-		if (pilih = siswa)
-			input password staf
-			if (balasan pesan api  = OK4)
-				tampilkan pesan "hapus siswa berhasil"
-				kembali ke menu master siswa
-			else
-				tampilkan pesan dari API
-				kembali ke menu master siswa
-			end if
-		end if
+		tampilkan daftar siswa
+		pilih siswa
+        input password staf
+        if (balasan pesan api  = OK4)
+            tampilkan pesan "hapus siswa berhasil"
+            kembali ke menu master siswa
+        else
+            tampilkan pesan dari API
+            kembali ke menu master siswa
+        end if
 	else
 		tampilkan pesan dari API
 		kembali ke menu master siswa
