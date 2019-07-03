@@ -11,9 +11,6 @@ if (pilih = input siswa baru)
 	if (balasan pesan api  = OK4)
 		tampilkan pesan "input siswa berhasil"
 		kembali ke tampilkan menu master siswa
-	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-		tampilkan pesan dari API
-		tampilkan tampilan login
 	else
 		tampilkan pesan dari API
 		kembali ke menu master siswa
@@ -28,10 +25,6 @@ if (pilih = lihat data siswa)
 		tampilkan list siswa
 		if (pilih = siswa)
 			tampilkan data siswa
-		end if
-	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-		tampilkan pesan dari API
-		tampilkan tampilan login
 	else
 		tampilkan pesan dari API
 		kembali ke menu master siswa
@@ -52,12 +45,9 @@ if (pilih = ubah data siswa)
 				kembali ke tampilkan list siswa
 			else 
 				tampilkan pesan dari API
-				kembali ke menu master siswa
+				kembali ke tampilan list siswa
 			end if
 		end if
-	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-		tampilkan pesan dari API
-		tampilkan tampilan login
 	else
 		tampilkan pesan dari API
 		kembali ke menu master siswa
@@ -81,9 +71,6 @@ if (pilih = ubah password siswa)
 				kembali ke menu master siswa
 			end if
 		end if
-	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-		tampilkan pesan dari API
-		tampilkan tampilan login
 	else
 		tampilkan pesan dari API
 		kembali ke menu master siswa
@@ -100,18 +87,12 @@ if (pilih = hapus siswa)
 			input password staf
 			if (balasan pesan api  = OK4)
 				tampilkan pesan "hapus siswa berhasil"
-				kembali ke tampilkan list siswa 
-			else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-				tampilkan pesan dari API
-				tampilkan tampilan login
+				kembali ke menu master siswa
 			else
 				tampilkan pesan dari API
 				kembali ke menu master siswa
 			end if
 		end if
-	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-		tampilkan pesan dari API
-		tampilkan tampilan login
 	else
 		tampilkan pesan dari API
 		kembali ke menu master siswa

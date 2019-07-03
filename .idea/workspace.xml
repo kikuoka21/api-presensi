@@ -2,8 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="277a51ce-d42f-4fdd-af75-1bd60e7cc2c1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algoritma/algoritma menu utama siswa.txt" beforeDir="false" afterPath="$PROJECT_DIR$/algoritma/algoritma menu utama siswa.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algoritma/algoritma menu utama staf.txt" beforeDir="false" afterPath="$PROJECT_DIR$/algoritma/algoritma menu utama staf.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algoritma/algortma master siswa.txt" beforeDir="false" afterPath="$PROJECT_DIR$/algoritma/algortma master siswa.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algoritma/algoritma ubah data kelas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/algoritma/algoritma master kelas ubah.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algoritma/algortma input tanggal.txt" beforeDir="false" afterPath="$PROJECT_DIR$/algoritma/algoritma master tanggal.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algoritma/algortma master siswa.txt" beforeDir="false" afterPath="$PROJECT_DIR$/algoritma/algoritma master siswa.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algoritma/algortma master staf.txt" beforeDir="false" afterPath="$PROJECT_DIR$/algoritma/algoritma master staf.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algoritma/algortma ubah presenis.txt" beforeDir="false" afterPath="$PROJECT_DIR$/algoritma/algoritma ubah presenis.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/Input_data_master.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/Input_data_master.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/Master/Kelas.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/Master/Kelas.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Siswa/presensi.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Siswa/presensi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Siswa/siswa.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Siswa/siswa.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,11 +28,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/algoritma/algortma master siswa.txt">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/algoritma/algoritma master siswa.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="23" lean-forward="true" selection-start-line="24" selection-start-column="4" selection-end-line="25" selection-end-column="23" />
+            <state relative-caret-position="1496">
+              <caret line="94" column="14" selection-start-line="94" selection-start-column="14" selection-end-line="94" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/algoritma/algoritma master staf.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="561">
+              <caret line="78" column="32" lean-forward="true" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -30,9 +51,18 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>wali</find>
+      <find>list</find>
+      <find>NIS Tersebut Sudah tidak Dalam kelas</find>
+      <find>ubah_pass</find>
+      <find>all_kelas</find>
+      <find>list_siswa</find>
+      <find>list-siswa</find>
+      <find>ke menu utama siswa</find>
+      <find>siswa</find>
     </findStrings>
     <replaceStrings>
       <replace>ketua</replace>
+      <replace>ke tampilan menu utama siswa</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -44,9 +74,17 @@
         <option value="$PROJECT_DIR$/algoritma/algortma ubah presenis.txt" />
         <option value="$PROJECT_DIR$/algoritma/algoritma ubah data kelas.txt" />
         <option value="$PROJECT_DIR$/algoritma/algoritma login.txt" />
+        <option value="$PROJECT_DIR$/algoritma/algortma master siswa.txt" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Siswa/siswa.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/Master/Kelas.php" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/auth.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/Input_data_master.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Siswa/presensi.php" />
         <option value="$PROJECT_DIR$/algoritma/algoritma menu utama siswa.txt" />
         <option value="$PROJECT_DIR$/algoritma/algoritma menu utama staf.txt" />
-        <option value="$PROJECT_DIR$/algoritma/algortma master siswa.txt" />
+        <option value="$PROJECT_DIR$/algoritma/algoritma master siswa.txt" />
+        <option value="$PROJECT_DIR$/algoritma/algoritma master staf.txt" />
       </list>
     </option>
   </component>
@@ -144,6 +182,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -156,11 +195,15 @@
               <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
               <item name="algoritma" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="api-qrcode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api-qrcode" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -169,6 +212,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\user\api-qrcode\icon" />
       <recent name="C:\Users\user\api-qrcode\algoritma" />
     </key>
   </component>
@@ -195,18 +239,19 @@
       <option name="presentableId" value="Default" />
       <updated>1561991416172</updated>
       <workItem from="1561991417486" duration="1357000" />
-      <workItem from="1562031746560" duration="12689000" />
+      <workItem from="1562031746560" duration="12749000" />
+      <workItem from="1562127003914" duration="12960000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14046000" />
+    <option name="totallyTimeSpent" value="27066000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="953" y="0" width="974" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.51750547" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2702407" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -232,10 +277,104 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/algoritma/algoritma ubah data kelas.txt">
+    <entry file="file://$PROJECT_DIR$/algoritma/algoritma ubah presenis.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules_siswa/M_siswa.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/databasenya.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" lean-forward="true" selection-end-line="175" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/icon/profile.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/icon/credit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="58" selection-start-line="2" selection-start-column="49" selection-end-line="2" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules_siswa/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="174" column="20" selection-start-line="174" selection-start-column="20" selection-end-line="174" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules_admin/Modul_Kelas.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="108" column="55" selection-start-line="108" selection-start-column="55" selection-end-line="108" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/auth.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1504">
+          <caret line="166" column="24" lean-forward="true" selection-start-line="166" selection-start-column="24" selection-end-line="166" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Siswa/siswa.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="884">
-          <caret line="84" selection-start-line="84" selection-end-line="84" />
+          <caret line="312" column="34" lean-forward="true" selection-start-line="312" selection-start-column="34" selection-end-line="312" selection-end-column="34" />
+          <folding>
+            <element signature="e#414#2357#0#PHP" />
+            <element signature="e#2360#4655#0#PHP" />
+            <element signature="e#4658#7152#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/Master/Kelas.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="107" column="63" selection-start-line="107" selection-start-column="54" selection-end-line="107" selection-end-column="63" />
+          <folding>
+            <element signature="e#135#171#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Siswa/presensi.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="210" column="12" selection-start-line="210" selection-start-column="12" selection-end-line="210" selection-end-column="12" />
+          <folding>
+            <element signature="e#128#164#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="63" column="75" selection-start-line="63" selection-start-column="65" selection-end-line="63" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/Input_data_master.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="459" column="37" selection-start-line="459" selection-start-column="37" selection-end-line="459" selection-end-column="37" />
+          <folding>
+            <element signature="e#18420#21287#0#PHP" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -246,38 +385,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/algoritma/algortma master staf.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-309">
-          <caret line="49" column="46" lean-forward="true" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/algoritma/algoritma master kelas.txt">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/algoritma/algoritma menu utama siswa.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="51" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/algoritma/algortma ubah presenis.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
+        <state relative-caret-position="-58">
+          <caret line="40" column="47" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/algoritma/algoritma menu utama staf.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="37" column="4" lean-forward="true" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="44" />
+        <state relative-caret-position="384">
+          <caret line="48" column="34" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/algoritma/algortma master siswa.txt">
+    <entry file="file://$PROJECT_DIR$/algoritma/algoritma master kelas ubah.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="23" lean-forward="true" selection-start-line="24" selection-start-column="4" selection-end-line="25" selection-end-column="23" />
+        <state relative-caret-position="554">
+          <caret line="84" selection-start-line="84" selection-end-line="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algoritma/algoritma master tanggal.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algoritma/algoritma master siswa.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1496">
+          <caret line="94" column="14" selection-start-line="94" selection-start-column="14" selection-end-line="94" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algoritma/algoritma master staf.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="78" column="32" lean-forward="true" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
         </state>
       </provider>
     </entry>

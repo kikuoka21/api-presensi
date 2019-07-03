@@ -10,9 +10,9 @@ namespace App\Http\Controllers\Admin\master;
 
 use App\Http\Controllers\Controller;
 use App\Modules_admin\Modul_Kelas;
+use App\Modules_siswa\M_siswa;
 use App\Modules_siswa\Tool;
 use App\Modules_siswa\User;
-use App\Modules_siswa\M_siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -105,7 +105,7 @@ class kelas extends Controller
 			if ($tool->IsJsonString($json)) {
 				$json = json_decode($json);
 				if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
-					isset($json->thn) && isset($json->thn_lahir)&& isset($json->nama)) {
+					isset($json->thn) && isset($json->thn_lahir) && isset($json->nama)) {
 					$token = $json->token;
 					$username = $json->x1d;
 					$type = $json->type;
@@ -225,7 +225,7 @@ class kelas extends Controller
 									];
 								} else
 									$result = [
-										'code' => 'NIS Tersebut Sudah tidak Dalam kelas'
+										'code' => 'Siswa tersebut tidak dalam kelas'
 									];
 
 							} else

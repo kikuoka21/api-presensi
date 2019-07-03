@@ -43,13 +43,10 @@ if (pilih = ganti password)
 	input password lama, password baru dan ulangi password baru 
 	if (balasan pesan api  = OK4)
 		tampilkan pesan "password berhasil diubah"
-		kembali ke menu utama
-	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-		tampilkan pesan dari API
-		tampilkan tampilan login
+        tampilkan tampilan login
 	else
 		tampilkan pesan dari API
-		kembali ke menu utama siswa
+		kembali ke menu utama staf
 	end if
 end if
 

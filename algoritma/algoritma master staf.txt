@@ -10,10 +10,7 @@ if (pilih = input staf baru)
 	input data staf
 	if (balasan pesan api  = OK4)
 		tampilkan pesan "input staf berhasil"
-		kembali ke tampilkan menu master staf
-	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-		tampilkan pesan dari API
-		tampilkan tampilan login
+		kembali ke menu master staf
 	else
 		tampilkan pesan dari API
 		kembali ke menu master staf
@@ -28,9 +25,6 @@ if (pilih = lihat data staf)
 		if (pilih = staf)
 			tampilkan data staf
 		end if
-	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-		tampilkan pesan dari API
-		tampilkan tampilan login
 	else
 		tampilkan pesan dari API
 		kembali ke menu master staf
@@ -47,15 +41,12 @@ if (pilih = ubah data staf)
 			ubah data staf
 			if (balasan pesan api  = OK4)
 				tampilkan pesan "ubah staf berhasil"
-				kembali ke tampilkan list staf
+				kembali ke tampilkan menu master staf
 			else 
 				tampilkan pesan dari API
-				kembali ke menu master staf
+				kembali ke tampilkan list staf
 			end if
 		end if
-	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-		tampilkan pesan dari API
-		tampilkan tampilan login
 	else
 		tampilkan pesan dari API
 		kembali ke menu master staf
@@ -72,15 +63,12 @@ if (pilih = ubah password staf)
 			input password dan ulangi password
 			if (balasan pesan api  = OK4)
 				tampilkan pesan "password staf berhasil diubah"
-				kembali ke tampilkan list staf
-			else 
+                kembali ke tampilkan menu master staf
+			else
 				tampilkan pesan dari API
-				kembali ke menu master staf
+				kembali ke tampilkan list staf
 			end if
 		end if
-	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-		tampilkan pesan dari API
-		tampilkan tampilan login
 	else
 		tampilkan pesan dari API
 		kembali ke menu master staf
@@ -97,17 +85,11 @@ if (pilih = hapus staf)
 			if (balasan pesan api  = OK4)
 				tampilkan pesan "hapus staf berhasil"
 				kembali ke tampilkan menu master staf
-			else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-				tampilkan pesan dari API
-				tampilkan tampilan login
 			else
 				tampilkan pesan dari API
 				kembali ke menu master staf
 			end if
 		end if
-	else if (balasan pesan api  = "TOKEN1" || balasan pesan api  = "TOKEN2" )
-		tampilkan pesan dari API
-		tampilkan tampilan login
 	else
 		tampilkan pesan dari API
 		kembali ke menu master staf
