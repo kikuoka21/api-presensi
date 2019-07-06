@@ -35,7 +35,7 @@ class auth extends Controller
 //                    $tool->Isi_Log('login OK4 ' . $username . ' ' . $key . ' ' . $inputnya);
 //                    $inputnya = '';
 					if (!$hasil) {
-						$result = ['code' => 'nis yang dimasukan salah'];
+						$result = ['code' => 'Username atau password yang dimasukan salah'];
 					} else {
 						if (object_get($hasil[0], 'password') == $pass) {
 							$token = $tool->generate_token($key, $username, $type);
@@ -62,7 +62,7 @@ class auth extends Controller
 							];
 
 						} else {
-							$result = ['code' => 'password yang dimasukan salah '];
+							$result = ['code' => 'Username atau password yang dimasukan salah'];
 						}
 					}
 
@@ -70,7 +70,7 @@ class auth extends Controller
 					$tool->Isi_Log('login ' . $username . ' ' . $key);
 
 				} else {
-					$result = ['code' => 'data yangdikirm salah'];
+					$result = ['code' => 'data yang dikirm salah'];
 				}
 			} else {
 				$result = ['code' => 'format data yg dikirim salah '];

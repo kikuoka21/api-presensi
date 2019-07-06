@@ -48,16 +48,16 @@ class Input_data_master extends Controller
 
 								if (!$hasil) {
 									// jika tidak d temukan nis tersebut
-									$inputmaster->input_siswa($json->nis, $json->nisn, $json->nama_siswa, $json->jenkel, $json->tgl_lhr,
-										$json->alamat, $json->tmpt_lhr, $json->agama, $json->orangtua, $json->no_ijazah,
-										$json->no_ujiansmp);
+									$inputmaster->input_siswa($json->nis, $json->nisn, $json->nama_siswa, $json->jenkel,
+                                        $json->tgl_lhr, $json->alamat, $json->tmpt_lhr, $json->agama, $json->orangtua,
+                                        $json->no_ijazah, $json->no_ujiansmp);
 
 
 									$result = [
 										'code' => 'OK4'
 									];
 								} else
-									$result = ['code' => 'nis yang dimasukan sudah ada dengan nama ' . object_get($hasil[0], 'nama')];
+									$result = ['code' => 'NIS yang dimasukan sudah ada dengan nama ' . object_get($hasil[0], 'nama')];
 
 							} else
 								$result = ['code' => 'Akses Ditolak'];

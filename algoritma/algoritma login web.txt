@@ -1,0 +1,19 @@
+Tampilkan tampilan Login
+input username dan password
+
+if (pilih = login)
+	check username dan password
+	if (check = "true")
+		check status username
+		if(check = "staf")
+			tampilkan menu utama siswa
+		else
+			tampilkan pesan "siswa tidak berhak mengakses web ini"
+            kembali ke tampilan login
+		end if
+	else
+		tampilkan pesan "username atau password salah"
+		kembali ke tampilan login
+	end if
+	
+end if
