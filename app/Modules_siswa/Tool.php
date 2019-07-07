@@ -110,4 +110,52 @@ class Tool
             return false;
         }
     }
+    public function geubahtanggalbln($tgl)
+    {
+        return \Carbon\Carbon::create($tgl)->format('d ').$this->bulan(\Carbon\Carbon::create($tgl)->format('F')) .
+            \Carbon\Carbon::now()->format(' Y');
+    }
+    private function bulan($bulan)
+    {
+        switch (substr($bulan, 0, 3)) {
+            case "Jan":
+                return "Januari";
+
+            case "Feb":
+                return "Februari";
+
+            case "Mar":
+                return "Maret";
+
+            case "Apr":
+                return "April";
+
+            case "May":
+                return "Mei";
+
+            case "Jun":
+                return "Juni";
+
+            case "Jul":
+                return "Juli";
+
+            case "Aug":
+                return "Agustus";
+
+            case "Sep":
+                return "September";
+
+            case "Oct":
+                return "Oktober";
+
+            case "Nov":
+                return "November";
+
+            case "Des":
+                return "Desember";
+
+            default:
+                return $bulan;
+        }
+    }
 }

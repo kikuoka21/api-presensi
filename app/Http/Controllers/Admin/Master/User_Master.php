@@ -224,7 +224,7 @@ class User_Master extends Controller
                                             ];
                                     } else
                                         $result = [
-                                            'code' => 'Pass yang dimasukan salah'
+                                            'code' => 'Password anda yang dimasukan salah'
                                         ];
 
                                 } else

@@ -165,7 +165,7 @@ class auth extends Controller
 										$result = ['code' => 'OK4'];
 									} else {
 										$result = [
-											'code' => 'Pass yang dimasukan salah'
+											'code' => 'Password anda yang dimasukan salah'
 										];
 									}
 								} else $result = [

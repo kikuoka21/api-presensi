@@ -112,7 +112,7 @@ class Input_data_master extends Controller
 										'code' => 'OK4'
 									];
 								} else
-									$result = ['code' => 'nip yang dimasukan sudah ada'];
+									$result = ['code' => 'NIP yang dimasukan sudah ada dengan nama '. $hasil[0]->nama_staf];
 
 							} else
 								$result = ['code' => 'Akses Ditolak'];
@@ -132,7 +132,6 @@ class Input_data_master extends Controller
 			return $result;
 		}
 	}
-
 
 	public function input_tanggal(Request $request)
 	{
@@ -167,8 +166,7 @@ class Input_data_master extends Controller
 
 									$result = ['code' => 'OK4'];
 								} else
-									$result = ['code' => 'Tanggal yang anda masukan sudah ada dengan data ' . object_get($hasil[0], 'tgl')
-										. ', ' . object_get($hasil[0], 'ket')];
+									$result = ['code' => 'Tanggal yang anda masukan sudah ada dengan keterangan \'' . object_get($hasil[0], 'ket').'\''];
 							} else
 								$result = ['code' => 'Akses Ditolak'];
 						} else
@@ -339,7 +337,6 @@ class Input_data_master extends Controller
 			return $result;
 		}
 	}
-
 
 	public function hapus_tanggal(Request $request)
 	{

@@ -476,17 +476,11 @@ class kelas extends Controller
 								$hasil = $inputmaster->check_nama_kelas($json->id_kelas, $json->nama_kelas);
 
 								if ($hasil) {
-									$result = [
-										'code' => 'double'
-									];
+									$result = ['code' => 'Data yang diinput sudah ada'];
 								} else {
 									$inputmaster->ubah_nama_kelas($json->id_kelas, $json->nama_kelas);
-									$result = [
-										'code' => 'OK4',
-									];
+									$result = ['code' => 'OK4'];
 								}
-
-
 							} else
 								$result = ['code' => 'Akses Ditolak'];
 
