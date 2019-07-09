@@ -15,12 +15,11 @@ class Modul_user_master
 {
     public function cari_siswa($nama, $tahun)
     {
-        $query = "select nis , nama_siswa FROM siswa where nama_siswa like :nama and tgl_lahir like :tahun or nis like :namaa and tgl_lahir like :tahunn limit 20";
+        $query = "select nis , nama_siswa FROM siswa where  tgl_lahir like :tahun and (nama_siswa like :nama or nis like :namaa) limit 20";
         $respon = DB::connection('mysql')->select(DB::raw($query), [
             'nama' => '%' . $nama . '%',
-            'tahun' => '%' . $tahun . '-%',
-            'namaa' => '%' . $nama . '%',
-            'tahunn' => '%' . $tahun . '-%'
+            'tahun' => '%' . $tahun . '%',
+            'namaa' => '%' . $nama . '%'
         ]);
         return $respon;
 //        $getid = DB::table('users')->where('username', $nama)->get();
