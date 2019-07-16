@@ -60,9 +60,21 @@ class M_admin
 //	}
 
 	public function getsiswa($username, $thn){
-	    $query = "select nis from kelas
+	    $query = "select nis , kelas.nama_kelas from kelas
                     inner join isikelas 
                     on isikelas.id_kelas = kelas.id_kelas
+                    where id_wali_kelas = :nip
+                    and kelas.tahun_ajar = :thn";
+        $result = DB::connection('mysql')->select(DB::raw($query), [
+            'thn' => $thn,
+            'nip' => $username
+        ]);
+
+        return $result;
+    }
+
+	public function namakelas($username, $thn){
+	    $query = "select id_kelas , nama_kelas from kelas
                     where id_wali_kelas = :nip
                     and kelas.tahun_ajar = :thn";
         $result = DB::connection('mysql')->select(DB::raw($query), [

@@ -245,7 +245,7 @@ class siswa extends Controller
 									}
 
 								} else {
-									$code = 'eror pada pencarian kehadiran';
+									$code = 'QR-Code belum dibuat';
 
 								}
 

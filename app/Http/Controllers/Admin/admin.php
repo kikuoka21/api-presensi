@@ -69,7 +69,9 @@ class admin extends Controller
                                             $list = $madmin->getabsen_all2($tanggal, $tool->thn_ajar_skrng());
                                         } else {
                                             $siswa = $madmin->getsiswa($username, $tool->thn_ajar_skrng());
+                                            $nama = $madmin->namakelas($username, $tool->thn_ajar_skrng());
                                             if ($siswa) {
+                                                $row = 0;
                                                 for ($i = 0; $i < count($siswa); $i++) {
 
                                                     $presen = new M_presensi();
@@ -78,22 +80,27 @@ class admin extends Controller
                                                         $presensi = [
                                                             "nis" => $siswa[$i]->nis,
                                                             "nama" => $dashboard->getnama_siswa($siswa[$i]->nis),
-                                                            "kelas" => "X-5",
+                                                            "kelas" =>  object_get($nama[0], 'nama_kelas'),
                                                             "stat" => "A",
                                                             "ket" => "Belum Absen"];
                                                         $msiswa = new M_siswa();
                                                         $msiswa->create_absen($siswa[$i]->nis, $tanggal);
                                                     } else {
 
+                                                        if($absen[0]->stat=='A'){
+                                                            $presensi = [
+                                                                "nis" => $siswa[$i]->nis,
+                                                                "nama" => $dashboard->getnama_siswa($siswa[$i]->nis),
+                                                                "kelas" =>  object_get($nama[0], 'nama_kelas'),
+                                                                "stat" => $absen[0]->stat,
+                                                                "ket" => $absen[0]->ket];
+                                                            $list[$row] = $presensi;
+                                                            $row++;
+                                                        }
 
-                                                        $presensi = [
-                                                            "nis" => $siswa[$i]->nis,
-                                                            "nama" => $dashboard->getnama_siswa($siswa[$i]->nis),
-                                                            "kelas" => "X-5",
-                                                            "stat" => $absen[0]->stat,
-                                                            "ket" => $absen[0]->ket];
+
                                                     }
-                                                    $list[$i] = $presensi;
+
 
                                                 }
                                             }
