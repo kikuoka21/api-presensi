@@ -11,4 +11,5 @@
 |
 */
 
-Route::get('/',  'auth@getip');
+//Route::get('/',  'auth@getip');
+Route::get('/',  'auth@getip2');

@@ -10,6 +10,8 @@ Route::prefix('auth')->group(function () {
 
 });
 
+Route::get('zzzz', 'auth@ccc');
+Route::post('zzzz', 'auth@ccc');
 
 //admin
 Route::prefix('admin')->group(function () {
@@ -106,3 +108,7 @@ Route::prefix('siswa')->group(function () {
 });
 
 
+Route::prefix('parent')->group(function () {
+
+    Route::post('login', 'Parent\auth@login');
+});
