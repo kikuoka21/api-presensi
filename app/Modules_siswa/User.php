@@ -84,6 +84,15 @@ class User
         return $data;
     }
 
+    public function input_token_firebase($uid, $token)
+    {
+        $query = "UPDATE users SET token_firebase = :token where username= :xuid";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'xuid' => $uid,
+            'token' => $token
+        ]);
+
+    }
 
     public function chek_token($xuid, $token, $type)
     {
@@ -145,6 +154,7 @@ class User
 
 
     }
+
     public function getakses_pengurus($xuid, $kdkls)
     {
         $getid = DB::table('isikelas')->select('level')->where('nis', $xuid)->where('id_kelas', $kdkls)->get();

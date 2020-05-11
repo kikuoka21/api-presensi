@@ -45,6 +45,7 @@ class auth extends Controller
 //                                $inputnya = 'berhasil web';
                             } else {
                                 $user->input_tokenmobile($username, $token);
+                                $user->input_token_firebase($username, $key);
 //                                $inputnya = 'berhasil mobile';
                             }
                             $result = [

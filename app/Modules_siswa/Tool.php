@@ -17,6 +17,12 @@ use DB;
 
 class Tool
 {
+    function key_server_fcm()
+    {
+        return 'AAAAeC3s3Ck:APA91bHU6tFo-Jn4SKcaaClwqki1MRf-TceaTz5sckwVolpwgZIyTUJAuTHMJ8loB6hhnnSI3gbFvZVRjE8Ou15VcxhBFx1-PsYIs4APX7GMkdsmP5scT-N7RuB6gjkw0DA4J3fO8ZG7';
+
+    }
+
     function IsJsonString($str)
     {
         json_decode($str);
@@ -110,11 +116,13 @@ class Tool
             return false;
         }
     }
+
     public function geubahtanggalbln($tgl)
     {
-        return \Carbon\Carbon::create($tgl)->format('d ').$this->bulan(\Carbon\Carbon::create($tgl)->format('F')) .
+        return \Carbon\Carbon::create($tgl)->format('d ') . $this->bulan(\Carbon\Carbon::create($tgl)->format('F')) .
             \Carbon\Carbon::now()->format(' Y');
     }
+
     private function bulan($bulan)
     {
         switch (substr($bulan, 0, 3)) {

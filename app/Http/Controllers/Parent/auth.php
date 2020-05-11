@@ -5,17 +5,16 @@ namespace App\Http\Controllers\Parent;
 
 
 use App\Http\Controllers\Controller;
+use App\Modules_parent\User_parent;
 use App\Modules_siswa\Tool;
-use App\Modules_siswa\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
 class auth extends Controller
 {
 
     public function login(Request $request)
     {
-        $user = new User();
+        $user = new User_parent();
         $tool = new Tool();
         $json = $request->input('parsing');
 
@@ -26,13 +25,29 @@ class auth extends Controller
                 $username = $json->x1d;
                 $type = $json->type;
                 $key = $json->key;
-                $hasil = $user->getUser($username);
+                $hasil = $user->get_wali($username);
 
-                if (!$hasil) {
-                    $result = [
-                        'hasil' => true,
-                        'message' => '--'
-                    ];
+                if (count($hasil) == 1) {
+
+                    if (object_get($hasil[0], 'password') == $pass) {
+
+                        $token = $tool->generate_token($key, $username, $type);
+                        $user->input_tokenmobile($username, $token, $key);
+                        $result = [
+                            'hasil' => true,
+                            'token' => $token,
+                            'nama' => $user->getdata_dashboard($username),
+                            'thn-ajar' => $tool->thn_ajar_skrng(),
+                            'tanggal' => $tool->tgl_skrng(),
+
+                        ];
+                    } else {
+                        $result = [
+                            'hasil' => false,
+                            'message' => 'Sandi yang dimasukan salah'
+                        ];
+                    }
+
                 } else {
                     $result = [
                         'hasil' => false,
