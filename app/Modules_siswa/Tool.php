@@ -34,6 +34,23 @@ class Tool
         return md5(md5('%!' . $id . $key) . $type . '!%');
     }
 
+
+    public function is_parent($json)
+    {
+        $hasil = false;
+
+        if (isset($json->parent)) {
+
+
+            if ($json->parent)
+                $hasil = true;
+
+
+        }
+        return $hasil;
+    }
+
+
     public function thn_ajar_skrng()
     {
         $mytime = Carbon::now();

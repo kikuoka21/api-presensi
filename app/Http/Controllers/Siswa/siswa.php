@@ -41,7 +41,6 @@ class siswa extends Controller
 					if ($token == $tool->generate_token($key, $username, $type)) {
 						if ($user->chek_token($username, $token, $type)) {
 							$tanggal = $tool->get_date();
-//                            $tanggal = '2019-05-11';
 
 
 							$hasil = $dashboard->harilibur($tanggal);
@@ -66,12 +65,11 @@ class siswa extends Controller
 
 							$msiswa = new M_siswa();
 							$hasil_kelas = $msiswa->getKels($username, $tool->thn_ajar_skrng());
+                            $id_kelas = '-';
+                            $nama_kelas = 'Belum Diinput';
 							if ($hasil_kelas) {
 								$id_kelas = object_get($hasil_kelas[0], 'kd_kels');
 								$nama_kelas = object_get($hasil_kelas[0], 'kelas');
-							} else {
-								$id_kelas = '-';
-								$nama_kelas = 'Belum Diinput';
 							}
 
 							$result = [

@@ -94,6 +94,10 @@ class Modul_user_master
         DB::connection('mysql')->select(DB::raw($query), [
             'nis' => $nis
         ]);
+        $query = "DELETE FROM wali where nis = :nis";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'nis' => $nis
+        ]);
     }
 
     public function cari_staf($nama)

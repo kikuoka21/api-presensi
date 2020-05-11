@@ -55,6 +55,16 @@ class Input_masterr
         ]);
     }
 
+    public function input_wali($id, $pass)
+    {
+        $query = "INSERT INTO wali ( nis, password) 
+					VALUES (:id ,:pass)";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'id' => $id,
+            'pass' => $pass,
+        ]);
+    }
+
 
     public function check_data_staff($nip)
     {
@@ -116,7 +126,7 @@ class Input_masterr
         DB::table('hari_libur')->where('tanggal', $tanggal)->delete();
         DB::table('kehadiran')->where('tanggal', $tanggal)->update([
             'stat' => 'A',
-            'ket' => 'hari libur pada '.$tanggal.' dihapus'
+            'ket' => 'hari libur pada ' . $tanggal . ' dihapus'
         ]);
     }
 

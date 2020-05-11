@@ -204,6 +204,7 @@ class admin extends Controller
 
                                 $result = [
                                     'code' => 'OK4',
+                                    'code2' =>$tool->is_parent($json),
                                     'date' => $hari_ini,
                                     'statistik' => $statistik,
 

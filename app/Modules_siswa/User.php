@@ -141,6 +141,17 @@ class User
 
     }
 
+    public function update_pass_wali($uid, $xpass)
+    {
+        $query = "UPDATE wali SET password= :pass , token= :tkn  where nis= :xuid";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'xuid' => $uid,
+            'pass' => $xpass,
+            'tkn' => '',
+        ]);
+
+    }
+
     public function getakses_admin($xuid)
     {
         $getid = DB::table('users')->select('akses')->where('username', $xuid)->get();
@@ -203,12 +214,13 @@ class User
     {
         $result = DB::table('users')->select('username')->where('username', $uid)->where('password', $pass)->get();
 
-//        $query = "SELECT username FROM users where username = :xuid and  = :pass";
-//        $result = DB::connection('mysql')->select(DB::raw($query), [
-//            'xuid' => $uid,
-//            'pass' => $pass
-//        ]);
-//
+        return $result;
+
+    }
+    public function comparepass_wali($uid, $pass)
+    {
+        $result = DB::table('wali')->select('nis')->where('nis', $uid)->where('password', $pass)->get();
+
         return $result;
 
     }

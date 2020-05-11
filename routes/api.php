@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 Route::prefix('auth')->group(function () {
 	Route::post('login', 'auth@Login');
 	Route::post('check-token', 'auth@check_token');
-	Route::post('ganti-pswd', 'auth@ubah_pass');
+	Route::post('ganti-pswd', 'auth@ubah_pass_parent');
 
 });
 
@@ -111,4 +111,6 @@ Route::prefix('siswa')->group(function () {
 Route::prefix('parent')->group(function () {
 
     Route::post('login', 'Parent\auth@login');
+
+    Route::post('ganti-pswd', 'auth@ubah_pass_parent');
 });
