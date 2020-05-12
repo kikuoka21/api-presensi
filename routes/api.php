@@ -110,7 +110,8 @@ Route::prefix('siswa')->group(function () {
 
 Route::prefix('parent')->group(function () {
 
-    Route::post('login', 'Parent\auth@login');
+    Route::post('login', 'Parent\dashboard@login');
 
-    Route::post('ganti-pswd', 'auth@ubah_pass_parent');
+    Route::post('dashboard', 'Parent\dashboard');
+    Route::post('profil', 'Parent\dashboard@profil');
 });
