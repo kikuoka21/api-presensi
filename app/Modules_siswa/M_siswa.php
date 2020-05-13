@@ -129,5 +129,9 @@ class M_siswa
             'nis' => $nis
         ]);
 
+        $getid = DB::table('wali')->select('token_firebase')->where('nis', $nis)->first();
+
+
+        return $getid->token_firebase;
     }
 }
