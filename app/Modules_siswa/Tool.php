@@ -19,10 +19,33 @@ class Tool
 {
     function key_server_fcm()
     {
-        return 'AAAAeC3s3Ck:APA91bHU6tFo-Jn4SKcaaClwqki1MRf-TceaTz5sckwVolpwgZIyTUJAuTHMJ8loB6hhnnSI3gbFvZVRjE8Ou15VcxhBFx1-PsYIs4APX7GMkdsmP5scT-N7RuB6gjkw0DA4J3fO8ZG7';
+
+        //alkamal
+//        return 'AAAAeC3s3Ck:APA91bHU6tFo-Jn4SKcaaClwqki1MRf-TceaTz5sckwVolpwgZIyTUJAuTHMJ8loB6hhnnSI3gbFvZVRjE8Ou15VcxhBFx1-PsYIs4APX7GMkdsmP5scT-N7RuB6gjkw0DA4J3fO8ZG7';
+
+        //firebase teja
+        return 'AAAAFUOTLmA:APA91bFoZ69zCgB8KfiWwD3zxtN_njGELKJrPnHnIKM5Ad3JxohHpSTCqj1ky-IrLEi5RzMVLzOM-a-HlF4dNtWvbzqVcEzrzS44EC-BLXg8dnQ24YKny3x9yX2R1mhiJCk9DraEIsee';
 
     }
 
+
+
+    public function call_FMC($fields){
+        $ch = curl_init("https://fcm.googleapis.com/fcm/send");
+        $header=array('Content-Type: application/json',
+            "Authorization: key=".$this->key_server_fcm());
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+
+        curl_setopt($ch, CURLOPT_POST, 0);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+
+        $result =   curl_exec($ch);
+        curl_close($ch);
+        return $result;
+    }
     function IsJsonString($str)
     {
         json_decode($str);

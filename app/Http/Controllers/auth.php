@@ -4,10 +4,11 @@
 namespace App\Http\Controllers;
 
 
-use App\Modules\Utilities;
 use App\Modules_siswa\M_Dashboard;
 use App\Modules_siswa\Tool;
 use App\Modules_siswa\User;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use function PHPSTORM_META\elementType;
@@ -84,11 +85,8 @@ class auth extends Controller
 
     public function ccc(Request $request)
     {
-        $getXtahun_cari = 2;
+        $tool = new Tool();
 
-        $compare_1 = $getXtahun_cari != null;
-        $compare_2 = $getXtahun_cari != 0;
-        $compare_3 = $getXtahun_cari != 99;
         //        $panggil = new \App\Modules_siswa\Utilities();
         //
         //        $panggil->setXsearch($request->input('search'));
@@ -102,12 +100,53 @@ class auth extends Controller
         //            '$panggil->PencarianPertama()' => $panggil->PencarianPertama(),
         //
         //        ];
-        $result = [
-            'success' => false,
-            'message' => 'token_invalid & nip_invalid, harap cek kembali authorization dan parameter'
-
+//        $result = [
+//            'success' => false,
+//            'message' => 'token_invalid & nip_invalid, harap cek kembali authorization dan parameter'
+//
+//        ];
+//        return response()->json($result, 201);
+        $message = [
+            "title" => "coba coba",
+            "content" => "dari api qr_code2",
+            "click-to" => 1
         ];
-        return response()->json($result, 201);
+
+        //registration_ids jika target banyak
+        $fields = [
+            'data' => $message,
+            'to' => 'dnFGEJwdUWk:APA91bGsc5z9PvdyucGYbyEsN9O5NL3xsvzDEkyTLgGmnbIWzWvmbktjrBFRYnK0H0f64qw14BLLFLCYj8L8Ra-Q5ARLiPW5yNd2_TkqSB9u_hqu4tf5Doeq5NbVWAQXjm80CVf8bNGd',
+        ];
+
+
+//        $url = 'https://fcm.googleapis.com/fcm/send';
+//
+//        $client = new Client();
+
+//        $result = $client->post($url, [
+//            'json' =>
+//                $fields
+//            ,
+//            'headers' => [
+//                'Authorization' => 'key=' . $tool->key_server_fcm(),
+//                'Content-Type' => 'application/json',
+//            ],
+//        ]);
+
+//        $ch = curl_init("https://fcm.googleapis.com/fcm/send");
+//        $header=array('Content-Type: application/json',
+//            "Authorization: key=".$tool->key_server_fcm());
+//        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//
+//        curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+//
+//        curl_setopt($ch, CURLOPT_POST, 0);
+//        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+//
+//        $result =   curl_exec($ch);
+//        curl_close($ch);
+        return $tool->call_FMC($fields);
     }
 
     public function check_token(Request $request)
@@ -271,9 +310,9 @@ class auth extends Controller
                                     $validasi = $user->getpass_lama($username, $json->xp4s5_lama);
                                     if ($validasi) {
 
-                                        if ($tool->is_parent($json)){
+                                        if ($tool->is_parent($json)) {
                                             $user->update_pass_wali($json->username_target, $pass);
-                                        }else{
+                                        } else {
                                             $user->update_pass($json->username_target, $pass);
                                         }
 
@@ -287,7 +326,7 @@ class auth extends Controller
                                     'code' => 'Akses Ditolak'
                                 ];
                             } else {
-                                if ($tool->is_parent($json)){
+                                if ($tool->is_parent($json)) {
 
                                     $compare = $user->comparepass_wali($username, $json->xp4s5_lama);
                                     if ($compare) {
@@ -299,7 +338,7 @@ class auth extends Controller
                                         $result = [
                                             'code' => 'Password Lama Anda Salah'
                                         ];
-                                }else{
+                                } else {
                                     $compare = $user->comparepass($username, $json->xp4s5_lama);
                                     if ($compare) {
                                         $user->update_pass($username, $pass);
@@ -311,8 +350,6 @@ class auth extends Controller
                                             'code' => 'Password Lama Anda Salah'
                                         ];
                                 }
-
-
 
 
                             }
