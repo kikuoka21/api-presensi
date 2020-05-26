@@ -10,6 +10,7 @@ use App\Modules_siswa\User;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use function PHPSTORM_META\elementType;
 
@@ -29,7 +30,7 @@ class auth extends Controller
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
                 //
-                if (isset($json->xp455) && isset($json->x1d) && isset($json->type) && isset($json->key)) {
+                if (isset($json->xp455) && isset($json->x1d) && isset($json->type) && isset($json->key)&& isset($json->token_firebase)) {
                     $pass = $json->xp455;
                     $username = $json->x1d;
                     $type = $json->type;
@@ -47,7 +48,7 @@ class auth extends Controller
                                 //                                $inputnya = 'berhasil web';
                             } else {
                                 $user->input_tokenmobile($username, $token);
-                                $user->input_token_firebase($username, $key);
+                                $user->input_token_firebase($username, $json->token_firebase);
                                 //                                $inputnya = 'berhasil mobile';
                             }
                             $result = [
@@ -147,6 +148,54 @@ class auth extends Controller
 //        $result =   curl_exec($ch);
 //        curl_close($ch);
         return $tool->call_FMC($fields);
+    }
+
+    public function logout(Request $request)
+    {
+
+
+        $tool = new Tool();
+
+
+//        return $result;
+
+        $json = $request->has('parsing');
+        if (!$json) {
+            return Redirect::to('/');
+        } else {
+            $json = $request->input('parsing');
+            if ($tool->IsJsonString($json)) {
+                $json = json_decode($json);
+                if (isset($json->x1d) && isset($json->wali)) {
+                    $username = $json->x1d;
+                    $wali = $json->wali;
+
+                    $user = new User();
+                    if($wali){
+                        $test = 'wali';
+                        $user->update_firebase_wali($username, '');
+                    }else{
+                        $test = 'bukan wali';
+
+                        $user->update_firebase_user($username, '');
+                    }
+                    $result = [
+                        'hasil' => true,
+                        'hasil2' => $test,
+                        'hasil23' => $request->has('parsing'),
+                    ];
+                } else {
+
+                    $result = [
+                        'hasil' => false,
+                        'code' => 'ISI nama PARAM dikirim salah'];
+                }
+            } else
+                $result = [
+                    'hasil' => false,
+                    'code' => 'format data yg dikirim salah'];
+            return $result;
+        }
     }
 
     public function check_token(Request $request)

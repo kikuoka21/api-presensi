@@ -39,7 +39,7 @@ class admin extends Controller
 
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
-                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key)) {
+                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key)&& isset($json->token_firebase)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
@@ -56,6 +56,8 @@ class admin extends Controller
                                 $tanggal = $tool->get_date();
 //                                $tanggal = '2020-05-08';
                                 $thn_ajar = $tool->thn_ajar_skrng();
+
+                                $user->update_firebase_user($username, $json->token_firebase);
                                 $list = [];
                                 $statistik = [
                                     "hadir" => 0,

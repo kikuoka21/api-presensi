@@ -224,4 +224,24 @@ class User
         return $result;
 
     }
+
+
+    public function update_firebase_user($uid, $token)
+    {
+        $query = "UPDATE users SET token_firebase = :token where username= :xuid";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'xuid' => $uid,
+            'token' => $token
+        ]);
+
+    }
+    public function update_firebase_wali($uid, $token)
+    {
+        $query = "UPDATE wali SET token_firebase = :token where nis= :xuid";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'xuid' => $uid,
+            'token' => $token
+        ]);
+
+    }
 }

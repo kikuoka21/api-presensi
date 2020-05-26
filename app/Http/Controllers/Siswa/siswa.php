@@ -33,7 +33,7 @@ class siswa extends Controller
         } else {
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
-                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key)) {
+                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key)&& isset($json->token_firebase)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
@@ -42,6 +42,7 @@ class siswa extends Controller
                         if ($user->chek_token($username, $token, $type)) {
                             $tanggal = $tool->get_date();
 
+                            $user->update_firebase_user($username, $json->token_firebase);
 
                             $hasil = $dashboard->harilibur($tanggal);
                             if (!$hasil) {

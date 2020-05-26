@@ -9,6 +9,7 @@ use App\Modules_parent\User_parent;
 use App\Modules_siswa\M_Dashboard;
 use App\Modules_siswa\M_siswa;
 use App\Modules_siswa\Tool;
+use App\Modules_siswa\User;
 use Illuminate\Http\Request;
 
 class dashboard extends Controller
@@ -82,7 +83,7 @@ class dashboard extends Controller
 
         if ($tool->IsJsonString($json)) {
             $json = json_decode($json);
-            if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key)) {
+            if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) && isset($json->token_firebase)) {
                 $token = $json->token;
                 $username = $json->x1d;
                 $type = $json->type;
@@ -94,6 +95,8 @@ class dashboard extends Controller
                         $tanggal = $tool->get_date();
 
 
+                        $user = new User();
+                        $user->update_firebase_wali($username, $json->token_firebase);
                         $hasil = $dashboard->harilibur($tanggal);
 
                         $status_siswa = [

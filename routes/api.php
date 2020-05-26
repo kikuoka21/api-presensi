@@ -7,6 +7,8 @@ Route::prefix('auth')->group(function () {
 	Route::post('login', 'auth@Login');
 	Route::post('check-token', 'auth@check_token');
 	Route::post('ganti-pswd', 'auth@ubah_pass_parent');
+	Route::get('logout', 'auth@logout');
+	Route::post('logout', 'auth@logout');
 
 });
 
