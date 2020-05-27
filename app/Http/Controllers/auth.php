@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Modules_parent\User_parent;
 use App\Modules_siswa\M_Dashboard;
 use App\Modules_siswa\Tool;
 use App\Modules_siswa\User;
@@ -30,7 +31,7 @@ class auth extends Controller
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
                 //
-                if (isset($json->xp455) && isset($json->x1d) && isset($json->type) && isset($json->key)&& isset($json->token_firebase)) {
+                if (isset($json->xp455) && isset($json->x1d) && isset($json->type) && isset($json->key) && isset($json->token_firebase)) {
                     $pass = $json->xp455;
                     $username = $json->x1d;
                     $type = $json->type;
@@ -171,10 +172,10 @@ class auth extends Controller
                     $wali = $json->wali;
 
                     $user = new User();
-                    if($wali){
+                    if ($wali) {
                         $test = 'wali';
                         $user->update_firebase_wali($username, '');
-                    }else{
+                    } else {
                         $test = 'bukan wali';
 
                         $user->update_firebase_user($username, '');
@@ -209,30 +210,59 @@ class auth extends Controller
         } else {
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
-                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) && isset($json->akses)) {
+                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) && isset($json->akses) && isset($json->wali)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
                     $key = $json->key;
                     $akses = $json->akses;
                     //
+
                     if ($token == $tool->generate_token($key, $username, $type)) {
-                        if ($user->chek_token($username, $token, $type)) {
-                            $result = [
-                                'code' => 'OK4',
-                                'thn-ajar' => $tool->thn_ajar_skrng(),
-                                'tanggal' => $tool->tgl_skrng(),
-                                'data' => $user->getdata_dashboard($username, $akses)
-                            ];
-                        } else
-                            $result = ['code' => 'TOKEN1'];
+                        if ($json->wali) {
+                            $user_wali = new User_parent();
+                            if ($user_wali->chek_token_wali($username, $token)) {
+                                $result = [
+                                    'token' => true,
+                                    'hasil' => true,
+                                    'nama' => $user_wali->getdata_dashboard($username),
+                                    'thn-ajar' => $tool->thn_ajar_skrng(),
+                                    'tanggal' => $tool->tgl_skrng(),
+                                ];
+
+                            } else
+                                $result = [
+                                    'token' => false,
+                                    'hasil' => false,
+                                    'message' => 'Token Sudah Tidak Valid, Silahkan Login Kembali'
+                                ];
+                        } else {
+                            if ($user->chek_token($username, $token, $type)) {
+                                $result = [
+                                    'code' => 'OK4',
+                                    'thn-ajar' => $tool->thn_ajar_skrng(),
+                                    'tanggal' => $tool->tgl_skrng(),
+                                    'data' => $user->getdata_dashboard($username, $akses)
+                                ];
+                            } else
+                                $result = ['code' => 'TOKEN1'];
+                        }
                     } else
-                        $result = ['code' => 'TOKEN2'];
+                        $result = [
+                            'message' => 'Token Anda Salah, Silahkan Login Kembali',
+                            'token' => false,
+                            'hasil' => false,'code' => 'TOKEN2'];
 
                 } else
-                    $result = ['code' => 'ISI nama PARAM dikirim salah'];
+                    $result = [
+                        'token' => true,
+                        'hasil' => false,
+                        'code' => 'ISI nama PARAM dikirim salah'];
             } else
-                $result = ['code' => 'format data yg dikirim salah '];
+                $result = [
+                    'token' => true,
+                    'hasil' => false,
+                    'code' => 'format data yg dikirim salah '];
 
             return $result;
 

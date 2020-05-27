@@ -116,4 +116,6 @@ Route::prefix('parent')->group(function () {
 
     Route::post('dashboard', 'Parent\dashboard');
     Route::post('profil', 'Parent\dashboard@profil');
+    Route::post('rekap_presensi', 'Parent\dashboard@presensi');
+
 });

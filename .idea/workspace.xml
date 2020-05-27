@@ -4,9 +4,7 @@
     <list default="true" id="ae9e0650-accf-49fd-a4c0-cd147b0d98cb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Parent/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Parent/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Siswa/siswa.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Siswa/siswa.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Modules_siswa/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Modules_siswa/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,60 +15,23 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable />
-    </execution>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1623">
-              <caret line="106" column="41" selection-start-line="106" selection-start-column="36" selection-end-line="106" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Siswa/siswa.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="44" column="31" lean-forward="true" selection-start-line="44" selection-start-column="31" selection-end-line="44" selection-end-column="31" />
-              <folding>
-                <element signature="e#130#166#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="311">
+              <caret line="101" column="4" lean-forward="true" selection-start-line="101" selection-start-column="4" selection-end-line="101" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/auth.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Siswa/presensi.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="172" column="39" lean-forward="true" selection-start-line="171" selection-end-line="172" selection-end-column="39" />
-              <folding>
-                <element signature="e#42#76#0#PHP" expanded="true" />
-                <element signature="e#383#3604#0#PHP" />
-                <element signature="e#3610#5921#0#PHP" />
-                <element signature="e#7071#8670#0#PHP" />
-                <element signature="e#8676#8978#0#PHP" />
-                <element signature="e#8984#9086#0#PHP" />
-                <element signature="e#9092#12008#0#PHP" />
-                <element signature="e#12014#15995#0#PHP" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Modules_siswa/User.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="552">
-              <caret line="228" column="40" selection-start-line="228" selection-start-column="20" selection-end-line="228" selection-end-column="40" />
-              <folding>
-                <element signature="e#869#2250#0#PHP" />
-              </folding>
+            <state relative-caret-position="189">
+              <caret line="294" column="66" lean-forward="true" selection-start-line="294" selection-start-column="20" selection-end-line="294" selection-end-column="66" />
             </state>
           </provider>
         </entry>
@@ -78,10 +39,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Parent/dashboard.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="97" column="43" lean-forward="true" selection-start-line="97" selection-start-column="43" selection-end-line="98" selection-end-column="86" />
+            <state relative-caret-position="172">
+              <caret line="295" lean-forward="true" selection-start-line="295" selection-end-line="295" />
               <folding>
-                <element signature="e#6848#9241#0#PHP" />
+                <element signature="e#316#2291#0#PHP" />
+                <element signature="e#2298#7033#0#PHP" />
               </folding>
             </state>
           </provider>
@@ -108,6 +70,9 @@
       <find>dashboard</find>
       <find>admin</find>
       <find>dashb</find>
+      <find>check_token</find>
+      <find>get_presensi_perbulan</find>
+      <find>presensi_siswa</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -132,11 +97,11 @@
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/app/Modules_siswa/Tool.php" />
         <option value="$PROJECT_DIR$/app/Modules_siswa/M_siswa.php" />
-        <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/Modules_siswa/User.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/auth.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Parent/dashboard.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Siswa/siswa.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/auth.php" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Parent/dashboard.php" />
       </list>
     </option>
   </component>
@@ -246,6 +211,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -257,7 +223,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -331,17 +296,19 @@
       <workItem from="1589646512313" duration="1915000" />
       <workItem from="1589720813714" duration="33000" />
       <workItem from="1590509770031" duration="2095000" />
+      <workItem from="1590560534633" duration="4211000" />
+      <workItem from="1590584619397" duration="4540000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63644000" />
+    <option name="totallyTimeSpent" value="72395000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23987207" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2473525" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -356,7 +323,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32936078" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32719395" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32569557" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -549,13 +516,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/databasenya_TA.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="185" column="45" selection-start-line="185" selection-start-column="45" selection-end-line="185" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Modules_parent/User_parent.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="867">
@@ -581,13 +541,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Modules_siswa/Utilities.php" />
-    <entry file="file://$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Client.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="496" column="48" selection-start-line="496" selection-start-column="44" selection-end-line="496" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Client.php" />
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -619,57 +573,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/auth.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="172" column="39" lean-forward="true" selection-start-line="171" selection-end-line="172" selection-end-column="39" />
-          <folding>
-            <element signature="e#42#76#0#PHP" expanded="true" />
-            <element signature="e#383#3604#0#PHP" />
-            <element signature="e#3610#5921#0#PHP" />
-            <element signature="e#7071#8670#0#PHP" />
-            <element signature="e#8676#8978#0#PHP" />
-            <element signature="e#8984#9086#0#PHP" />
-            <element signature="e#9092#12008#0#PHP" />
-            <element signature="e#12014#15995#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Modules_siswa/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="228" column="40" selection-start-line="228" selection-start-column="20" selection-end-line="228" selection-end-column="40" />
+        <state relative-caret-position="529">
+          <caret line="246" column="1" selection-start-line="246" selection-start-column="1" selection-end-line="246" selection-end-column="1" />
           <folding>
             <element signature="e#869#2250#0#PHP" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/databasenya_TA.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="178" column="1" selection-end-line="196" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/auth.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="234" column="53" selection-start-line="234" selection-start-column="53" selection-end-line="234" selection-end-column="53" />
+          <folding>
+            <element signature="e#42#77#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Siswa/siswa.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="39" column="38" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
+          <folding>
+            <element signature="e#130#166#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Siswa/presensi.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="294" column="66" lean-forward="true" selection-start-line="294" selection-start-column="20" selection-end-line="294" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Parent/dashboard.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="97" column="43" lean-forward="true" selection-start-line="97" selection-start-column="43" selection-end-line="98" selection-end-column="86" />
+        <state relative-caret-position="172">
+          <caret line="295" lean-forward="true" selection-start-line="295" selection-end-line="295" />
           <folding>
-            <element signature="e#6848#9241#0#PHP" />
+            <element signature="e#316#2291#0#PHP" />
+            <element signature="e#2298#7033#0#PHP" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1623">
-          <caret line="106" column="41" selection-start-line="106" selection-start-column="36" selection-end-line="106" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Siswa/siswa.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="44" column="31" lean-forward="true" selection-start-line="44" selection-start-column="31" selection-end-line="44" selection-end-column="31" />
-          <folding>
-            <element signature="e#130#166#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="311">
+          <caret line="101" column="4" lean-forward="true" selection-start-line="101" selection-start-column="4" selection-end-line="101" selection-end-column="4" />
         </state>
       </provider>
     </entry>
