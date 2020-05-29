@@ -228,11 +228,29 @@ class User
 
     public function update_firebase_user($uid, $token)
     {
-        $query = "UPDATE users SET token_firebase = :token where username= :xuid";
+
+
+        $query = "UPDATE users SET token_firebase = '' where username != :xuid and token_firebase = :token";
         DB::connection('mysql')->select(DB::raw($query), [
-            'xuid' => $uid,
-            'token' => $token
+            'xuid' => $uid,'token' => $token
         ]);
+//
+//        $query = "UPDATE users SET token_firebase = '' where md5(token_firebase) = :token and username != :xuid";
+//        DB::connection('mysql')->select(DB::raw($query), [
+//            'xuid' => $uid,'token' => md5($token)
+//        ]);
+
+        $result = DB::table('users')->select('token_firebase')->where('username', $uid)->first();
+        if ($result->token_firebase != $token){
+            $query = "UPDATE users SET token_firebase = :token where username= :xuid";
+            DB::connection('mysql')->select(DB::raw($query), [
+                'xuid' => $uid,
+                'token' => $token
+            ]);
+        }
+
+
+
 
     }
     public function update_firebase_wali($uid, $token)

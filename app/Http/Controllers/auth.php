@@ -31,13 +31,13 @@ class auth extends Controller
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
                 //
-                if (isset($json->xp455) && isset($json->x1d) && isset($json->type) && isset($json->key) && isset($json->token_firebase)) {
+                if (isset($json->xp455) && isset($json->x1d) && isset($json->type) && isset($json->key)) {
                     $pass = $json->xp455;
                     $username = $json->x1d;
                     $type = $json->type;
                     $key = $json->key;
                     $hasil = $user->getUser($username);
-                    //                    $tool->Isi_Log('login OK4 ' . $username . ' ' . $key . ' ' . $inputnya);
+                                        $tool->Isi_Log('login ' . $username . ' ' . $key );
                     //                    $inputnya = '';
                     if (!$hasil) {
                         $result = ['code' => 'Username atau password yang dimasukan salah'];
@@ -49,7 +49,7 @@ class auth extends Controller
                                 //                                $inputnya = 'berhasil web';
                             } else {
                                 $user->input_tokenmobile($username, $token);
-                                $user->input_token_firebase($username, $json->token_firebase);
+//                                $user->input_token_firebase($username, $json->token_firebase);
                                 //                                $inputnya = 'berhasil mobile';
                             }
                             $result = [
@@ -223,19 +223,14 @@ class auth extends Controller
                             $user_wali = new User_parent();
                             if ($user_wali->chek_token_wali($username, $token)) {
                                 $result = [
-                                    'token' => true,
-                                    'hasil' => true,
+                                    'code' => 'OK4',
                                     'nama' => $user_wali->getdata_dashboard($username),
                                     'thn-ajar' => $tool->thn_ajar_skrng(),
                                     'tanggal' => $tool->tgl_skrng(),
                                 ];
 
                             } else
-                                $result = [
-                                    'token' => false,
-                                    'hasil' => false,
-                                    'message' => 'Token Sudah Tidak Valid, Silahkan Login Kembali'
-                                ];
+                                $result = ['code' => 'TOKEN1'];
                         } else {
                             if ($user->chek_token($username, $token, $type)) {
                                 $result = [
@@ -248,20 +243,13 @@ class auth extends Controller
                                 $result = ['code' => 'TOKEN1'];
                         }
                     } else
-                        $result = [
-                            'message' => 'Token Anda Salah, Silahkan Login Kembali',
-                            'token' => false,
-                            'hasil' => false,'code' => 'TOKEN2'];
+                        $result = ['code' => 'TOKEN2'];
 
                 } else
                     $result = [
-                        'token' => true,
-                        'hasil' => false,
                         'code' => 'ISI nama PARAM dikirim salah'];
             } else
                 $result = [
-                    'token' => true,
-                    'hasil' => false,
                     'code' => 'format data yg dikirim salah '];
 
             return $result;

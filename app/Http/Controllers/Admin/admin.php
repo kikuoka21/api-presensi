@@ -39,7 +39,7 @@ class admin extends Controller
 
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
-                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key)&& isset($json->token_firebase)) {
+                    if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key)&& isset($json->token_firebase)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
