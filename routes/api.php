@@ -14,6 +14,7 @@ Route::prefix('auth')->group(function () {
 
 Route::get('zzzz', 'auth@ccc');
 Route::post('zzzz', 'auth@ccc');
+Route::get('tanggal', 'Admin\Input_data_master@lihat_tanggal_alluser');
 
 //admin
 Route::prefix('admin')->group(function () {

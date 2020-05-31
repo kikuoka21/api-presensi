@@ -153,12 +153,7 @@ class auth extends Controller
 
     public function logout(Request $request)
     {
-
-
         $tool = new Tool();
-
-
-//        return $result;
 
         $json = $request->has('parsing');
         if (!$json) {
@@ -185,6 +180,7 @@ class auth extends Controller
                         'hasil2' => $test,
                         'hasil23' => $request->has('parsing'),
                     ];
+
                 } else {
 
                     $result = [

@@ -163,6 +163,7 @@ class dashboard extends Controller
                         $result = [
                             'token' => true,
                             'hasil' => true,
+                            'hasil2' => $tanggal,
                             'kd_kelas' => $id_kelas,
                             'nm_kelas' => $nama_kelas,
                             'hari_ini' => $hari_ini,

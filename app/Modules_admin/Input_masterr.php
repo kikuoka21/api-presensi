@@ -200,7 +200,7 @@ class Input_masterr
 
     public function history_tanggal($tanggal)
     {
-        $query = "select tanggal as tgl, ket from hari_libur where tanggal > :tgl order by tanggal asc limit 30";
+        $query = "select tanggal as tgl, ket from hari_libur where tanggal > :tgl order by tanggal asc limit 25";
         $hasil = DB::connection('mysql')->select(DB::raw($query), [
             'tgl' => $tanggal
         ]);
