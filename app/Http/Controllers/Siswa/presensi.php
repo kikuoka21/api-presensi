@@ -80,7 +80,7 @@ class presensi extends Controller
 													if (!$absen) {
 														$hasil = $dashboard->harilibur(date_format($tanggal, "Y-m-d"));
 														if ($hasil || $tool->convert_tgl_merah(date_format($tanggal, "Y-m-d"))) {
-															$libur = 'Tidak ada KBM';
+															$libur = 'Tidak ada Kegiatan Belajar Mengajar';
 															if ($hasil) {
 																$libur = object_get($hasil[0], 'ket');
 															}
@@ -90,7 +90,7 @@ class presensi extends Controller
 														} else {
 															$absen[0] = [
 																'stat' => 'A',
-																'ket' => "Belum Absen"];
+																'ket' => "Belum Melakukan Presensi Masuk"];
 															$madmin->create_absen(object_get($arraysiswa[$i], 'nis'), date_format($tanggal, "Y-m-d"));
 														}
 
@@ -207,7 +207,7 @@ class presensi extends Controller
 														if (!$absen) {
 															$hasil = $dashboard->harilibur(date_format($tanggal, "Y-m-d"));
 															if ($hasil || $tool->convert_tgl_merah(date_format($tanggal, "Y-m-d"))) {
-																$libur = 'Tidak ada KBM';
+																$libur = 'Tidak ada Kegiatan Belajar Mengajar';
 																if ($hasil) {
 																	$libur = object_get($hasil[0], 'ket');
 																}
@@ -219,7 +219,7 @@ class presensi extends Controller
 																$absen = [
 																	'tanggal' => date_format($tanggal, "Y-m-d"),
 																	'stat' => 'A',
-																	'ket' => "Belum Absen"];
+																	'ket' => "Belum Melakukan Presensi Masuk"];
 																$madmin->create_absen(object_get($arraysiswa[$i], 'nis'), date_format($tanggal, "Y-m-d"));
 															}
 
@@ -338,7 +338,7 @@ class presensi extends Controller
 											if (!$absen) {
 												$hasil = $dashboard->harilibur(date_format($tanggal, "Y-m-d"));
 												if ($hasil || $tool->convert_tgl_merah(date_format($tanggal, "Y-m-d"))) {
-													$libur = 'Tidak ada KBM';
+													$libur = 'Tidak ada Kegiatan Belajar Mengajar';
 													if ($hasil) {
 														$libur = object_get($hasil[0], 'ket');
 													}
@@ -350,7 +350,7 @@ class presensi extends Controller
 													$absen = [
 														'tanggal' => date_format($tanggal, "Y-m-d"),
 														'stat' => 'A',
-														'ket' => "Belum Absen"];
+														'ket' => "Belum Melakukan Presensi Masuk"];
 													$madmin->create_absen($json->x1d, date_format($tanggal, "Y-m-d"));
 												}
 

@@ -286,11 +286,12 @@ class Input_data_master extends Controller
 
         $inputmaster = new Input_masterr();
 
-        $result = [
-            'data' =>$inputmaster->history_tanggal($tool->get_date())
-        ];
+        sleep(2);
+//        $result = [
+//            'data' =>$inputmaster->history_tanggal($tool->get_date())
+//        ];
 
-        return $result;
+        return $inputmaster->history_tanggal($tool->get_date());
 
     }
 

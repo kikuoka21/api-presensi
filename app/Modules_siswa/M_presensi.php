@@ -32,7 +32,7 @@ class M_presensi
 
     public function create_absen($nis, $tgl)
     {
-        $query = "INSERT INTO kehadiran ( nis, tanggal, stat , ket) VALUES (:nis ,:tgl , 'A', 'Belum Absen')";
+        $query = "INSERT INTO kehadiran ( nis, tanggal, stat , ket) VALUES (:nis ,:tgl , 'A', 'Belum Melakukan Presensi Masuk')";
         DB::connection('mysql')->select(DB::raw($query), [
             'nis' => $nis,
             'tgl' => $tgl

@@ -78,7 +78,7 @@ class Tool
     {
         $mytime = Carbon::now();
         $tahun = $mytime->year;
-        if ($mytime->month <= 5) {
+        if ($mytime->month <= 6) {
             return strval($tahun - 1) . $tahun;
         } else {
             return $tahun . strval($tahun + 1);

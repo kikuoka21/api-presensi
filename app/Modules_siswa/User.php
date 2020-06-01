@@ -255,6 +255,12 @@ class User
     }
     public function update_firebase_wali($uid, $token)
     {
+
+        $query = "UPDATE wali SET token_firebase = '' where nis != :xuid and token_firebase = :token";
+        DB::connection('mysql')->select(DB::raw($query), [
+            'xuid' => $uid,'token' => $token
+        ]);
+
         $query = "UPDATE wali SET token_firebase = :token where nis= :xuid";
         DB::connection('mysql')->select(DB::raw($query), [
             'xuid' => $uid,

@@ -75,7 +75,7 @@ class admin extends Controller
 //                                    if (false) {
                                         $hari_ini = [
                                             'status' => 'L',
-                                            'ket' => 'Tidak ada KBM'
+                                            'ket' => 'Tidak ada Kegiatan Belajar Mengajar'
                                         ];
 
                                     } else {
@@ -147,7 +147,7 @@ class admin extends Controller
                                                         "nama" => $dashboard->getnama_siswa($siswa[$i]->nis),
                                                         "kelas" => object_get($nama[0], 'nama_kelas'),
                                                         "stat" => "A",
-                                                        "ket" => "Belum Absen"];
+                                                        "ket" => "Belum Melakukan Presensi Masuk"];
                                                     $msiswa->create_absen($siswa[$i]->nis, $tanggal);
                                                     $list[$row_alpha] = $presensi;
                                                     $row_alpha++;
@@ -383,7 +383,7 @@ class admin extends Controller
                                                             if (!$absen) {
                                                                 $hasil = $dashboard->harilibur(date_format($tanggal, "Y-m-d"));
                                                                 if ($hasil || $tool->convert_tgl_merah(date_format($tanggal, "Y-m-d"))) {
-                                                                    $libur = 'Tidak ada KBM';
+                                                                    $libur = 'Tidak ada Kegiatan Belajar Mengajar';
                                                                     if ($hasil) {
                                                                         $libur = object_get($hasil[0], 'ket');
                                                                     }
@@ -395,7 +395,7 @@ class admin extends Controller
                                                                     $absen = [
                                                                         'tanggal' => date_format($tanggal, "Y-m-d"),
                                                                         'stat' => 'A',
-                                                                        'ket' => "Belum Absen"];
+                                                                        'ket' => "Belum Melakukan Presensi Masuk"];
                                                                     $madmin->create_absen(object_get($arraysiswa[$i], 'nis'), date_format($tanggal, "Y-m-d"));
                                                                 }
 
@@ -515,7 +515,7 @@ class admin extends Controller
                                                     if (!$absen) {
                                                         $hasil = $dashboard->harilibur(date_format($tanggal, "Y-m-d"));
                                                         if ($hasil || $tool->convert_tgl_merah(date_format($tanggal, "Y-m-d"))) {
-                                                            $libur = 'Tidak ada KBM';
+                                                            $libur = 'Tidak ada Kegiatan Belajar Mengajar';
                                                             if ($hasil) {
                                                                 $libur = object_get($hasil[0], 'ket');
                                                             }
@@ -525,7 +525,7 @@ class admin extends Controller
                                                         } else {
                                                             $absen[0] = [
                                                                 'stat' => 'A',
-                                                                'ket' => "Belum Absen"];
+                                                                'ket' => "Belum Melakukan Presensi Masuk"];
                                                             $madmin->create_absen(object_get($arraysiswa[$i], 'nis'), date_format($tanggal, "Y-m-d"));
                                                         }
 

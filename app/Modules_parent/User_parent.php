@@ -17,10 +17,9 @@ class User_parent
 
     public function input_tokenmobile($uid, $token, $token_fmc)
     {
-        $query = "UPDATE wali SET token= :token, token_firebase = :key where nis= :xuid";
+        $query = "UPDATE wali SET token= :token where nis= :xuid";
         DB::connection('mysql')->select(DB::raw($query), [
             'xuid' => $uid,
-            'key' => $token_fmc,
             'token' => $token
         ]);
     }

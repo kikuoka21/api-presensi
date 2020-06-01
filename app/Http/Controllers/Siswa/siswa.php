@@ -49,7 +49,7 @@ class siswa extends Controller
                                 if ($tool->tgl_merah()) {
                                     $hari_ini = [
                                         'status' => 'L',
-                                        'ket' => 'Tidak ada KBM'
+                                        'ket' => 'Tidak ada Kegiatan Belajar Mengajar'
                                     ];
                                 } else {
                                     $hari_ini = [
@@ -122,7 +122,7 @@ class siswa extends Controller
                         if ($user->chek_token($username, $token, $type)) {
                             if ($tool->tgl_merah()) {
                                 $result = [
-                                    'code' => 'tidak ada KBM'
+                                    'code' => 'tidak ada Kegiatan Belajar Mengajar'
                                 ];
                             } else {
                                 $tanggal = $tool->get_date();
@@ -160,7 +160,7 @@ class siswa extends Controller
                                     ];
                                 } else {
                                     $result = [
-                                        'code' => 'tidak ada KBM'
+                                        'code' => 'tidak ada Kegiatan Belajar Mengajar'
                                     ];
                                 }
                             }
