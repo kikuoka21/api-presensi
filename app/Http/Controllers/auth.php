@@ -37,7 +37,7 @@ class auth extends Controller
                     $type = $json->type;
                     $key = $json->key;
                     $hasil = $user->getUser($username);
-                                        $tool->Isi_Log('login ' . $username . ' ' . $key );
+                    $tool->Isi_Log('login ' . $username . ' ' . $key);
                     //                    $inputnya = '';
                     if (!$hasil) {
                         $result = ['code' => 'Username atau password yang dimasukan salah'];
@@ -111,43 +111,15 @@ class auth extends Controller
         $message = [
             "title" => "coba coba",
             "content" => "dari api qr_code2",
-            "click-to" => 1
+            "chanel" => 'Presensi'
         ];
 
         //registration_ids jika target banyak
         $fields = [
             'data' => $message,
-            'to' => 'dnFGEJwdUWk:APA91bGsc5z9PvdyucGYbyEsN9O5NL3xsvzDEkyTLgGmnbIWzWvmbktjrBFRYnK0H0f64qw14BLLFLCYj8L8Ra-Q5ARLiPW5yNd2_TkqSB9u_hqu4tf5Doeq5NbVWAQXjm80CVf8bNGd',
+            'to' => 'eYkQsEhmS4GYpAGfOharG4:APA91bEJGezM-tHCB8wW9HbTOBc4q8574RqSypJC_c74SXY3VIR_piydHsvYUK5q_yPEuX0DRPgaAkO1FiBvUasmzlr-Dm8gv6K-yNDT8hANuzwQVe-kkvxR6PYW6IeUH75cd9szvnoH',
         ];
 
-
-//        $url = 'https://fcm.googleapis.com/fcm/send';
-//
-//        $client = new Client();
-
-//        $result = $client->post($url, [
-//            'json' =>
-//                $fields
-//            ,
-//            'headers' => [
-//                'Authorization' => 'key=' . $tool->key_server_fcm(),
-//                'Content-Type' => 'application/json',
-//            ],
-//        ]);
-
-//        $ch = curl_init("https://fcm.googleapis.com/fcm/send");
-//        $header=array('Content-Type: application/json',
-//            "Authorization: key=".$tool->key_server_fcm());
-//        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-//
-//        curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
-//
-//        curl_setopt($ch, CURLOPT_POST, 0);
-//        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
-//
-//        $result =   curl_exec($ch);
-//        curl_close($ch);
         return $tool->call_FMC($fields);
     }
 
@@ -162,35 +134,42 @@ class auth extends Controller
             $json = $request->input('parsing');
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
-                if (isset($json->x1d) && isset($json->wali)) {
+                if (isset($json->x1d) && isset($json->wali) && isset($json->token)) {
+
                     $username = $json->x1d;
                     $wali = $json->wali;
+                    $token = $json->token;
 
                     $user = new User();
-                    if ($wali) {
-                        $test = 'wali';
-                        $user->update_firebase_wali($username, '');
-                    } else {
-                        $test = 'bukan wali';
+                    if ($user->token_to_logout($username, $wali, $token)) {
+                        if ($wali) {
+                            $test = 'wali';
+                            $user->update_firebase_wali($username, '');
+                        } else {
+                            $test = 'bukan wali';
 
-                        $user->update_firebase_user($username, '');
-                    }
-                    $result = [
-                        'hasil' => true,
-                        'hasil2' => $test,
-                        'hasil23' => $request->has('parsing'),
-                    ];
+                            $user->update_firebase_user($username, '');
+                        }
+                        $result = [
+                            'hasil' => true,
+                            'hasil2' => $test,
+                            'hasil23' => $request->has('parsing'),
+                        ];
+                    } else
+                        $result = [
+                            'hasil' => false,
+                            'message' => 'Token Tidak Terdaftar'];
 
                 } else {
 
                     $result = [
                         'hasil' => false,
-                        'code' => 'ISI nama PARAM dikirim salah'];
+                        'message' => 'ISI nama PARAM dikirim salah'];
                 }
             } else
                 $result = [
                     'hasil' => false,
-                    'code' => 'format data yg dikirim salah'];
+                    'message' => 'format data yg dikirim salah'];
             return $result;
         }
     }

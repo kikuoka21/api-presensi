@@ -33,7 +33,7 @@ class siswa extends Controller
         } else {
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
-                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key)&& isset($json->token_firebase)) {
+                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) && isset($json->token_firebase)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
@@ -208,19 +208,20 @@ class siswa extends Controller
                             $tanggal = $json->tanggal;
 
                             $tokenkelas = $msiswa->get_flag_($kelas);
-//							if ($tokenkelas->token == $json->token_absen) {
-                            if (true) {
+                            if ($tokenkelas->token == $json->token_absen) {
+//                            if (true) {
 
                                 $hasil = $msiswa->check_absen($username, $tanggal);
-//								if ($hasil) {
-                                if (true) {
-                                    if (true) {
+                                $tokenwali = "";
+                                $tokenwali2 = "";
+                                if ($hasil) {
 
-//                                        if ($hasil->stat == 'A') {
+                                    if ($hasil->stat == 'A') {
                                         $mytime = Carbon::now();
                                         $jam1 = $mytime->toTimeString();
                                         $jam = strtotime($jam1);
-                                        if (strtotime('06:25:00') >= $jam) {
+                                        // if (strtotime('06:25:00') >= $jam) {
+                                        if (true) {
                                             $ket = '';
                                             $stat = 'H';
                                             $status = " hadir ";
@@ -239,8 +240,8 @@ class siswa extends Controller
 
                                                 $message = [
                                                     "title" => "Update Presensi",
-                                                    "content" => "Siswa " .$json->nama. " telah melakukan presensi dengan status".$status."pada jam " . $jam1,
-                                                    "click-to" => 1
+                                                    "content" => "Siswa " . $json->nama . " telah melakukan presensi dengan status" . $status . "pada jam " . $jam1,
+                                                    "chanel" => 'Presensi'
                                                 ];
 
                                                 //registration_ids jika target banyak
@@ -248,7 +249,7 @@ class siswa extends Controller
                                                     'data' => $message,
                                                     'to' => $tokenwali,
                                                 ];
-                                                $tool->call_FMC($fields);
+                                                $tokenwali2 = $tool->call_FMC($fields);
 //                                                $code = $message;
                                             }
                                         } else {
@@ -274,7 +275,9 @@ class siswa extends Controller
                                 }
 
                                 $result = [
-                                    'code' => $code
+                                    'code' => $code,
+//                                    'code2' => $tokenwali,
+//                                    'code3' => $tokenwali2
                                 ];
                             } else {
                                 $result = [
