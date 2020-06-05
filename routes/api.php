@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 Route::prefix('auth')->group(function () {
 	Route::post('login', 'auth@Login');
 	Route::post('check-token', 'auth@check_token');
-	Route::post('ganti-pswd', 'auth@ubah_pass_parent');
+	Route::post('ganti-pswd', 'auth@ubah_pass');
 	Route::get('logout', 'auth@logout');
 	Route::post('logout', 'auth@logout');
 
@@ -118,5 +118,6 @@ Route::prefix('parent')->group(function () {
     Route::post('dashboard', 'Parent\dashboard');
     Route::post('profil', 'Parent\dashboard@profil');
     Route::post('rekap_presensi', 'Parent\dashboard@presensi');
+    Route::post('ganti_pass', 'Parent\dashboard@ubah_pass_parent');
 
 });

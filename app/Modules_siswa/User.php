@@ -143,11 +143,10 @@ class User
 
     public function update_pass_wali($uid, $xpass)
     {
-        $query = "UPDATE wali SET password= :pass , token= :tkn  where nis= :xuid";
+        $query = "UPDATE wali SET password= :pass where nis= :xuid";
         DB::connection('mysql')->select(DB::raw($query), [
             'xuid' => $uid,
-            'pass' => $xpass,
-            'tkn' => '',
+            'pass' => $xpass
         ]);
 
     }

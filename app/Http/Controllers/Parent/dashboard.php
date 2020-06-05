@@ -212,6 +212,72 @@ class dashboard extends Controller
         return $result;
     }
 
+
+    public function ubah_pass_parent(Request $request)
+    {
+
+        $user_wali = new User_parent();
+        $tool = new Tool();
+        $json = $request->input('parsing');
+
+        if ($tool->IsJsonString($json)) {
+            $json = json_decode($json);
+            if (isset($json->token) && isset($json->x1d)&&
+                isset($json->xp4s5) && isset($json->xp4s5_lama)) {
+                $token = $json->token;
+                $username = $json->x1d;
+
+                if ($user_wali->chek_token_wali($username, $token)) {
+
+
+                    $user = new User();
+
+                    $compare = $user->comparepass_wali($username, $json->xp4s5_lama);
+                    if ($compare) {
+                        $user->update_pass_wali($username, $json->xp4s5);
+                        $result = [
+                        'token' => true,
+                        'hasil' => true
+                    ];
+                    } else
+                        $result = [
+                        'token' => true,
+                        'hasil' => false,
+                        'message' => 'Password Lama Anda Salah'
+                    ];
+
+
+//
+
+
+                } else
+                    $result = [
+                        'token' => false,
+                        'hasil' => false,
+                        'message' => 'Token Sudah Tidak Valid, Silahkan Login Kembali'
+                    ];
+
+
+            } else
+                $result = [
+                    'token' => true,
+                    'hasil' => false,
+                    'message' => 'ISI nama PARAM dikirim salah'
+                ];
+
+
+        } else
+            $result = [
+                'token' => true,
+                'hasil' => false,
+                'message' => 'cek kembali parameter yang dikirim',
+            ];
+
+        return $result;
+
+
+    }
+
     public function profil(Request $request)
     {
         $user_wali = new User_parent();
