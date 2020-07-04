@@ -53,10 +53,10 @@ class admin extends Controller
                             //$username = '760695';
 
                             if ($user->getakses_admin($username)) {
-//                                $tanggal = $tool->get_date();
-                                $tanggal = '2020-04-08';
+                                $tanggal = $tool->get_date();
+//                                $tanggal = '2020-04-08';
                                 $thn_ajar = $tool->thn_ajar_skrng();
-                                if (isset($json->token_firebase) and $json->token_firebase != "") {
+                                if (isset($json->token_firebase)) {
                                     $user->update_firebase_user($username, $json->token_firebase);
                                 }
 
@@ -214,8 +214,9 @@ class admin extends Controller
                                     'statistik' => $statistik,
 
 
-                                    								'kd_kelas' => $thn_ajar,
-                                    								'nm_kelas' => $tanggal,
+//                                    'kd_kelas' => $thn_ajar,
+//                                    'nm_kelas' => $tanggal,
+                                    'nm_kelas' => isset($json->token_firebase),
                                     'list_absen' => $list
 
                                 ];
@@ -317,6 +318,166 @@ class admin extends Controller
         }
     }
 
+    public function list_kelasthn_ini(Request $request)
+    {
+        $user = new User();
+        $tool = new Tool();
+
+        $json = $request->input('parsing');
+        if ($json == null) {
+            return Redirect::to('/');
+        } else {
+            if ($tool->IsJsonString($json)) {
+                $json = json_decode($json);
+                if (isset($json->token) && isset($json->x1d) && isset($json->type)) {
+                    $token = $json->token;
+                    $username = $json->x1d;
+                    $type = $json->type;
+                    if ($user->chek_token($username, $token, $type)) {
+                        if ($user->getakses_admin($username)) {
+
+
+                            $inputmaster = new Input_masterr();
+                            $hasil = $inputmaster->all_kelas($tool->thn_ajar_skrng());
+                            if ($hasil) {
+                                $balikan = [];
+                                for ($i = 0; $i < count($hasil); $i++) {
+                                    $siswa = '-';
+                                    $staf = '-';
+                                    if (object_get($hasil[$i], 'id_ketua_kelas') != "") {
+                                        $siswa = '(' . object_get($hasil[$i], 'id_ketua_kelas') . ') ' .
+                                            $inputmaster->get_nama_siswa(object_get($hasil[$i], 'id_ketua_kelas'));
+
+                                    }
+                                    if (object_get($hasil[$i], 'id_wali_kelas') != "") {
+                                        $staf = '(' . object_get($hasil[$i], 'id_wali_kelas') . ') ' .
+                                            $inputmaster->get_nama_wali(object_get($hasil[$i], 'id_wali_kelas'));
+                                    }
+
+                                    $balikan[$i] = [
+                                        'id' => object_get($hasil[$i], 'id_kelas'),
+                                        'nama_kelas' => object_get($hasil[$i], 'nama'),
+                                        'wali' => $staf,
+                                        'ketua' => $siswa
+                                    ];
+                                }
+                                $result = [
+                                    'code' => 'OK4',
+                                    'data' => $balikan
+                                ];
+                            } else {
+                                $thn = $tool->thn_ajar_skrng();
+                                $result = [
+                                    'code' => 'Tidak Ditemukan Kelas Pada Tahun Ajaran ' .
+                                        substr($thn, 0, 4) . '/' . substr($thn, 4)
+                                ];
+                            }
+
+
+                        } else
+                            $result = ['code' => 'Akses Ditolak'];
+
+                    } else
+                        $result = ['code' => 'TOKEN1'];
+
+
+                } else
+                    $result = ['code' => 'ISI nama PARAM dikirim salah'];
+
+
+            } else
+                $result = ['code' => 'format data yg dikirim salah '];
+
+            return $result;
+        }
+    }
+    public function gen_qr(Request $request)
+    {
+        $user = new User();
+        $tool = new Tool();
+
+        $json = $request->input('parsing');
+        if ($json == null) {
+            return Redirect::to('/');
+        } else {
+            if ($tool->IsJsonString($json)) {
+                $json = json_decode($json);
+                if (isset($json->token) && isset($json->x1d) && isset($json->type)&& isset($json->kd_kls)) {
+                    $token = $json->token;
+                    $username = $json->x1d;
+                    $type = $json->type;
+                    if ($user->chek_token($username, $token, $type)) {
+                        if ($user->getakses_admin($username)) {
+
+
+                            $kelas = $json->kd_kls;
+                            if ($tool->tgl_merah()) {
+//                            if (false) {
+                                $result = [
+                                    'code' => 'tidak ada Kegiatan Belajar Mengajar'
+                                ];
+                            } else {
+
+                                $dashboard = new M_Dashboard();
+                                $msiswa = new M_siswa();
+                                $tanggal = $tool->get_date();
+                                $hasil = $dashboard->harilibur($tanggal);
+                                if (!$hasil) {
+                                    $hasil = $msiswa->get_flag_2($kelas, $tanggal);
+                                    $token = '';
+                                    if (!$hasil) {
+                                        $getsiswa = $msiswa->get_all_siswa($kelas);
+                                        if ($getsiswa) {
+                                            $token = md5('sudah d!enkrip' . md5($tanggal . '\'' . $kelas) . '!' . $username);
+                                            $msiswa->insert_token($kelas, $tanggal, $token);
+                                            $code = 'OK4';
+                                            for ($i = 0; $i < count($getsiswa); $i++) {
+                                                $check = $msiswa->check_absen(object_get($getsiswa[$i], 'nis'), $tanggal);
+                                                if (!$check)
+                                                    $msiswa->create_absen(object_get($getsiswa[$i], 'nis'), $tanggal);
+                                            }
+
+                                        } else {
+                                            $code = 'tidak ada data siswa di kelas ' . $kelas;
+                                        }
+
+
+                                    } else {
+                                        $code = 'OK4';
+                                        $token = $hasil->token;
+                                    }
+
+                                    $result = [
+                                        'code' => $code,
+                                        'tanggal' => $tanggal,
+                                        'tokennya' => $token
+                                    ];
+                                } else {
+                                    $result = [
+                                        'code' => 'tidak ada Kegiatan Belajar Mengajar2'
+                                    ];
+                                }
+                            }
+
+
+                        } else
+                            $result = ['code' => 'Akses Ditolak'];
+
+                    } else
+                        $result = ['code' => 'TOKEN1'];
+
+
+                } else
+                    $result = ['code' => 'ISI nama PARAM dikirim salah'];
+
+
+            } else
+                $result = ['code' => 'format data yg dikirim salah '];
+
+            return $result;
+        }
+    }
+
 
     public function laporan2(Request $request)
     {
@@ -374,6 +535,7 @@ class admin extends Controller
 
                                             $arraysiswa = $madmin->getabsen_kelas_siswa($json->id_kelas);
                                             if ($arraysiswa) {
+                                                $data = [];
                                                 for ($i = 0; $i < count($arraysiswa); $i++) {
 
                                                     $tanggal = date_create($json->tgl);

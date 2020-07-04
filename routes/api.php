@@ -18,7 +18,10 @@ Route::get('tanggal', 'Admin\Input_data_master@lihat_tanggal_alluser');
 
 //admin
 Route::prefix('admin')->group(function () {
+
 	Route::post('dashboard', 'Admin\admin@dashboard');
+	Route::post('listkls', 'Admin\admin@list_kelasthn_ini');
+	Route::post('generate_qr', 'Admin\admin@gen_qr');
 
 
 	Route::post('lihat', 'Admin\admin@list_kelas');//dikirim tgl skrng
