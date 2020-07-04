@@ -53,8 +53,8 @@ class admin extends Controller
                             //$username = '760695';
 
                             if ($user->getakses_admin($username)) {
-                                $tanggal = $tool->get_date();
-//                                $tanggal = '2020-05-08';
+//                                $tanggal = $tool->get_date();
+                                $tanggal = '2020-04-08';
                                 $thn_ajar = $tool->thn_ajar_skrng();
                                 if (isset($json->token_firebase) and $json->token_firebase != "") {
                                     $user->update_firebase_user($username, $json->token_firebase);
@@ -67,14 +67,15 @@ class admin extends Controller
                                     "izin" => 0,
                                     "sakit" => 0,
                                     "telat" => 0,
+                                    "list_kelas" => []
 
                                 ];
                                 $presen = new M_presensi();
                                 $msiswa = new M_siswa();
                                 $hasil = $dashboard->harilibur($tanggal);
                                 if (!$hasil) {
-                                    if ($tool->tgl_merah()) {
-//                                    if (false) {
+//                                    if ($tool->tgl_merah()) {
+                                    if (false) {
                                         $hari_ini = [
                                             'status' => 'L',
                                             'ket' => 'Tidak ada Kegiatan Belajar Mengajar'
@@ -213,8 +214,8 @@ class admin extends Controller
                                     'statistik' => $statistik,
 
 
-                                    //								'kd_kelas' => object_get($hasil_kelas[0], 'level'),
-                                    //								'nm_kelas' => $tanggal,
+                                    								'kd_kelas' => $thn_ajar,
+                                    								'nm_kelas' => $tanggal,
                                     'list_absen' => $list
 
                                 ];

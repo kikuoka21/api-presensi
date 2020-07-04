@@ -37,7 +37,6 @@ class auth extends Controller
                     $type = $json->type;
                     $key = $json->key;
                     $hasil = $user->getUser($username);
-                    $tool->Isi_Log('login ' . $username . ' ' . $key);
                     //                    $inputnya = '';
                     if (!$hasil) {
                         $result = ['code' => 'Username atau password yang dimasukan salah'];
