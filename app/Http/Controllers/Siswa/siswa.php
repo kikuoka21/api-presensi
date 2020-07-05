@@ -222,17 +222,16 @@ class siswa extends Controller
                                         $jam = strtotime($jam1);
                                         // if (strtotime('06:25:00') >= $jam) {
                                         if (true) {
-                                            $ket = '';
                                             $stat = 'H';
                                             $status = " hadir ";
 
+                                            $ket = 'Presensi pada jam ' . $mytime->toTimeString();
                                             $code = 'OK4';
-                                            if (strtotime('07:15:00') <= $jam) {
-                                                $ket = 'Presensi pada jam ' . $mytime->toTimeString();
-                                                $stat = 'T';
-
-                                                $status = " telat ";
-                                            }
+//                                            if (strtotime('07:15:00') <= $jam) {
+//                                                $stat = 'T';
+//
+//                                                $status = " telat ";
+//                                            }
 //                                            $code =$ket;
                                             $tokenwali = $msiswa->update_absen($username, $tanggal, $stat, $ket);
 

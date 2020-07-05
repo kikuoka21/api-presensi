@@ -74,8 +74,8 @@ class admin extends Controller
                                 $msiswa = new M_siswa();
                                 $hasil = $dashboard->harilibur($tanggal);
                                 if (!$hasil) {
-//                                    if ($tool->tgl_merah()) {
-                                    if (false) {
+                                    if ($tool->tgl_merah()) {
+//                                    if (false) {
                                         $hari_ini = [
                                             'status' => 'L',
                                             'ket' => 'Tidak ada Kegiatan Belajar Mengajar'
@@ -411,8 +411,8 @@ class admin extends Controller
 
 
                             $kelas = $json->kd_kls;
-                            if ($tool->tgl_merah()) {
-//                            if (false) {
+//                            if ($tool->tgl_merah()) {
+                            if (false) {
                                 $result = [
                                     'code' => 'tidak ada Kegiatan Belajar Mengajar'
                                 ];
@@ -449,6 +449,7 @@ class admin extends Controller
 
                                     $result = [
                                         'code' => $code,
+                                        'code2' => $hasil,
                                         'tanggal' => $tanggal,
                                         'tokennya' => $token
                                     ];
@@ -947,7 +948,7 @@ class admin extends Controller
                                                             $izin++;
                                                         } else if ($ket == 'S') {
                                                             $sakit++;
-                                                        } else if ($ket == 'T')
+                                                        } else if ($ket == 'H')
                                                             $telat++;
                                                     } else {
                                                         $hasil = $dashboard->harilibur(date_format($tanggal, "Y-m-d"));
@@ -970,7 +971,7 @@ class admin extends Controller
                                                 'sakit' => $sakit,
                                                 'izin' => $izin,
                                                 'alpha' => $alpha,
-                                                'telat' => $telat
+                                                'hadir' => $telat
 //	                                            'total'=> $sakit+$izin+$alpha+$hadir
                                             ];
                                         }

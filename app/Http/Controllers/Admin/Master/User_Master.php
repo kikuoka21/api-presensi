@@ -198,42 +198,38 @@ class User_Master extends Controller
             } else {
                 if ($tool->IsJsonString($json)) {
                     $json = json_decode($json);
-                    if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
+                    if (isset($json->token) && isset($json->x1d) && isset($json->type) &&
                         isset($json->nis) && isset($json->p4ss)) {
                         $token = $json->token;
                         $username = $json->x1d;
                         $type = $json->type;
-                        $key = $json->key;
 
-                        if ($token == $tool->generate_token($key, $username, $type)) {
-                            if ($user->chek_token($username, $token, $type)) {
-                                if ($user->getakses_admin($username) && $user->getakses_admin_piket($username)) {
+                        if ($user->chek_token($username, $token, $type)) {
+                            if ($user->getakses_admin($username) && $user->getakses_admin_piket($username)) {
 
-                                    $validasi = $user->getpass_lama($username, $json->p4ss);
-                                    if ($validasi) {
-                                        $msiswa = new Modul_user_master();
-                                        $hasil = $msiswa->check_data_siswa($json->nis);
-                                        if ($hasil) {
-                                            $msiswa->hapus_data_siswa($json->nis);
-                                            $result = [
-                                                'code' => 'OK4'
-                                            ];
-                                        } else
-                                            $result = [
-                                                'code' => 'Data tidak ditemukan'
-                                            ];
+                                $validasi = $user->getpass_lama($username, $json->p4ss);
+                                if ($validasi) {
+                                    $msiswa = new Modul_user_master();
+                                    $hasil = $msiswa->check_data_siswa($json->nis);
+                                    if ($hasil) {
+//                                            $msiswa->hapus_data_siswa($json->nis);
+                                        $result = [
+                                            'code' => 'OK4'
+                                        ];
                                     } else
                                         $result = [
-                                            'code' => 'Password anda yang dimasukan salah'
+                                            'code' => 'Data tidak ditemukan'
                                         ];
-
                                 } else
-                                    $result = ['code' => 'Akses Ditolak'];
-                            } else
-                                $result = ['code' => 'TOKEN1'];
+                                    $result = [
+                                        'code' => 'Password anda yang dimasukan salah'
+                                    ];
 
+                            } else
+                                $result = ['code' => 'Akses Ditolak'];
                         } else
-                            $result = ['code' => 'TOKEN2'];
+                            $result = ['code' => 'TOKEN1'];
+
 
                     } else
                         $result = ['code' => 'ISI nama PARAM dikirim salah'];
