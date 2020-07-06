@@ -70,6 +70,21 @@ class Modul_user_master
         return $result;
     }
 
+    public function chek_kehadiran($nis)
+    {
+//        $query = "select count(*) as nama from kehadiran where nis= :nis";
+//        $result = DB::connection('mysql')->select(DB::raw($query)->first(), [
+//            'nis' => $nis
+//        ]);
+//        return $result;
+
+        $getid = DB::table('kehadiran')->select(DB::raw('COUNT(*) as itung'))->where('nis', $nis)->first();
+        if ($getid->itung == 0)
+            return true;
+        else
+            return false;
+    }
+
     public function hapus_data_siswa($nis)
     {
         $query = "DELETE FROM siswa where nis = :nis";
@@ -117,6 +132,22 @@ class Modul_user_master
         $getid = DB::table('staf')->where('nip', $nip)->first();
 
         return $getid;
+    }
+
+    public function chek_walikelas($nis)
+    {
+//        $query = "select count(*) as nama from kehadiran where nis= :nis";
+//        $result = DB::connection('mysql')->select(DB::raw($query)->first(), [
+//            'nis' => $nis
+//        ]);
+//        return $result;
+
+        $getid = DB::table('kelas')->select(DB::raw('COUNT(*) as itung'))->where('id_wali_kelas', $nis)->first();
+        return $getid;
+        if ($getid->itung == 0)
+            return true;
+        else
+            return false;
     }
 
     public function get_kelas_staf($nip)
