@@ -20,6 +20,7 @@ Route::get('tanggal', 'Admin\Input_data_master@lihat_tanggal_alluser');
 Route::prefix('admin')->group(function () {
 
 	Route::post('dashboard', 'Admin\admin@dashboard');
+	Route::post('dashboard/tgl', 'Admin\admin@dashboard_tgl');
 	Route::post('listkls', 'Admin\admin@list_kelasthn_ini');
 	Route::post('generate_qr', 'Admin\admin@gen_qr');
 

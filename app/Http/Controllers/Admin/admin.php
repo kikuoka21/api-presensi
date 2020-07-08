@@ -209,7 +209,6 @@ class admin extends Controller
 
                                 $result = [
                                     'code' => 'OK4',
-                                    'code2' => $tool->is_parent($json),
                                     'date' => $hari_ini,
                                     'statistik' => $statistik,
 
@@ -228,6 +227,205 @@ class admin extends Controller
 
                     } else
                         $result = ['code' => 'TOKEN2'];
+
+                } else
+                    $result = ['code' => 'ISI nama PARAM dikirim salah'];
+
+
+            } else
+                $result = ['code' => 'format data yg dikirim salah '];
+
+            return $result;
+        }
+    }
+
+    public function dashboard_tgl(Request $request)
+    {
+        $user = new User();
+        $tool = new Tool();
+        $dashboard = new M_Dashboard();
+
+        $json = $request->input('parsing');
+
+
+        if ($json == null) {
+            return Redirect::to('/');
+        } else {
+
+            if ($tool->IsJsonString($json)) {
+                $json = json_decode($json);
+                if (isset($json->token) && isset($json->x1d) && isset($json->type)&& isset($json->tgl)) {
+                    $token = $json->token;
+                    $username = $json->x1d;
+                    $type = $json->type;
+                    $tanggal = $json->tgl;
+                    if ($user->chek_token($username, $token, $type)) {
+                        //$username = '760695';
+
+                        if ($user->getakses_admin($username)) {
+//                                $tanggal = '2020-04-08';
+                            $thn_ajar = $tool->thn_ajar_pertanggal($tanggal);
+                            if (isset($json->token_firebase)) {
+                                $user->update_firebase_user($username, $json->token_firebase);
+                            }
+
+                            $list = [];
+                            $statistik = [
+                                "hadir" => 0,
+                                "alpha" => 0,
+                                "izin" => 0,
+                                "sakit" => 0,
+                                "telat" => 0,
+                                "list_kelas" => []
+
+                            ];
+                            $presen = new M_presensi();
+                            $msiswa = new M_siswa();
+                            $hasil = $dashboard->harilibur($tanggal);
+                            if (!$hasil) {
+                                if ($tool->tgl_merah()) {
+//                                    if (false) {
+                                    $hari_ini = [
+                                        'status' => 'L',
+                                        'ket' => 'Tidak ada Kegiatan Belajar Mengajar'
+                                    ];
+
+                                } else {
+                                    $hari_ini = [
+                                        'status' => 'M',
+                                        'ket' => $tanggal
+                                    ];
+
+                                    $madmin = new M_admin();
+                                    if ($user->getakses_admin_piket($username)) {
+                                        $kelas = $madmin->all_kelas($thn_ajar);
+                                        $list_kelas = [];
+                                        for ($i = 0; $i < count($kelas); $i++) {
+                                            $siswa = $madmin->get_siswakelas($kelas[$i]->id_kelas);
+                                            $banyak_alphanya = 0;
+                                            for ($j = 0; $j < count($siswa); $j++) {
+
+                                                $absennya = $presen->getabsen_siswa2($tanggal, $siswa[$j]->nis);
+                                                if (!$absennya) {
+                                                    $msiswa->create_absen($siswa[$j]->nis, $tanggal);
+                                                    $banyak_alphanya++;
+                                                } else {
+
+                                                    if ($absennya[0]->stat == 'A') {
+
+                                                        $banyak_alphanya++;
+                                                    }
+
+                                                }
+                                            }
+
+                                            $statistik_kelas = [
+                                                "kelas" => $kelas[$i]->nama_kelas,
+                                                "alpha" => $banyak_alphanya,
+                                            ];
+                                            $list_kelas[$i] = $statistik_kelas;
+                                        }
+                                        $row_sakit = $madmin->getabsen_all2($tanggal, $thn_ajar, 'S');
+                                        $row_izin = $madmin->getabsen_all2($tanggal, $thn_ajar, 'I');
+                                        $row_hadir = $madmin->getabsen_all2($tanggal, $thn_ajar, 'H');
+                                        $row_telat = $madmin->getabsen_all2($tanggal, $thn_ajar, 'T');
+                                        $list = $madmin->getabsen_all2($tanggal, $thn_ajar, 'A');
+                                        $statistik = [
+                                            "hadir" => count($row_hadir),
+                                            "alpha" => count($list),
+                                            "izin" => count($row_izin),
+                                            "sakit" => count($row_sakit),
+                                            "telat" => count($row_telat),
+                                            "list_kelas" => $list_kelas,
+                                        ];
+
+                                    } else {
+                                        $siswa = $madmin->getsiswa($username, $thn_ajar);
+                                        $nama = $madmin->namakelas($username, $thn_ajar);
+                                        $row_sakit = 0;
+                                        $row_izin = 0;
+                                        $row_hadir = 0;
+                                        $row_telat = 0;
+                                        $row_alpha = 0;
+                                        for ($i = 0; $i < count($siswa); $i++) {
+
+                                            $absen = $presen->getabsen_siswa2($tanggal, $siswa[$i]->nis);
+                                            if (!$absen) {
+                                                $presensi = [
+                                                    "nis" => $siswa[$i]->nis,
+                                                    "nama" => $dashboard->getnama_siswa($siswa[$i]->nis),
+                                                    "kelas" => object_get($nama[0], 'nama_kelas'),
+                                                    "stat" => "A",
+                                                    "ket" => "Belum Melakukan Presensi Masuk"];
+                                                $msiswa->create_absen($siswa[$i]->nis, $tanggal);
+                                                $list[$row_alpha] = $presensi;
+                                                $row_alpha++;
+                                            } else {
+
+                                                if ($absen[0]->stat == 'A') {
+                                                    $presensi = [
+                                                        "nis" => $siswa[$i]->nis,
+                                                        "nama" => $dashboard->getnama_siswa($siswa[$i]->nis),
+                                                        "kelas" => object_get($nama[0], 'nama_kelas'),
+                                                        "stat" => $absen[0]->stat,
+                                                        "ket" => $absen[0]->ket];
+                                                    $list[$row_alpha] = $presensi;
+                                                    $row_alpha++;
+                                                }
+
+                                                if ($absen[0]->stat == 'T') {
+                                                    $row_telat++;
+                                                }
+
+                                                if ($absen[0]->stat == 'H') {
+                                                    $row_hadir++;
+                                                }
+
+                                                if ($absen[0]->stat == 'S') {
+                                                    $row_sakit++;
+                                                }
+
+                                                if ($absen[0]->stat == 'I') {
+                                                    $row_izin++;
+                                                }
+
+                                            }
+
+                                        }
+
+                                        $statistik = [
+                                            "hadir" => $row_hadir,
+                                            "alpha" => $row_alpha,
+                                            "izin" => $row_izin,
+                                            "sakit" => $row_sakit,
+                                            "telat" => $row_telat,
+                                            "list_kelas" => []
+                                        ];
+
+                                    }
+                                }
+
+                            } else {
+                                $hari_ini = [
+                                    'status' => 'L',
+                                    'ket' => object_get($hasil[0], 'ket')
+                                ];
+
+                            }
+
+                            $result = [
+                                'code' => 'OK4',
+                                'code2' => $tanggal,
+                                'date' => $hari_ini,
+                                'statistik' => $statistik,
+                                'list_absen' => $list
+
+                            ];
+                        } else
+                            $result = ['code' => 'Akses Ditolak'];
+
+                    } else
+                        $result = ['code' => 'TOKEN1'];
 
                 } else
                     $result = ['code' => 'ISI nama PARAM dikirim salah'];
@@ -391,6 +589,7 @@ class admin extends Controller
             return $result;
         }
     }
+
     public function gen_qr(Request $request)
     {
         $user = new User();
@@ -402,7 +601,7 @@ class admin extends Controller
         } else {
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
-                if (isset($json->token) && isset($json->x1d) && isset($json->type)&& isset($json->kd_kls)) {
+                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->kd_kls)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
