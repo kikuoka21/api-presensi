@@ -283,7 +283,7 @@ class admin extends Controller
                             $msiswa = new M_siswa();
                             $hasil = $dashboard->harilibur($tanggal);
                             if (!$hasil) {
-                                if ($tool->tgl_merah()) {
+                                if ($tool->convert_tgl_merah($tanggal)) {
 //                                    if (false) {
                                     $hari_ini = [
                                         'status' => 'L',
