@@ -88,7 +88,7 @@ class admin extends Controller
                                         ];
 
                                         $madmin = new M_admin();
-                                        if ($user->getakses_admin_piket($username)) {
+//                                        if ($user->getakses_admin_piket($username)) {
                                             $kelas = $madmin->all_kelas($thn_ajar);
                                             $list_kelas = [];
                                             for ($i = 0; $i < count($kelas); $i++) {
@@ -133,70 +133,70 @@ class admin extends Controller
                                                 "list_kelas" => $list_kelas,
                                             ];
 
-                                        } else {
-                                            $siswa = $madmin->getsiswa($username, $thn_ajar);
-                                            $nama = $madmin->namakelas($username, $thn_ajar);
-                                            $row_sakit = 0;
-                                            $row_izin = 0;
-                                            $row_hadir = 0;
-                                            $row_telat = 0;
-                                            $row_alpha = 0;
-                                            for ($i = 0; $i < count($siswa); $i++) {
-
-                                                $absen = $presen->getabsen_siswa2($tanggal, $siswa[$i]->nis);
-                                                if (!$absen) {
-                                                    $presensi = [
-                                                        "nis" => $siswa[$i]->nis,
-                                                        "nama" => $dashboard->getnama_siswa($siswa[$i]->nis),
-                                                        "kelas" => object_get($nama[0], 'nama_kelas'),
-                                                        "stat" => "A",
-                                                        "ket" => "Belum Melakukan Presensi Masuk"];
-                                                    $msiswa->create_absen($siswa[$i]->nis, $tanggal);
-                                                    $list[$row_alpha] = $presensi;
-                                                    $row_alpha++;
-                                                } else {
-
-                                                    if ($absen[0]->stat == 'A') {
-                                                        $presensi = [
-                                                            "nis" => $siswa[$i]->nis,
-                                                            "nama" => $dashboard->getnama_siswa($siswa[$i]->nis),
-                                                            "kelas" => object_get($nama[0], 'nama_kelas'),
-                                                            "stat" => $absen[0]->stat,
-                                                            "ket" => $absen[0]->ket];
-                                                        $list[$row_alpha] = $presensi;
-                                                        $row_alpha++;
-                                                    }
-
-                                                    if ($absen[0]->stat == 'T') {
-                                                        $row_telat++;
-                                                    }
-
-                                                    if ($absen[0]->stat == 'H') {
-                                                        $row_hadir++;
-                                                    }
-
-                                                    if ($absen[0]->stat == 'S') {
-                                                        $row_sakit++;
-                                                    }
-
-                                                    if ($absen[0]->stat == 'I') {
-                                                        $row_izin++;
-                                                    }
-
-                                                }
-
-                                            }
-
-                                            $statistik = [
-                                                "hadir" => $row_hadir,
-                                                "alpha" => $row_alpha,
-                                                "izin" => $row_izin,
-                                                "sakit" => $row_sakit,
-                                                "telat" => $row_telat,
-                                                "list_kelas" => []
-                                            ];
-
-                                        }
+//                                        } else {
+//                                            $siswa = $madmin->getsiswa($username, $thn_ajar);
+//                                            $nama = $madmin->namakelas($username, $thn_ajar);
+//                                            $row_sakit = 0;
+//                                            $row_izin = 0;
+//                                            $row_hadir = 0;
+//                                            $row_telat = 0;
+//                                            $row_alpha = 0;
+//                                            for ($i = 0; $i < count($siswa); $i++) {
+//
+//                                                $absen = $presen->getabsen_siswa2($tanggal, $siswa[$i]->nis);
+//                                                if (!$absen) {
+//                                                    $presensi = [
+//                                                        "nis" => $siswa[$i]->nis,
+//                                                        "nama" => $dashboard->getnama_siswa($siswa[$i]->nis),
+//                                                        "kelas" => object_get($nama[0], 'nama_kelas'),
+//                                                        "stat" => "A",
+//                                                        "ket" => "Belum Melakukan Presensi Masuk"];
+//                                                    $msiswa->create_absen($siswa[$i]->nis, $tanggal);
+//                                                    $list[$row_alpha] = $presensi;
+//                                                    $row_alpha++;
+//                                                } else {
+//
+//                                                    if ($absen[0]->stat == 'A') {
+//                                                        $presensi = [
+//                                                            "nis" => $siswa[$i]->nis,
+//                                                            "nama" => $dashboard->getnama_siswa($siswa[$i]->nis),
+//                                                            "kelas" => object_get($nama[0], 'nama_kelas'),
+//                                                            "stat" => $absen[0]->stat,
+//                                                            "ket" => $absen[0]->ket];
+//                                                        $list[$row_alpha] = $presensi;
+//                                                        $row_alpha++;
+//                                                    }
+//
+//                                                    if ($absen[0]->stat == 'T') {
+//                                                        $row_telat++;
+//                                                    }
+//
+//                                                    if ($absen[0]->stat == 'H') {
+//                                                        $row_hadir++;
+//                                                    }
+//
+//                                                    if ($absen[0]->stat == 'S') {
+//                                                        $row_sakit++;
+//                                                    }
+//
+//                                                    if ($absen[0]->stat == 'I') {
+//                                                        $row_izin++;
+//                                                    }
+//
+//                                                }
+//
+//                                            }
+//
+//                                            $statistik = [
+//                                                "hadir" => $row_hadir,
+//                                                "alpha" => $row_alpha,
+//                                                "izin" => $row_izin,
+//                                                "sakit" => $row_sakit,
+//                                                "telat" => $row_telat,
+//                                                "list_kelas" => []
+//                                            ];
+//
+//                                        }
                                     }
 
                                 } else {
@@ -254,7 +254,7 @@ class admin extends Controller
 
             if ($tool->IsJsonString($json)) {
                 $json = json_decode($json);
-                if (isset($json->token) && isset($json->x1d) && isset($json->type)&& isset($json->tgl)) {
+                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->tgl)) {
                     $token = $json->token;
                     $username = $json->x1d;
                     $type = $json->type;
@@ -297,112 +297,112 @@ class admin extends Controller
                                     ];
 
                                     $madmin = new M_admin();
-                                    if ($user->getakses_admin_piket($username)) {
-                                        $kelas = $madmin->all_kelas($thn_ajar);
-                                        $list_kelas = [];
-                                        for ($i = 0; $i < count($kelas); $i++) {
-                                            $siswa = $madmin->get_siswakelas($kelas[$i]->id_kelas);
-                                            $banyak_alphanya = 0;
-                                            for ($j = 0; $j < count($siswa); $j++) {
+//                                    if ($user->getakses_admin_piket($username)) {
+                                    $kelas = $madmin->all_kelas($thn_ajar);
+                                    $list_kelas = [];
+                                    for ($i = 0; $i < count($kelas); $i++) {
+                                        $siswa = $madmin->get_siswakelas($kelas[$i]->id_kelas);
+                                        $banyak_alphanya = 0;
+                                        for ($j = 0; $j < count($siswa); $j++) {
 
-                                                $absennya = $presen->getabsen_siswa2($tanggal, $siswa[$j]->nis);
-                                                if (!$absennya) {
-                                                    $msiswa->create_absen($siswa[$j]->nis, $tanggal);
-                                                    $banyak_alphanya++;
-                                                } else {
-
-                                                    if ($absennya[0]->stat == 'A') {
-
-                                                        $banyak_alphanya++;
-                                                    }
-
-                                                }
-                                            }
-
-                                            $statistik_kelas = [
-                                                "kelas" => $kelas[$i]->nama_kelas,
-                                                "alpha" => $banyak_alphanya,
-                                            ];
-                                            $list_kelas[$i] = $statistik_kelas;
-                                        }
-                                        $row_sakit = $madmin->getabsen_all2($tanggal, $thn_ajar, 'S');
-                                        $row_izin = $madmin->getabsen_all2($tanggal, $thn_ajar, 'I');
-                                        $row_hadir = $madmin->getabsen_all2($tanggal, $thn_ajar, 'H');
-                                        $row_telat = $madmin->getabsen_all2($tanggal, $thn_ajar, 'T');
-                                        $list = $madmin->getabsen_all2($tanggal, $thn_ajar, 'A');
-                                        $statistik = [
-                                            "hadir" => count($row_hadir),
-                                            "alpha" => count($list),
-                                            "izin" => count($row_izin),
-                                            "sakit" => count($row_sakit),
-                                            "telat" => count($row_telat),
-                                            "list_kelas" => $list_kelas,
-                                        ];
-
-                                    } else {
-                                        $siswa = $madmin->getsiswa($username, $thn_ajar);
-                                        $nama = $madmin->namakelas($username, $thn_ajar);
-                                        $row_sakit = 0;
-                                        $row_izin = 0;
-                                        $row_hadir = 0;
-                                        $row_telat = 0;
-                                        $row_alpha = 0;
-                                        for ($i = 0; $i < count($siswa); $i++) {
-
-                                            $absen = $presen->getabsen_siswa2($tanggal, $siswa[$i]->nis);
-                                            if (!$absen) {
-                                                $presensi = [
-                                                    "nis" => $siswa[$i]->nis,
-                                                    "nama" => $dashboard->getnama_siswa($siswa[$i]->nis),
-                                                    "kelas" => object_get($nama[0], 'nama_kelas'),
-                                                    "stat" => "A",
-                                                    "ket" => "Belum Melakukan Presensi Masuk"];
-                                                $msiswa->create_absen($siswa[$i]->nis, $tanggal);
-                                                $list[$row_alpha] = $presensi;
-                                                $row_alpha++;
+                                            $absennya = $presen->getabsen_siswa2($tanggal, $siswa[$j]->nis);
+                                            if (!$absennya) {
+                                                $msiswa->create_absen($siswa[$j]->nis, $tanggal);
+                                                $banyak_alphanya++;
                                             } else {
 
-                                                if ($absen[0]->stat == 'A') {
-                                                    $presensi = [
-                                                        "nis" => $siswa[$i]->nis,
-                                                        "nama" => $dashboard->getnama_siswa($siswa[$i]->nis),
-                                                        "kelas" => object_get($nama[0], 'nama_kelas'),
-                                                        "stat" => $absen[0]->stat,
-                                                        "ket" => $absen[0]->ket];
-                                                    $list[$row_alpha] = $presensi;
-                                                    $row_alpha++;
-                                                }
+                                                if ($absennya[0]->stat == 'A') {
 
-                                                if ($absen[0]->stat == 'T') {
-                                                    $row_telat++;
-                                                }
-
-                                                if ($absen[0]->stat == 'H') {
-                                                    $row_hadir++;
-                                                }
-
-                                                if ($absen[0]->stat == 'S') {
-                                                    $row_sakit++;
-                                                }
-
-                                                if ($absen[0]->stat == 'I') {
-                                                    $row_izin++;
+                                                    $banyak_alphanya++;
                                                 }
 
                                             }
-
                                         }
 
-                                        $statistik = [
-                                            "hadir" => $row_hadir,
-                                            "alpha" => $row_alpha,
-                                            "izin" => $row_izin,
-                                            "sakit" => $row_sakit,
-                                            "telat" => $row_telat,
-                                            "list_kelas" => []
+                                        $statistik_kelas = [
+                                            "kelas" => $kelas[$i]->nama_kelas,
+                                            "alpha" => $banyak_alphanya,
                                         ];
-
+                                        $list_kelas[$i] = $statistik_kelas;
                                     }
+                                    $row_sakit = $madmin->getabsen_all2($tanggal, $thn_ajar, 'S');
+                                    $row_izin = $madmin->getabsen_all2($tanggal, $thn_ajar, 'I');
+                                    $row_hadir = $madmin->getabsen_all2($tanggal, $thn_ajar, 'H');
+                                    $row_telat = $madmin->getabsen_all2($tanggal, $thn_ajar, 'T');
+                                    $list = $madmin->getabsen_all2($tanggal, $thn_ajar, 'A');
+                                    $statistik = [
+                                        "hadir" => count($row_hadir),
+                                        "alpha" => count($list),
+                                        "izin" => count($row_izin),
+                                        "sakit" => count($row_sakit),
+                                        "telat" => count($row_telat),
+                                        "list_kelas" => $list_kelas,
+                                    ];
+
+//                                    } else {
+//                                        $siswa = $madmin->getsiswa($username, $thn_ajar);
+//                                        $nama = $madmin->namakelas($username, $thn_ajar);
+//                                        $row_sakit = 0;
+//                                        $row_izin = 0;
+//                                        $row_hadir = 0;
+//                                        $row_telat = 0;
+//                                        $row_alpha = 0;
+//                                        for ($i = 0; $i < count($siswa); $i++) {
+//
+//                                            $absen = $presen->getabsen_siswa2($tanggal, $siswa[$i]->nis);
+//                                            if (!$absen) {
+//                                                $presensi = [
+//                                                    "nis" => $siswa[$i]->nis,
+//                                                    "nama" => $dashboard->getnama_siswa($siswa[$i]->nis),
+//                                                    "kelas" => object_get($nama[0], 'nama_kelas'),
+//                                                    "stat" => "A",
+//                                                    "ket" => "Belum Melakukan Presensi Masuk"];
+//                                                $msiswa->create_absen($siswa[$i]->nis, $tanggal);
+//                                                $list[$row_alpha] = $presensi;
+//                                                $row_alpha++;
+//                                            } else {
+//
+//                                                if ($absen[0]->stat == 'A') {
+//                                                    $presensi = [
+//                                                        "nis" => $siswa[$i]->nis,
+//                                                        "nama" => $dashboard->getnama_siswa($siswa[$i]->nis),
+//                                                        "kelas" => object_get($nama[0], 'nama_kelas'),
+//                                                        "stat" => $absen[0]->stat,
+//                                                        "ket" => $absen[0]->ket];
+//                                                    $list[$row_alpha] = $presensi;
+//                                                    $row_alpha++;
+//                                                }
+//
+//                                                if ($absen[0]->stat == 'T') {
+//                                                    $row_telat++;
+//                                                }
+//
+//                                                if ($absen[0]->stat == 'H') {
+//                                                    $row_hadir++;
+//                                                }
+//
+//                                                if ($absen[0]->stat == 'S') {
+//                                                    $row_sakit++;
+//                                                }
+//
+//                                                if ($absen[0]->stat == 'I') {
+//                                                    $row_izin++;
+//                                                }
+//
+//                                            }
+//
+//                                        }
+//
+//                                        $statistik = [
+//                                            "hadir" => $row_hadir,
+//                                            "alpha" => $row_alpha,
+//                                            "izin" => $row_izin,
+//                                            "sakit" => $row_sakit,
+//                                            "telat" => $row_telat,
+//                                            "list_kelas" => []
+//                                        ];
+//
+//                                    }
                                 }
 
                             } else {

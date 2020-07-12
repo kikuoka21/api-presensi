@@ -4,6 +4,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Modules\Dosen\Presensi;
+use App\Modules_admin\coba_coba;
 use App\Modules_parent\User_parent;
 use App\Modules_siswa\M_Dashboard;
 use App\Modules_siswa\Tool;
@@ -107,10 +109,55 @@ class auth extends Controller
 //
 //        ];
 //        return response()->json($result, 201);
+
+        $decode = json_decode($request->input('xdata'));
+        if (
+            isset($decode->xfakultas) &&
+            isset($decode->xperiode) &&
+            isset($decode->xmatkul) &&
+            isset($decode->xkelompok) &&
+            isset($decode->xpertemuan)
+        ) {
+
+            if (isset($decode->xlistmhs)) {
+
+            } else if (isset($decode->xnim) && isset($decode->xstatus)) {
+                $xnim = $decode->xnim;
+                $xstatus = $decode->xstatus;
+                for ($i = 0; $i < 100; $i++) {
+                    if (isset($xnim[$i])) {
+                        if ($xnim[$i] != '-' && $xstatus[$i] != '-') {
+
+                        } else {
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => "bisa"
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => "Maaf, "
+            ]);
+        }
+
+
+
+
+
         $message = [
             "title" => "coba coba",
             "content" => "dari api qr_code2",
-            "chanel" => 'Presensi'
+            "xdata" => $request->input('xdata')
+        ];
+        $message2 = [
+            "title" => "coba coba",
+            "xdata" => json_decode($request->input('xdata'))
         ];
 
         //registration_ids jika target banyak
@@ -118,8 +165,97 @@ class auth extends Controller
             'data' => $message,
             'to' => 'eYkQsEhmS4GYpAGfOharG4:APA91bEJGezM-tHCB8wW9HbTOBc4q8574RqSypJC_c74SXY3VIR_piydHsvYUK5q_yPEuX0DRPgaAkO1FiBvUasmzlr-Dm8gv6K-yNDT8hANuzwQVe-kkvxR6PYW6IeUH75cd9szvnoH',
         ];
+        return $request->input('xdata');
+//        return $message2;
+//        return $tool->call_FMC($fields);
+    }
+    public function submit_presensi(Request $request)
+    {
+        $tool = new Tool();
 
-        return $tool->call_FMC($fields);
+        //        $panggil = new \App\Modules_siswa\Utilities();
+        //
+        //        $panggil->setXsearch($request->input('search'));
+        //        $panggil->setXtahunCari($getXtahun_cari);
+        //        $result = [
+        //            'data' => $getXtahun_cari,
+        //            '!= null;' => $compare_1,
+        //            '!= 0' => $compare_2,
+        //            '!= 99' => $compare_3,
+        //            '== null' => $getXtahun_cari == null,
+        //            '$panggil->PencarianPertama()' => $panggil->PencarianPertama(),
+        //
+        //        ];
+//        $result = [
+//            'success' => false,
+//            'message' => 'token_invalid & nip_invalid, harap cek kembali authorization dan parameter'
+//
+//        ];
+//        return response()->json($result, 201);
+
+        $decode = json_decode($request->input('xdata'));
+
+        $xfakultas = $decode->xfakultas;
+        $xtahunajar = $decode->xtahunajar;
+        $xsmt = $decode->xsmt;
+        $xmatkul = $decode->xmatkul;
+        $xkelompok = $decode->xkelompok;
+        $xpertemuan = $decode->xpertemuan;
+        $listMahasiswa = [];
+        if(isset($decode->xlistmhs)){
+            $listMahasiswa = (array)$decode->xlistmhs;
+            $listMahasiswa = (array)$listMahasiswa;
+        }else if(isset($decode->xnim) && isset($decode->xstatus)){
+            $xnim = $decode->xnim;
+            $xstatus = $decode->xstatus;
+            $listMahasiswa = array();
+            for ($i = 0; $i < 100; $i++) {
+                if (isset($xnim[$i])) {
+                    if ($xnim[$i] != '-' && $xstatus[$i] != '-') {
+                        $isi = [
+                            "nim" =>  $xnim[$i],
+                            "status" => $xstatus[$i],
+                        ];
+                        $listMahasiswa[$i] = $isi;
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+
+
+        $data = new coba_coba();
+        $data->fakultas =   $xfakultas;
+        $data->kelompok =   $xkelompok;
+        $data->matkul   =   $xmatkul;
+        $data->pertemuan=   $xpertemuan;
+        $data->tahunajar=   $xtahunajar;
+        $data->semester =   $xsmt;
+        $data->listMahasiswa = (array)$listMahasiswa;
+
+        $execute=$data->entry();
+
+        $message = [
+            "title" => "coba coba",
+            "content" => "dari api qr_code2",
+            "xdata" => $request->input('xdata')
+        ];
+        $message2 = [
+            "title" => "coba coba",
+            "title2" => $execute,
+            "listMahasiswa" => $listMahasiswa,
+//            "xdata" => json_decode($request->input('xdata'))
+        ];
+
+        //registration_ids jika target banyak
+        $fields = [
+            'data' => $message,
+            'to' => 'eYkQsEhmS4GYpAGfOharG4:APA91bEJGezM-tHCB8wW9HbTOBc4q8574RqSypJC_c74SXY3VIR_piydHsvYUK5q_yPEuX0DRPgaAkO1FiBvUasmzlr-Dm8gv6K-yNDT8hANuzwQVe-kkvxR6PYW6IeUH75cd9szvnoH',
+        ];
+//        return json_decode($request->input('xdata'));
+        return $message2;
+//        return $tool->call_FMC($fields);
     }
 
     public function logout(Request $request)

@@ -136,12 +136,11 @@ class Modul_Kelas
     public function list_walikelas($tahun)
     {
         $query = "select  nip, nama_staf as nama 
-                        from staf where  level = :levelnya and nip not in (
+                        from staf where  nip not in (
                         select id_wali_kelas from  kelas 
                         where tahun_ajar = :thn)";
         $result = DB::connection('mysql')->select(DB::raw($query), [
-            'thn' => $tahun,
-            'levelnya' => '0'
+            'thn' => $tahun
         ]);
         return $result;
     }
