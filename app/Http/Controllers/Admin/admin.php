@@ -768,12 +768,18 @@ class admin extends Controller
                                                             } else {
                                                                 $list[$arrayke] = $absen[0];
                                                             }
-                                                            $arrayke++;
-                                                            date_add($tanggal, date_interval_create_from_date_string("1 days"));
                                                         } else {
-                                                            break;
+                                                            $absen = [
+                                                                'tanggal' => date_format($tanggal, "Y-m-d"),
+                                                                'stat' => 'H',
+                                                                'ket' => ""];
+
+                                                            $list[$arrayke] = $absen;
                                                         }
 //
+
+                                                        $arrayke++;
+                                                        date_add($tanggal, date_interval_create_from_date_string("1 days"));
                                                     }
                                                     $data[$i] = [
                                                         'nis' => object_get($arraysiswa[$i], 'nis'),
