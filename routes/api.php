@@ -43,6 +43,7 @@ Route::prefix('admin')->group(function () {
 			Route::post('input', 'Admin\Input_data_master@input_siswa');
 			Route::post('cari', 'Admin\Master\User_Master@cari_siswa');
 			Route::post('ubah', 'Admin\Master\User_Master@ubah_siswa');
+//			Route::put('ubah', 'Admin\Master\User_Master@ubah_siswa');//tambahan PUT
 			Route::post('hapus', 'Admin\Master\User_Master@hapus_siswa');
 			Route::post('datasiswa', 'Admin\Master\User_Master@data_siswa');// get data untuk d ubah
 		});

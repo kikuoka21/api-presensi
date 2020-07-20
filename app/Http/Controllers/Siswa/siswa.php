@@ -28,75 +28,73 @@ class siswa extends Controller
         $dashboard = new M_Dashboard();
 
         $json = $request->input('parsing');
-        if ($json == null) {
-            return Redirect::to('/');
-        } else {
-            if ($tool->IsJsonString($json)) {
-                $json = json_decode($json);
-                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) && isset($json->token_firebase)) {
-                    $token = $json->token;
-                    $username = $json->x1d;
-                    $type = $json->type;
-                    $key = $json->key;
-                    if ($token == $tool->generate_token($key, $username, $type)) {
-                        if ($user->chek_token($username, $token, $type)) {
-                            $tanggal = $tool->get_date();
 
-                            $user->update_firebase_user($username, $json->token_firebase);
+        if ($tool->IsJsonString($json)) {
+            $json = json_decode($json);
+            if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) && isset($json->token_firebase)) {
+                $token = $json->token;
+                $username = $json->x1d;
+                $type = $json->type;
+                $key = $json->key;
+                if ($token == $tool->generate_token($key, $username, $type)) {
+                    if ($user->chek_token($username, $token, $type)) {
+                        $tanggal = $tool->get_date();
 
-                            $hasil = $dashboard->harilibur($tanggal);
-                            if (!$hasil) {
-                                if ($tool->tgl_merah()) {
-                                    $hari_ini = [
-                                        'status' => 'L',
-                                        'ket' => 'Tidak ada Kegiatan Belajar Mengajar'
-                                    ];
-                                } else {
-                                    $hari_ini = [
-                                        'status' => 'M',
-                                        'ket' => ''
-                                    ];
-                                }
-                            } else {
+                        $user->update_firebase_user($username, $json->token_firebase);
+
+                        $hasil = $dashboard->harilibur($tanggal);
+                        if (!$hasil) {
+                            if ($tool->tgl_merah()) {
                                 $hari_ini = [
                                     'status' => 'L',
-                                    'ket' => object_get($hasil[0], 'ket')
+                                    'ket' => 'Tidak ada Kegiatan Belajar Mengajar'
+                                ];
+                            } else {
+                                $hari_ini = [
+                                    'status' => 'M',
+                                    'ket' => ''
                                 ];
                             }
-
-                            $msiswa = new M_siswa();
-                            $hasil_kelas = $msiswa->getKels($username, $tool->thn_ajar_skrng());
-                            $id_kelas = '-';
-                            $nama_kelas = 'Belum Diinput';
-                            if ($hasil_kelas) {
-                                $id_kelas = object_get($hasil_kelas[0], 'kd_kels');
-                                $nama_kelas = object_get($hasil_kelas[0], 'kelas');
-                            }
-
-                            $result = [
-                                'code' => 'OK4',
-                                'kd_kelas' => $id_kelas,
-                                'nm_kelas' => $nama_kelas,
-                                'hari_ini' => $hari_ini
-
+                        } else {
+                            $hari_ini = [
+                                'status' => 'L',
+                                'ket' => object_get($hasil[0], 'ket')
                             ];
+                        }
 
-                        } else
-                            $result = ['code' => 'TOKEN1'];
+                        $msiswa = new M_siswa();
+                        $hasil_kelas = $msiswa->getKels($username, $tool->thn_ajar_skrng());
+                        $id_kelas = '-';
+                        $nama_kelas = 'Belum Diinput';
+                        if ($hasil_kelas) {
+                            $id_kelas = object_get($hasil_kelas[0], 'kd_kels');
+                            $nama_kelas = object_get($hasil_kelas[0], 'kelas');
+                        }
 
-                    } else {
-                        $result = ['code' => 'TOKEN2'];
-                    }
+                        $result = [
+                            'code' => 'OK4',
+                            'kd_kelas' => $id_kelas,
+                            'nm_kelas' => $nama_kelas,
+                            'hari_ini' => $hari_ini
 
-                } else
-                    $result = ['code' => 'ISI nama PARAM dikirim salah'];
+                        ];
 
+                    } else
+                        $result = ['code' => 'TOKEN1'];
+
+                } else {
+                    $result = ['code' => 'TOKEN2'];
+                }
 
             } else
-                $result = ['code' => 'format data yg dikirim salah '];
+                $result = ['code' => 'format data yg dikirim salah'];
 
-            return $result;
-        }
+
+        } else
+            $result = ['code' => 'format data yg dikirim salah '];
+
+        return $result;
+
     }
 
     public function create_qr(Request $request)
@@ -107,81 +105,79 @@ class siswa extends Controller
         $dashboard = new M_Dashboard();
 
         $json = $request->input('parsing');
-        if ($json == null) {
-            return Redirect::to('/');
-        } else {
-            if ($tool->IsJsonString($json)) {
-                $json = json_decode($json);
-                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) && isset($json->kd_kls)) {
-                    $token = $json->token;
-                    $username = $json->x1d;
-                    $type = $json->type;
-                    $key = $json->key;
-                    $kelas = $json->kd_kls;
-                    if ($token == $tool->generate_token($key, $username, $type)) {
-                        if ($user->chek_token($username, $token, $type)) {
-                            if ($tool->tgl_merah()) {
+
+        if ($tool->IsJsonString($json)) {
+            $json = json_decode($json);
+            if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) && isset($json->kd_kls)) {
+                $token = $json->token;
+                $username = $json->x1d;
+                $type = $json->type;
+                $key = $json->key;
+                $kelas = $json->kd_kls;
+                if ($token == $tool->generate_token($key, $username, $type)) {
+                    if ($user->chek_token($username, $token, $type)) {
+                        if ($tool->tgl_merah()) {
+                            $result = [
+                                'code' => 'tidak ada Kegiatan Belajar Mengajar'
+                            ];
+                        } else {
+                            $tanggal = $tool->get_date();
+//                            $tanggal = '2019-05-21';
+                            $hasil = $dashboard->harilibur($tanggal);
+                            if (!$hasil) {
+                                $hasil = $msiswa->get_flag_2($kelas, $tanggal);
+                                if (!$hasil) {
+                                    $getsiswa = $msiswa->get_all_siswa($kelas);
+                                    $token = '';
+                                    if ($getsiswa) {
+                                        $token = md5('sudah d!enkrip' . md5($tanggal . '\'' . $kelas) . '!' . $username);
+                                        $msiswa->insert_token($kelas, $tanggal, $token);
+                                        $code = 'OK4';
+                                        for ($i = 0; $i < count($getsiswa); $i++) {
+                                            $check = $msiswa->check_absen(object_get($getsiswa[$i], 'nis'), $tanggal);
+                                            if (!$check)
+                                                $msiswa->create_absen(object_get($getsiswa[$i], 'nis'), $tanggal);
+                                        }
+
+                                    } else {
+                                        $code = 'tidak ada data siswa di kelas ' . $kelas;
+                                    }
+
+
+                                } else {
+                                    $code = 'OK4';
+                                    $token = $hasil->token;
+                                }
+
+                                $result = [
+                                    'code' => $code,
+                                    'tanggal' => $tanggal,
+                                    'tokennya' => $token
+                                ];
+                            } else {
                                 $result = [
                                     'code' => 'tidak ada Kegiatan Belajar Mengajar'
                                 ];
-                            } else {
-                                $tanggal = $tool->get_date();
-//                            $tanggal = '2019-05-21';
-                                $hasil = $dashboard->harilibur($tanggal);
-                                if (!$hasil) {
-                                    $hasil = $msiswa->get_flag_2($kelas, $tanggal);
-                                    if (!$hasil) {
-                                        $getsiswa = $msiswa->get_all_siswa($kelas);
-                                        $token = '';
-                                        if ($getsiswa) {
-                                            $token = md5('sudah d!enkrip' . md5($tanggal . '\'' . $kelas) . '!' . $username);
-                                            $msiswa->insert_token($kelas, $tanggal, $token);
-                                            $code = 'OK4';
-                                            for ($i = 0; $i < count($getsiswa); $i++) {
-                                                $check = $msiswa->check_absen(object_get($getsiswa[$i], 'nis'), $tanggal);
-                                                if (!$check)
-                                                    $msiswa->create_absen(object_get($getsiswa[$i], 'nis'), $tanggal);
-                                            }
-
-                                        } else {
-                                            $code = 'tidak ada data siswa di kelas ' . $kelas;
-                                        }
-
-
-                                    } else {
-                                        $code = 'OK4';
-                                        $token = $hasil->token;
-                                    }
-
-                                    $result = [
-                                        'code' => $code,
-                                        'tanggal' => $tanggal,
-                                        'tokennya' => $token
-                                    ];
-                                } else {
-                                    $result = [
-                                        'code' => 'tidak ada Kegiatan Belajar Mengajar'
-                                    ];
-                                }
                             }
+                        }
 
-
-                        } else
-                            $result = ['code' => 'TOKEN1'];
 
                     } else
-                        $result = ['code' => 'TOKEN2'];
+                        $result = ['code' => 'TOKEN1'];
 
                 } else
-                    $result = ['code' => 'ISI nama PARAM dikirim salah'];
-
+                    $result = ['code' => 'TOKEN2'];
 
             } else
-                $result = ['code' => 'format data yg dikirim salah '];
+                $result = ['code' => 'format data yg dikirim salah'];
 
-            return $result;
-        }
+
+        } else
+            $result = ['code' => 'format data yg dikirim salah '];
+
+        return $result;
     }
+
 
     public function isi_absen(Request $request)
     {
@@ -189,117 +185,110 @@ class siswa extends Controller
         $tool = new Tool();
 
         $json = $request->input('parsing');
-        if ($json == null) {
-            return Redirect::to('/');
-        } else {
-            if ($tool->IsJsonString($json)) {
-                $json = json_decode($json);
-                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
-                    isset($json->kd_kls) && isset($json->token_absen) && isset($json->tanggal) && isset($json->nama)) {
-                    $token = $json->token;
-                    $username = $json->x1d;
-                    $type = $json->type;
-                    $key = $json->key;
-                    $kelas = $json->kd_kls;
-                    if ($token == $tool->generate_token($key, $username, $type)) {
-                        if ($user->chek_token($username, $token, $type)) {
 
-                            $msiswa = new M_siswa();
-                            $tanggal = $json->tanggal;
+        if ($tool->IsJsonString($json)) {
+            $json = json_decode($json);
+            if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key) &&
+                isset($json->kd_kls) && isset($json->token_absen) && isset($json->tanggal) && isset($json->nama)) {
+                $token = $json->token;
+                $username = $json->x1d;
+                $type = $json->type;
+                $key = $json->key;
+                $kelas = $json->kd_kls;
+                if ($token == $tool->generate_token($key, $username, $type)) {
+                    if ($user->chek_token($username, $token, $type)) {
 
-                            $tokenkelas = $msiswa->get_flag_($kelas);
-                            if ($tokenkelas->token == $json->token_absen) {
+                        $msiswa = new M_siswa();
+                        $tanggal = $json->tanggal;
+
+                        $tokenkelas = $msiswa->get_flag_($kelas);
+                        if ($tokenkelas->token == $json->token_absen) {
 //                            if (true) {
 
-                                $hasil = $msiswa->check_absen($username, $tanggal);
-                                $tokenwali = "";
-                                $tokenwali2 = "";
-                                if ($hasil) {
+                            $hasil = $msiswa->check_absen($username, $tanggal);
+//                            $tokenwali = "";
+//                            $tokenwali2 = "";
+                            if ($hasil) {
 
-                                    if ($hasil->stat == 'A') {
-                                        $mytime = Carbon::now();
-                                        $jam1 = $mytime->toTimeString();
-                                        $jam = strtotime($jam1);
-                                        // if (strtotime('06:25:00') >= $jam) {
-                                        if (true) {
-                                            $stat = 'H';
-                                            $status = " hadir ";
+                                if ($hasil->stat == 'A') {
+                                    $mytime = Carbon::now();
+                                    $jam1 = $mytime->toTimeString();
+                                    $jam = strtotime($jam1);
+                                    // if (strtotime('06:25:00') >= $jam) {
+                                    $stat = 'H';
+                                    $status = " hadir ";
 
-                                            $ket = 'Presensi pada jam ' . $mytime->toTimeString();
-                                            $code = 'OK4';
+                                    $ket = 'Presensi pada jam ' . $mytime->toTimeString();
+                                    $code = 'OK4';
 //                                            if (strtotime('07:15:00') <= $jam) {
 //                                                $stat = 'T';
 //
 //                                                $status = " telat ";
 //                                            }
 //                                            $code =$ket;
-                                            $tokenwali = $msiswa->update_absen($username, $tanggal, $stat, $ket);
+                                    $tokenwali = $msiswa->update_absen($username, $tanggal, $stat, $ket);
 
-                                            if ($tokenwali != "") {
+                                    if ($tokenwali != "") {
 
-                                                $message = [
-                                                    "title" => "Update Presensi",
-                                                    "content" => "Siswa " . $json->nama . " telah melakukan presensi dengan status" . $status . "pada jam " . $jam1,
-                                                    "chanel" => 'Presensi'
-                                                ];
+                                        $message = [
+                                            "title" => "Update Presensi",
+                                            "content" => "Siswa " . $json->nama . " telah melakukan presensi dengan status" . $status . "pada jam " . $jam1,
+                                            "chanel" => 'Presensi'
+                                        ];
 
-                                                //registration_ids jika target banyak
-                                                $fields = [
-                                                    'data' => $message,
-                                                    'to' => $tokenwali,
-                                                ];
-                                                $tokenwali2 = $tool->call_FMC($fields);
+                                        //registration_ids jika target banyak
+                                        $fields = [
+                                            'data' => $message,
+                                            'to' => $tokenwali,
+                                        ];
+                                        $tokenwali2 = $tool->call_FMC($fields);
 //                                                $code = $message;
-                                            }
-                                        } else {
-                                            $code = 'Pengisian presensi pada jam 6.25 pagi sampai 7.15 pagi';
-                                        }
-
-                                    } else {
-                                        if ($hasil->stat == 'H')
-                                            $pesan = 'Hadir';
-                                        else if ($hasil->stat == 'I')
-                                            $pesan = 'Izin';
-                                        else if ($hasil->stat == 'T')
-                                            $pesan = 'Telat';
-                                        else
-                                            $pesan = 'Sakit';
-
-                                        $code = 'anda sudah melakukan Presensi pada tanggal ' . $tanggal . ' dengan status ' . $pesan;
                                     }
 
-                                } else {
-                                    $code = 'QR-Code belum dibuat';
 
+                                } else {
+                                    if ($hasil->stat == 'H')
+                                        $pesan = 'Hadir';
+                                    else if ($hasil->stat == 'I')
+                                        $pesan = 'Izin';
+                                    else
+                                        $pesan = 'Sakit';
+
+                                    $code = 'anda sudah melakukan Presensi pada tanggal ' . $tanggal . ' dengan status ' . $pesan;
                                 }
 
-                                $result = [
-                                    'code' => $code,
-//                                    'code2' => $tokenwali,
-//                                    'code3' => $tokenwali2
-                                ];
                             } else {
-                                $result = [
-                                    'code' => 'token kelas salah'
-                                ];
+                                $code = 'QR-Code belum dibuat';
+
                             }
 
-                        } else
-                            $result = ['code' => 'TOKEN1'];
+                            $result = [
+                                'code' => $code,
+//                                    'code2' => $tokenwali,
+//                                    'code3' => $tokenwali2
+                            ];
+                        } else {
+                            $result = [
+                                'code' => 'token kelas salah'
+                            ];
+                        }
 
                     } else
-                        $result = ['code' => 'TOKEN2'];
+                        $result = ['code' => 'TOKEN1'];
 
                 } else
-                    $result = ['code' => 'ISI nama PARAM dikirim salah'];
-
+                    $result = ['code' => 'TOKEN2'];
 
             } else
-                $result = ['code' => 'format data yg dikirim salah '];
+                $result = ['code' => 'format data yg dikirim salah'];
 
-            return $result;
-        }
+
+        } else
+            $result = ['code' => 'format data yg dikirim salah '];
+
+        return $result;
     }
+
 
     public function profil(Request $request)
     {
@@ -307,53 +296,47 @@ class siswa extends Controller
         $tool = new Tool();
 
         $json = $request->input('parsing');
-        if ($json == null) {
-            return Redirect::to('/');
-        } else {
-            if ($tool->IsJsonString($json)) {
-                $json = json_decode($json);
-                if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key)) {
-                    $token = $json->token;
-                    $username = $json->x1d;
-                    $type = $json->type;
-                    $key = $json->key;
-                    if ($token == $tool->generate_token($key, $username, $type)) {
-                        if ($user->chek_token($username, $token, $type)) {
 
-                            $msiswa = new M_siswa();
-                            $profil = $msiswa->get_profil_siswa($json->x1d);
+        if ($tool->IsJsonString($json)) {
+            $json = json_decode($json);
+            if (isset($json->token) && isset($json->x1d) && isset($json->type) && isset($json->key)) {
+                $token = $json->token;
+                $username = $json->x1d;
+                $type = $json->type;
+                $key = $json->key;
+                if ($token == $tool->generate_token($key, $username, $type)) {
+                    if ($user->chek_token($username, $token, $type)) {
 
-                            if ($profil) {
-                                $kelas = $msiswa->history_kelas($json->x1d);
-                                if (!$kelas)
-                                    $kelas = [];
+                        $msiswa = new M_siswa();
+                        $profil = $msiswa->get_profil_siswa($json->x1d);
 
-                                $data = [
-                                    'profil' => $profil,
-                                    'kelas' => $kelas
-                                ];
+                        $kelas = $msiswa->history_kelas($json->x1d);
+                        if (!$kelas)
+                            $kelas = [];
 
-                                $result = [
-                                    'code' => 'OK4',
-                                    'data' => $data
-                                ];
-                            } else
-                                $result = ['code' => 'Data Tidak Ditemukan'];
-                        } else
-                            $result = ['code' => 'TOKEN1'];
+                        $data = [
+                            'profil' => $profil,
+                            'kelas' => $kelas
+                        ];
 
+                        $result = [
+                            'code' => 'OK4',
+                            'data' => $data
+                        ];
                     } else
-                        $result = ['code' => 'TOKEN2'];
+                        $result = ['code' => 'TOKEN1'];
 
                 } else
-                    $result = ['code' => 'ISI nama PARAM dikirim salah'];
-
+                    $result = ['code' => 'TOKEN2'];
 
             } else
-                $result = ['code' => 'format data yg dikirim salah '];
+                $result = ['code' => 'format data yg dikirim salah'];
 
-            return $result;
-        }
+
+        } else
+            $result = ['code' => 'format data yg dikirim salah '];
+
+        return $result;
     }
 
 

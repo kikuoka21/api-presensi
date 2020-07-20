@@ -18,10 +18,10 @@ class M_presensi
     public function getabsen_kelas_siswa($kelas)
     {
         $query = "SELECT siswa.nis,siswa.nama_siswa as nama FROM isikelas, kelas, siswa
-				where isikelas.id_kelas = :kelas
-                and isikelas.id_kelas = kelas.id_kelas
-				and isikelas.nis= siswa.nis
-				order by siswa.nama_siswa asc";
+                    where isikelas.id_kelas = :kelas
+                    and isikelas.id_kelas = kelas.id_kelas
+                    and isikelas.nis= siswa.nis
+                    order by siswa.nama_siswa asc";
         $result = DB::connection('mysql')->select(DB::raw($query), [
 
             'kelas' => $kelas
@@ -42,10 +42,10 @@ class M_presensi
     public function getabsen_siswa($tanggal, $username)
     {
         $query = "SELECT tanggal, stat, ket FROM kehadiran, siswa
-				where kehadiran.nis= siswa.nis
-                and siswa.nis = :nis	
-  				and tanggal = :tgl
-				order by siswa.nama_siswa asc";
+                    where kehadiran.nis= siswa.nis
+                    and siswa.nis = :nis	
+                    and tanggal = :tgl
+                    order by siswa.nama_siswa asc";
         $result = DB::connection('mysql')->select(DB::raw($query), [
             'tgl' => $tanggal,
             'nis' => $username
@@ -58,10 +58,10 @@ class M_presensi
     public function getabsen_siswa2($tanggal, $username)
     {
         $query = "SELECT stat, ket FROM kehadiran, siswa
-				where kehadiran.nis= siswa.nis
-                and siswa.nis = :nis	
-  				and tanggal = :tgl
-				order by siswa.nama_siswa asc";
+                    where kehadiran.nis= siswa.nis
+                    and siswa.nis = :nis	
+                    and tanggal = :tgl
+                    order by siswa.nama_siswa asc";
         $result = DB::connection('mysql')->select(DB::raw($query), [
             'tgl' => $tanggal,
             'nis' => $username
@@ -81,12 +81,17 @@ class M_presensi
                 'ket' => $ket
             ]);
 
+
+        $getid = DB::table('wali')->select('token_firebase')->where('nis', $username)->first();
+
+
+        return $getid->token_firebase;
     }
 
     public function update_perkelas($tanggal, $stat, $id_kelas, $admin, $ket)
     {
         DB::table('kehadiran')
-//            ->where('id_kelas', $kelas)
+            //            ->where('id_kelas', $kelas)
             ->Join('isikelas', 'isikelas.nis', '=', 'kehadiran.nis')
             ->where('tanggal', $tanggal)
             ->where('isikelas.id_kelas', $id_kelas)
@@ -95,6 +100,16 @@ class M_presensi
                 'ket' => $ket
             ]);
 
+        $query = "select wali.token_firebase, siswa.nama_siswa from siswa, isikelas, kelas, wali
+                    where siswa.nis = isikelas.nis 
+                    and isikelas.id_kelas = kelas.id_kelas
+                    and siswa.nis = wali.nis
+                    and  kelas.id_kelas = :kelas
+                    and wali.token_firebase != ''";
+        $result = DB::connection('mysql')->select(DB::raw($query), [
+            'kelas' => $id_kelas
+        ]);
+        return $result;
     }
 
 

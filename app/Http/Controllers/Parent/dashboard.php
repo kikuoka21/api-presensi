@@ -197,7 +197,7 @@ class dashboard extends Controller
                 $result = [
                     'token' => true,
                     'hasil' => false,
-                    'message' => 'ISI nama PARAM dikirim salah'
+                    'message' => 'format data yg dikirim salah'
                 ];
 
 
@@ -222,7 +222,7 @@ class dashboard extends Controller
 
         if ($tool->IsJsonString($json)) {
             $json = json_decode($json);
-            if (isset($json->token) && isset($json->x1d)&&
+            if (isset($json->token) && isset($json->x1d) &&
                 isset($json->xp4s5) && isset($json->xp4s5_lama)) {
                 $token = $json->token;
                 $username = $json->x1d;
@@ -236,15 +236,15 @@ class dashboard extends Controller
                     if ($compare) {
                         $user->update_pass_wali($username, $json->xp4s5);
                         $result = [
-                        'token' => true,
-                        'hasil' => true
-                    ];
+                            'token' => true,
+                            'hasil' => true
+                        ];
                     } else
                         $result = [
-                        'token' => true,
-                        'hasil' => false,
-                        'message' => 'Password Lama Anda Salah'
-                    ];
+                            'token' => true,
+                            'hasil' => false,
+                            'message' => 'Password Lama Anda Salah'
+                        ];
 
 
 //
@@ -262,7 +262,7 @@ class dashboard extends Controller
                 $result = [
                     'token' => true,
                     'hasil' => false,
-                    'message' => 'ISI nama PARAM dikirim salah'
+                    'message' => 'format data yg dikirim salah'
                 ];
 
 
@@ -324,7 +324,7 @@ class dashboard extends Controller
                 $result = [
                     'token' => true,
                     'hasil' => false,
-                    'message' => 'ISI nama PARAM dikirim salah'
+                    'message' => 'format data yg dikirim salah'
                 ];
 
 
@@ -456,7 +456,7 @@ class dashboard extends Controller
                 $result = [
                     'token' => true,
                     'hasil' => false,
-                    'message' => 'ISI nama PARAM dikirim salah'
+                    'message' => 'format data yg dikirim salah'
                 ];
 
 

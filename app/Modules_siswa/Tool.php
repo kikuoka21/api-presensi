@@ -120,6 +120,23 @@ class Tool
         return $mytime->toDateString();
 
     }
+    public function status_kehadiran($kd_stat)
+    {
+
+        switch (strtoupper($kd_stat)){
+            case "H":
+                return"Hadir";
+            case "A":
+                return"Alpha";
+            case "S":
+                return"Sakit";
+            case "I":
+                return"Izin";
+            default:
+                return"Hadir";
+        }
+
+    }
 
     public function get_date()
     {

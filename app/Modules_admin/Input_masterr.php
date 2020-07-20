@@ -39,7 +39,8 @@ class Input_masterr
             'no_ijazah' => $ijazah,
             'no_ujiansmp' => $no_ujian
         ]);
-        $this->input_users($nis, 'd1fdc1c3d4fcaf10e212d10a896ee927', '0');
+
+        $this->input_users($nis, md5('%' . md5(substr($nama, 0, 3).$tgl_lahir) . ' secret keynya ad@l@h al-kamal!'), '0');
 
     }
 
@@ -124,10 +125,7 @@ class Input_masterr
     public function hapus_libur($tanggal)
     {
         DB::table('hari_libur')->where('tanggal', $tanggal)->delete();
-        DB::table('kehadiran')->where('tanggal', $tanggal)->update([
-            'stat' => 'A',
-            'ket' => 'hari libur pada ' . $tanggal . ' dihapus'
-        ]);
+
     }
 
 
