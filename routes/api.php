@@ -32,8 +32,8 @@ Route::prefix('admin')->group(function () {
 
 	Route::prefix('absen-ubah')->group(function () {
 		Route::post('getdata', 'Admin\admin@get_absen_kelas');//bisa untuk laporan perhari
-		Route::post('per-siswa', 'Admin\admin@ubah_persiswa');//
-		Route::post('per-kelas', 'Admin\admin@ubah_perkelas');//semua kelas
+		Route::put('per-siswa', 'Admin\admin@ubah_persiswa');//
+		Route::put('per-kelas', 'Admin\admin@ubah_perkelas');//semua kelas
 
 	});
 
@@ -42,8 +42,7 @@ Route::prefix('admin')->group(function () {
 		Route::prefix('siswa')->group(function () {
 			Route::post('input', 'Admin\Input_data_master@input_siswa');
 			Route::post('cari', 'Admin\Master\User_Master@cari_siswa');
-			Route::post('ubah', 'Admin\Master\User_Master@ubah_siswa');
-//			Route::put('ubah', 'Admin\Master\User_Master@ubah_siswa');//tambahan PUT
+			Route::put('ubah', 'Admin\Master\User_Master@ubah_siswa');//tambahan PUT
 			Route::post('hapus', 'Admin\Master\User_Master@hapus_siswa');
 			Route::post('datasiswa', 'Admin\Master\User_Master@data_siswa');// get data untuk d ubah
 		});
@@ -52,7 +51,7 @@ Route::prefix('admin')->group(function () {
 			Route::post('input', 'Admin\Input_data_master@input_staf');
 			Route::post('list', 'Admin\Master\User_Master@cari_staf');
 			Route::post('data-staf', 'Admin\Master\User_Master@data_staf');
-			Route::post('ubah', 'Admin\Master\User_Master@update_staf');
+			Route::put('ubah', 'Admin\Master\User_Master@update_staf');
 			Route::post('hapus', 'Admin\Master\User_Master@hapus_staf');
 		});
 
@@ -82,11 +81,18 @@ Route::prefix('admin')->group(function () {
 
 
 			Route::prefix('ubah')->group(function () {
-				Route::post('nama-kelas', 'Admin\Master\Kelas@ubah_nama_kelas');
-				Route::post('ketua-kelas', 'Admin\Master\Kelas@ubah_ketuakelas');
-				Route::post('wali-kelas', 'Admin\Master\Kelas@ubah_walikelas');
-				Route::post('wali-kelas/list', 'Admin\Master\Kelas@list_walikelas');
-				Route::post('level-siswa', 'Admin\Master\Kelas@ubah_lv_siswa');
+//				Route::post('nama-kelas', 'Admin\Master\Kelas@ubah_nama_kelas');
+//				Route::post('ketua-kelas', 'Admin\Master\Kelas@ubah_ketuakelas');
+//				Route::post('wali-kelas', 'Admin\Master\Kelas@ubah_walikelas');
+//				Route::post('wali-kelas/list', 'Admin\Master\Kelas@list_walikelas');
+//				Route::post('level-siswa', 'Admin\Master\Kelas@ubah_lv_siswa');
+
+
+				Route::put('nama-kelas', 'Admin\Master\Kelas@ubah_nama_kelas');
+				Route::post ('ketua-kelas', 'Admin\Master\Kelas@ubah_ketuakelas');
+				Route::put('wali-kelas', 'Admin\Master\Kelas@ubah_walikelas');
+                Route::post('wali-kelas/list', 'Admin\Master\Kelas@list_walikelas');
+				Route::put('level-siswa', 'Admin\Master\Kelas@ubah_lv_siswa');
 
 			});
 		});
@@ -101,6 +107,7 @@ Route::prefix('siswa')->group(function () {
 	Route::prefix('presensi')->group(function () {
 		Route::post('buat', 'Siswa\siswa@create_qr');
 		Route::post('isi', 'Siswa\siswa@isi_absen');
+//		Route::put('isi', 'Siswa\siswa@isi_absen');
 		Route::post('saya', 'Siswa\presensi@presensi_siswa');
 
 		Route::prefix('lihat')->group(function () {//pengurus kelas only
