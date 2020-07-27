@@ -215,7 +215,7 @@ class siswa extends Controller
                                     $jam1 = $mytime->toTimeString();
                                     $jam = strtotime($jam1);
                                     // if (strtotime('06:25:00') >= $jam) {
-                                    $stat = 'H';
+                                    $stat = 'A';
                                     $status = " hadir ";
 
                                     $ket = 'Presensi pada jam ' . $mytime->toTimeString();
