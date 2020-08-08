@@ -13,6 +13,7 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::get('zzzz', 'auth@ccc');
+Route::get('zz', 'auth@ccc');
 Route::post('zzzz', 'auth@ccc');
 Route::get('tanggal', 'Admin\Input_data_master@lihat_tanggal_alluser');
 
@@ -106,8 +107,8 @@ Route::prefix('siswa')->group(function () {
 
 	Route::prefix('presensi')->group(function () {
 		Route::post('buat', 'Siswa\siswa@create_qr');
-		Route::post('isi', 'Siswa\siswa@isi_absen');
-//		Route::put('isi', 'Siswa\siswa@isi_absen');
+//		Route::post('isi', 'Siswa\siswa@isi_absen');
+		Route::put('isi', 'Siswa\siswa@isi_absen');
 		Route::post('saya', 'Siswa\presensi@presensi_siswa');
 
 		Route::prefix('lihat')->group(function () {//pengurus kelas only

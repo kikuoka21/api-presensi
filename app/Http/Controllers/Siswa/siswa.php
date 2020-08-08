@@ -215,7 +215,7 @@ class siswa extends Controller
                                     $jam1 = $mytime->toTimeString();
                                     $jam = strtotime($jam1);
                                     // if (strtotime('06:25:00') >= $jam) {
-                                    $stat = 'A';
+                                    $stat = 'H';
                                     $status = " hadir ";
 
                                     $ket = 'Presensi pada jam ' . $mytime->toTimeString();
@@ -243,8 +243,8 @@ class siswa extends Controller
                                         ];
                                         $tokenwali2 = $tool->call_FMC($fields);
 //                                                $code = $message;
+//                                        $code = $tokenwali2;
                                     }
-
 
                                 } else {
                                     if ($hasil->stat == 'H')

@@ -351,98 +351,94 @@ class dashboard extends Controller
                 $token = $json->token;
                 $username = $json->x1d;
                 $json->tanggal = substr($json->tanggal, 0, 7);
-//                if (true) {
 
+//                if (true) {
                 if ($user_wali->chek_token_wali($username, $token)) {
 
                     $dashboard = new M_Dashboard();
+                    $datakls = [
+                        'nama' => '-',
+                        'thn_ajar' => $tool->thn_ajar_pertanggal($json->tanggal),
+                        'ketua' => '-',
+                        'wali' => '-'
+                    ];
 
                     $kd_kelas = $dashboard->get_kode_kelas($tool->thn_ajar_pertanggal($json->tanggal), $username);
                     if ($kd_kelas) {
                         $kd_kelas = object_get($kd_kelas[0], 'id_kelas');
                         $kelas = $dashboard->get_data_kelas($kd_kelas);
-                        if ($tool->thn_ajar_pertanggal($json->tanggal) == $kelas->tahun_ajar) {
-                            $inputmaster = new Modul_Kelas();
-                            $ketua = $inputmaster->get_ketua_kelas($kd_kelas);
-                            $wali = $inputmaster->get_wali_kelas($kd_kelas);
+                        $inputmaster = new Modul_Kelas();
+                        $ketua = $inputmaster->get_ketua_kelas($kd_kelas);
+                        $wali = $inputmaster->get_wali_kelas($kd_kelas);
 
-                            $namasiswa = '-';
-                            $namawali = '-';
-                            if ($ketua) {
-                                $namasiswa = object_get($ketua[0], 'nama');
+                        $namasiswa = '-';
+                        $namawali = '-';
+                        if ($ketua) {
+                            $namasiswa = object_get($ketua[0], 'nama');
 
-                            }
-                            if ($wali) {
-                                $namawali = object_get($wali[0], 'nama');
-                            }
-                            $datakls = [
-                                'nama' => $kelas->nama,
-                                'thn_ajar' => $kelas->tahun_ajar,
-                                'ketua' => $namasiswa,
-                                'wali' => $namawali
-                            ];
-
-                            $madmin = new M_presensi();
+                        }
+                        if ($wali) {
+                            $namawali = object_get($wali[0], 'nama');
+                        }
+                        $datakls = [
+                            'nama' => $kelas->nama,
+                            'thn_ajar' => $kelas->tahun_ajar,
+                            'ketua' => $namasiswa,
+                            'wali' => $namawali
+                        ];
 
 
-                            $tanggal = date_create($json->tanggal);
-                            $bln_dpn = $tool->bulan_depan($json->tanggal);
-                            $arrayke = 0;
-                            $list = [];
-                            while ($bln_dpn != date_format($tanggal, "Y-m-d")) {
-                                if ($tool->batasan_tglskrng(date_format($tanggal, "Y-m-d"))) {
-                                    $absen = $madmin->getabsen_siswa(date_format($tanggal, "Y-m-d"), $json->x1d);
-                                    if (!$absen) {
-                                        $hasil = $dashboard->harilibur(date_format($tanggal, "Y-m-d"));
-                                        if ($hasil || $tool->convert_tgl_merah(date_format($tanggal, "Y-m-d"))) {
-                                            $libur = 'Tidak ada Kegiatan Belajar Mengajar';
-                                            if ($hasil) {
-                                                $libur = object_get($hasil[0], 'ket');
-                                            }
-                                            $absen = [
-                                                'tanggal' => date_format($tanggal, "Y-m-d"),
-                                                'stat' => 'L',
-                                                'ket' => $libur];
-                                        } else {
-                                            $absen = [
-                                                'tanggal' => date_format($tanggal, "Y-m-d"),
-                                                'stat' => 'A',
-                                                'ket' => "Belum Melakukan Presensi Masuk"];
-                                            $madmin->create_absen($json->x1d, date_format($tanggal, "Y-m-d"));
-                                        }
+                    }
 
-                                        $list[$arrayke] = $absen;
-                                    } else {
-                                        $list[$arrayke] = $absen[0];
+
+                    $madmin = new M_presensi();
+
+
+                    $tanggal = date_create($json->tanggal);
+                    $bln_dpn = $tool->bulan_depan($json->tanggal);
+                    $arrayke = 0;
+                    $list = [];
+                    while ($bln_dpn != date_format($tanggal, "Y-m-d")) {
+                        if ($tool->batasan_tglskrng(date_format($tanggal, "Y-m-d"))) {
+                            $absen = $madmin->getabsen_siswa(date_format($tanggal, "Y-m-d"), $json->x1d);
+                            if (!$absen) {
+                                $hasil = $dashboard->harilibur(date_format($tanggal, "Y-m-d"));
+                                if ($hasil || $tool->convert_tgl_merah(date_format($tanggal, "Y-m-d"))) {
+                                    $libur = 'Tidak ada Kegiatan Belajar Mengajar';
+                                    if ($hasil) {
+                                        $libur = object_get($hasil[0], 'ket');
                                     }
-                                    $arrayke++;
-                                    date_add($tanggal, date_interval_create_from_date_string("1 days"));
-                                } else
-                                    break;
+                                    $absen = [
+                                        'tanggal' => date_format($tanggal, "Y-m-d"),
+                                        'stat' => 'L',
+                                        'ket' => $libur];
+                                } else {
+                                    $absen = [
+                                        'tanggal' => date_format($tanggal, "Y-m-d"),
+                                        'stat' => 'A',
+                                        'ket' => "Belum Melakukan Presensi Masuk"];
+//                                        $madmin->create_absen($json->x1d, date_format($tanggal, "Y-m-d"));
+                                }
+
+                                $list[$arrayke] = $absen;
+                            } else {
+                                $list[$arrayke] = $absen[0];
                             }
+                            $arrayke++;
+                            date_add($tanggal, date_interval_create_from_date_string("1 days"));
+                        } else
+                            break;
+                    }
 //
 
-                            $result = [
-                                'token' => true,
-                                'hasil' => true,
-                                'datakelas' => $datakls,
-                                'kehadiran' => $list
+                    $result = [
+                        'token' => true,
+                        'hasil' => true,
+                        'datakelas' => $datakls,
+                        'kehadiran' => $list
 
-                            ];
+                    ];
 
-
-                        } else
-                            $result = [
-                                'token' => true,
-                                'hasil' => false,
-                                'message' => 'Tanggal Salah'];
-
-                    } else
-                        $result = [
-                            'token' => true,
-                            'hasil' => false,
-                            'message' => 'Data presensi tidak ditemukan'
-                        ];
 
                 } else
                     $result = [
